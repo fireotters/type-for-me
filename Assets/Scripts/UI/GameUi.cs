@@ -38,29 +38,29 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         // Per-Frame Updates
         // --------------------------------------------------------------------------------------------------------------
-        private void Update()
-        {
-            CheckKeyInputs();
-        }
+        //private void Update()
+        //{
+        //    CheckKeyInputs();
+        //}
 
-        private void CheckKeyInputs()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
-            {
-                // Pause if pause panel isn't open, resume if it is open
-                if (!_dialogs.options.activeInHierarchy)
-                {
-                    if (!IsPauseInterruptingPanelOpen())
-                    {
-                        GameIsPaused(!_dialogs.paused.activeInHierarchy);
-                    }
-                }
-                else
-                {
-                    _dialogs.options.SetActive(!_dialogs.options.activeInHierarchy);
-                }
-            }
-        }
+        //private void CheckKeyInputs()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        //    {
+        //        // Pause if pause panel isn't open, resume if it is open
+        //        if (!_dialogs.options.activeInHierarchy)
+        //        {
+        //            if (!IsPauseInterruptingPanelOpen())
+        //            {
+        //                GameIsPaused(!_dialogs.paused.activeInHierarchy);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            _dialogs.options.SetActive(!_dialogs.options.activeInHierarchy);
+        //        }
+        //    }
+        //}
 
         // --------------------------------------------------------------------------------------------------------------
         // Game Event Functions

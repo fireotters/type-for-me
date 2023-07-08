@@ -93,14 +93,17 @@ public class Arm : MonoBehaviour
 
     private void PokeTarget()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_posPokeOrigin, -Vector2.up);
+        int layerMask = LayerMask.GetMask("Keys"); // Only hit Key layer objects
+        RaycastHit2D hit = Physics2D.Raycast(_posPokeOrigin, -Vector2.up, 1.0f, layerMask);
         if (hit.collider != null)
         {
             Key key = hit.collider.GetComponent<Key>();
             if (key)
                 key.KeyPress();
-            else
-                Debug.Log("Missed all keys! Play a grunt here");
+        }
+        else
+        {
+            Debug.Log("Missed all keys! Play a grunt here");
         }
     }
 
