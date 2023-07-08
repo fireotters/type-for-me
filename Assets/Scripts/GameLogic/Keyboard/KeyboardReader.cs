@@ -53,8 +53,20 @@ namespace GameLogic.Keyboard
         private void BackspaceAction(SignalKeyboardBackspacePress backspacePress)
         {
             Debug.Log("<KeyboardReader> Backspace pressed!");
-            var currentText = inputtedText.text;
-            inputtedText.text = currentText[..^1];
+            var curText = inputtedText.text;
+            string newText;
+            if (curText.EndsWith(">"))
+            {
+                // Remove RTF tags. E.g.: 123<color="">4</color>
+                // Everything from the last char to the first instance of "<" will be deleted
+                int posOfSecondLastRTFOpener = curText.Substring(0, curText.LastIndexOf("<")).LastIndexOf("<");
+                newText = curText.Substring(0, posOfSecondLastRTFOpener);
+            }
+            else
+            {
+                newText = curText[..^1]; // Remove last character
+            }
+            inputtedText.text = newText;
         }
     }
 }
