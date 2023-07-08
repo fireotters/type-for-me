@@ -1,3 +1,4 @@
+using Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,14 @@ public class Arm : MonoBehaviour
     private float _pokeSpeed, _heightAfterPoke, _swingHori, _swingVert;
 
     // PokeOrigin. Moving this around will adjust where the fingertip pokes.
-    [SerializeField] private Transform _pokeOrigin; 
+    [SerializeField] private Transform _pokeOrigin;
+    private Vector3 _posPokeOrigin;
     private Vector3 _offsetForFingertip;
 
-    // Checking whether fingertip goes offscreen before asking Arm to assign new properties.
-    public bool _isOffscreen = false;
-    private float _yEdgeOfUpperScreen = 5.5f;
+    // Checking whether fingertip is currently pressing a key
+    private Vector3 _posFingertip;
+    private float _pokeEndThreshold = 0.2f;
+    private bool _isPokingKey;
 
     private void Start()
     {
@@ -27,13 +30,16 @@ public class Arm : MonoBehaviour
 
     private void Update()
     {
+        // Set positions for the fingertip's current location, and where the poke origin is.
+        _posFingertip = transform.position - _offsetForFingertip;
+        _posPokeOrigin = _pokeOrigin.position;
+
         RaiseLowerArm();
-        // CheckIfFingertipOffScreen();
+        CheckIfPokeFinished();
     }
 
     private void RaiseLowerArm()
     {
-        Vector2 _posPokeOrigin = _pokeOrigin.position;
         float newX = _posPokeOrigin.x
             + _offsetForFingertip.x;
         float newY = Mathf.Sin(Time.time * _pokeSpeed) * _heightAfterPoke
@@ -43,20 +49,26 @@ public class Arm : MonoBehaviour
         transform.position = new Vector2(newX, newY);
     }
 
-    //private void CheckIfFingertipOffScreen()
-    //{
-    //    // Instead of checking the center of the Arm, check the fingertip's location
-    //    Vector2 _posFingerTip = transform.position - _offsetForFingertip;
-    //    if (!_isOffscreen && _posFingerTip.y > _yEdgeOfUpperScreen)
-    //    {
-    //        _isOffscreen = true;
-    //        SetNewPropertiesOnRaise();
-    //    }
-    //    else if (_isOffscreen && _posFingerTip.y < _yEdgeOfUpperScreen)
-    //    {
-    //        _isOffscreen = false;
-    //    }
-    //} TODO Reimplement. It's actually better for the fingertip to stay on-screen. The fingertip should move from place to place while the player can see it.
+    private void CheckIfPokeFinished()
+    {
+        if (_posFingertip.y < _posPokeOrigin.y + _pokeEndThreshold)
+            _IsPokingKey = true;
+        else
+            _IsPokingKey = false;
+    }
+
+    private bool _IsPokingKey {
+        get { return _isPokingKey; }
+        set {
+            if (value == _isPokingKey)
+                return;
+            _isPokingKey = value;
+
+            // Only trigger the Signal once, upon the bool being set True
+            if (_isPokingKey)
+                SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = "l" });
+        }
+    }
 
     private void SetNewPropertiesOnRaise()
     {
