@@ -1263,14 +1263,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phrases:
   - are birds real
-  - healthy foods
+  - healthy meals
   - cheap pills
   textPreview: {fileID: 484788194}
   inputtedText: {fileID: 885631872}
   progressTracker: {fileID: 792224018}
   wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
-  phraseFinishedSound: {fileID: 1696224492}
-  voiceGruntsSfx: {fileID: 1696224493}
 --- !u!4 &1696224491
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -21,10 +19,11 @@ public class Character : MonoBehaviour
     private void Start()
     {
         float[] rangePokeSpeed = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeHeightAfterPoke = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeSwingHori = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeSwingVert = { _minPokeSpeed, _maxPokeSpeed };
-        foreach (Arm arm in _armObjects)
+        float[] rangeHeightAfterPoke = { _minHeightAfterPoke, _maxHeightAfterPoke };
+        float[] rangeSwingHori = { _minSwingHori, _maxSwingHori };
+        float[] rangeSwingVert = { _minSwingVert, _maxSwingVert };
+        
+        foreach (var arm in _armObjects)
         {
             arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, rangeSwingHori, rangeSwingVert);
         }

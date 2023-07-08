@@ -41,8 +41,10 @@ namespace UI
             menuSong.Stop();
             SceneManager.LoadScene($"Scenes/LevelScenes/{signal.levelToLoad}");
         }
+        
         public void OpenHelp()
         {
+            menuSong.Stop();
             SceneManager.LoadScene($"Scenes/HelpMenu");
         }
 

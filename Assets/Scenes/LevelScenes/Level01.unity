@@ -900,6 +900,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236012254}
   m_CullTransparentMesh: 1
+--- !u!1 &1257648305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5551411340614197387, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+  m_PrefabInstance: {fileID: 1748922645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1257648308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257648305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1434458937
+      Data2: 1076267593
+      Data3: 2010273717
+      Data4: -468555821
+    Path: event:/2D/Level Tutorial - Voice
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: voiceFrequency
+    Value: 3
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1429012163
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,19 +1035,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _maxPokeSpeed
-      value: 2.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxSwingHori
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _minPokeSpeed
-      value: 2.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minSwingHori
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _maxHeightAfterPoke
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _minHeightAfterPoke
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
@@ -1077,7 +1122,6 @@ GameObject:
   - component: {fileID: 1696224491}
   - component: {fileID: 1696224490}
   - component: {fileID: 1696224492}
-  - component: {fileID: 1696224493}
   m_Layer: 0
   m_Name: Objects_Reader
   m_TagString: Untagged
@@ -1103,8 +1147,6 @@ MonoBehaviour:
   inputtedText: {fileID: 885631872}
   progressTracker: {fileID: 792224018}
   wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
-  phraseFinishedSound: {fileID: 1696224492}
-  voiceGruntsSfx: {fileID: 1696224493}
 --- !u!4 &1696224491
 Transform:
   m_ObjectHideFlags: 0
@@ -1151,38 +1193,6 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &1696224493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696224489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -1434458937
-      Data2: 1076267593
-      Data3: 2010273717
-      Data4: -468555821
-    Path: event:/2D/Level Tutorial - Voice
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params:
-  - Name: voiceFrequency
-    Value: 3
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
@@ -1436,7 +1446,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4341101249688090784, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1236012255}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5551411340614197387, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1257648308}
   m_SourcePrefab: {fileID: 100100000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
 --- !u!224 &1748922646 stripped
 RectTransform:

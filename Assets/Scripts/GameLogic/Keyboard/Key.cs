@@ -1,3 +1,4 @@
+using System.Collections;
 using FMODUnity;
 using Signals;
 using TMPro;
@@ -70,6 +71,14 @@ namespace GameLogic.Keyboard
                     break;
                 }
             }
+
+            StartCoroutine(DoKeyUp());
+        }
+
+        private IEnumerator DoKeyUp()
+        {
+            yield return new WaitForSeconds(1f);
+            anim.SetBool("Pressed", false);
         }
 
         public void KeyPress()
