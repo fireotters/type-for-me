@@ -53,10 +53,10 @@ namespace GameLogic.Keyboard
                 inputtedText.text = $"<color=#4EFF00>{inputtedText.text}</color>";
                 StartCoroutine(UpdateGameState());
             }
-            else
-            {
-                Debug.Log("keep goin");
-            }
+            //else
+            //{
+            //    Debug.Log("keep goin");
+            //}
         }
 
         private IEnumerator UpdateGameState()

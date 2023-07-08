@@ -35,16 +35,6 @@ namespace GameLogic.Keyboard
             // Add else-ifs for specialKeyStatus if necessary
         }
 
-        public void KeyPress()
-        {
-            DoKeyPress();
-        }
-        
-        private void OnMouseDown()
-        {
-            DoKeyPress();
-        }
-
         private void DoKeyPress()
         {
             keySound.Play();
@@ -79,13 +69,18 @@ namespace GameLogic.Keyboard
             }
         }
 
-        private void StartHighlight()
+        public void KeyPress()
         {
-
+            DoKeyPress();
         }
-        private void EndHighlight()
-        {
 
+        public string Letter
+        {
+            get {
+                // 'Letter' is only got upon a successful Key Press
+                DoKeyPress();
+                return letter;
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using GameLogic.Keyboard;
 using Signals;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,21 +53,20 @@ public class Arm : MonoBehaviour
     private void CheckIfPokeFinished()
     {
         if (_posFingertip.y < _posPokeOrigin.y + _pokeEndThreshold)
-            _IsPokingKey = true;
+            IsPokingKey(true);
         else
-            _IsPokingKey = false;
+            IsPokingKey(false);
     }
 
-    private bool _IsPokingKey {
-        get { return _isPokingKey; }
-        set {
-            if (value == _isPokingKey)
-                return;
-            _isPokingKey = value;
+    private void IsPokingKey(bool pokeState) {
+        if (pokeState == _isPokingKey)
+            return;
+        _isPokingKey = pokeState;
 
-            // Only trigger the Signal once, upon the bool being set True
-            if (_isPokingKey)
-                SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = "l" });
+        // Only trigger the Signal once, until the bool is reset later.
+        if (_isPokingKey)
+        {
+            PokeTarget();
         }
     }
 
@@ -91,17 +91,16 @@ public class Arm : MonoBehaviour
         _swingVert = Random.Range(_rangeSwingVert[0], _rangeSwingVert[1]);
     }
 
-    private void PokeCompleted()
+    private void PokeTarget()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity))
+        RaycastHit2D hit = Physics2D.Raycast(_posPokeOrigin, -Vector2.up);
+        if (hit.collider != null)
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+            Key key = hit.collider.GetComponent<Key>();
+            if (key)
+                key.KeyPress();
+            else
+                Debug.Log("Missed all keys! Play a grunt here");
         }
     }
 
