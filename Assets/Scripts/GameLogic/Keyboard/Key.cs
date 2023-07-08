@@ -14,6 +14,7 @@ namespace GameLogic.Keyboard
         private SpriteRenderer _sprite;
         private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
         private StudioEventEmitter keySound;
+        private Animator anim;
 
         public enum SpecialKey
         {
@@ -24,6 +25,7 @@ namespace GameLogic.Keyboard
         {
             _sprite = GetComponent<SpriteRenderer>();
             keySound = GetComponent<StudioEventEmitter>();
+            anim = GetComponent<Animator>();
 
             if (isUnusable)
             {
@@ -37,6 +39,7 @@ namespace GameLogic.Keyboard
 
         private void DoKeyPress()
         {
+            anim.SetBool("Pressed", true);
             keySound.Play();
             switch (specialKeyStatus)
             {
