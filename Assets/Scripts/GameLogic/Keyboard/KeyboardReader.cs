@@ -32,9 +32,17 @@ namespace GameLogic.Keyboard
             Debug.Log($"<KeyboardReader> {keyPress.Letter} was pressed!");
             try
             {
+                if (keyPress.Letter == "||")
+                {
+                    Debug.Log("Paused"); // TODO program in pausing signal
+                    return;
+                }
+
                 var expectedCharacter = textPreview.text[inputtedText.text.Length];
                 if (expectedCharacter.ToString() != keyPress.Letter)
                 {
+                    if (keyPress.Letter == " ")
+                        keyPress.Letter = "_"; // Indicate an incorrect SpaceKey usage
                     inputtedText.text += $"<color=#FF0000>{keyPress.Letter}</color>";
                 }
                 else

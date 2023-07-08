@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1411981265953681367
+--- !u!1001 &2468854095870252587
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,33 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3556579793169541944, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0.7653
-      objectReference: {fileID: 0}
-    - target: {fileID: 3556579793169541944, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.031
-      objectReference: {fileID: 0}
-    - target: {fileID: 3556579793169541944, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.174
+    - target: {fileID: 3362317341915392983, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
+      propertyPath: letter
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4154418183636881601, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_Name
-      value: Backspace
+      value: Key-5.00
       objectReference: {fileID: 0}
     - target: {fileID: 4384817913491780340, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2056900439, guid: 172bf8282ab79d84eb33a50d0e5bd2dd, type: 3}
+      objectReference: {fileID: -1643710787, guid: 172bf8282ab79d84eb33a50d0e5bd2dd, type: 3}
     - target: {fileID: 6873096883573685226, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6873096883573685226, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873096883573685226, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,23 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7595680259805790528, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_text
-      value: Backspace
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595680259805790528, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_fontSize
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595680259805790528, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 1.3
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7861216026913891694, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.0600444
+      value: 3.1601324
       objectReference: {fileID: 0}
     - target: {fileID: 7861216026913891694, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.58
+      value: 0.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
