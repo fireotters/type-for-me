@@ -48,10 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _armObjects:
   - {fileID: 1069746594169967311}
-  _minPokeSpeed: 5
-  _maxPokeSpeed: 5
-  _minHeightAfterPoke: 5
-  _maxHeightAfterPoke: 5
+  _minPokeSpeed: 2
+  _maxPokeSpeed: 2
+  _minHeightAfterPoke: 1
+  _maxHeightAfterPoke: 1
   _minSwingHori: 0
   _maxSwingHori: 0
   _minSwingVert: 0
@@ -65,9 +65,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537236549482054867}
+  - component: {fileID: 6552598943457056199}
   - component: {fileID: 4253316449486603325}
   m_Layer: 0
-  m_Name: PokeDestination
+  m_Name: PokeDestination (Read attached note!)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,12 +83,27 @@ Transform:
   m_GameObject: {fileID: 4543547006624513796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8181717895817453683}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6552598943457056199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4543547006624513796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f649ca9c9d1fe469b0a6e724b4e188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notes: Switch the move tool to 'Pivot' mode to see where the poke destination is.
+    Using 'Center' will make it appear that the poke destination is sliding up &
+    down.
 --- !u!212 &4253316449486603325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,7 +146,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.038640022, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -158,7 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -226,4 +242,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feef7eaaf0d4e042b71bb473bfc6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pokeSpeed: 0
+  _pokeOrigin: {fileID: 2537236549482054867}
+  _isOffscreen: 0

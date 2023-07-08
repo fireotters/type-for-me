@@ -28,7 +28,7 @@ public class Arm : MonoBehaviour
     private void Update()
     {
         RaiseLowerArm();
-        CheckIfFingertipOffScreen();
+        // CheckIfFingertipOffScreen();
     }
 
     private void RaiseLowerArm()
@@ -38,25 +38,25 @@ public class Arm : MonoBehaviour
             + _offsetForFingertip.x;
         float newY = Mathf.Sin(Time.time * _pokeSpeed) * _heightAfterPoke
             + _posPokeOrigin.y // Compensate for where the pokeOrigin is moved to
-            + _heightAfterPoke // Ensure the bottom of the poke is at pokeOrigin by adding the height
+            + _heightAfterPoke // Ensure the bottom of the poke is at pokeOrigin by adding the sin wave's amplitude
             + _offsetForFingertip.y;
         transform.position = new Vector2(newX, newY);
     }
 
-    private void CheckIfFingertipOffScreen()
-    {
-        // Instead of checking the center of the Arm, check the fingertip's location
-        Vector2 _posFingerTip = transform.position - _offsetForFingertip;
-        if (!_isOffscreen && _posFingerTip.y > _yEdgeOfUpperScreen)
-        {
-            _isOffscreen = true;
-            SetNewPropertiesOnRaise();
-        }
-        else if (_isOffscreen && _posFingerTip.y < _yEdgeOfUpperScreen)
-        {
-            _isOffscreen = false;
-        }
-    }
+    //private void CheckIfFingertipOffScreen()
+    //{
+    //    // Instead of checking the center of the Arm, check the fingertip's location
+    //    Vector2 _posFingerTip = transform.position - _offsetForFingertip;
+    //    if (!_isOffscreen && _posFingerTip.y > _yEdgeOfUpperScreen)
+    //    {
+    //        _isOffscreen = true;
+    //        SetNewPropertiesOnRaise();
+    //    }
+    //    else if (_isOffscreen && _posFingerTip.y < _yEdgeOfUpperScreen)
+    //    {
+    //        _isOffscreen = false;
+    //    }
+    //} TODO Reimplement. It's actually better for the fingertip to stay on-screen. The fingertip should move from place to place while the player can see it.
 
     private void SetNewPropertiesOnRaise()
     {
