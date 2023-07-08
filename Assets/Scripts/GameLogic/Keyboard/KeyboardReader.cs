@@ -34,8 +34,8 @@ namespace GameLogic.Keyboard
                     var newGameObject 
                         = Instantiate(wordTrackerPrefab, new Vector3(startingXAxisPos, progressTracker.transform.position.y), Quaternion.identity,  progressTracker.transform);
                     startingXAxisPos -= .5f;
-                    var spriteRenderer = newGameObject.GetComponent<SpriteRenderer>();
-                    spriteRenderer.color = i == phrases.Length - 1 ? Color.white : Color.gray;
+                    var tracker = newGameObject.GetComponent<PhaseTracker>();
+                    tracker.ChangeStatus(i == phrases.Length - 1 ? TrackerStatus.Active : TrackerStatus.Inactive);
                 }
                 textPreview.text = phrases[0];
             }
@@ -59,13 +59,13 @@ namespace GameLogic.Keyboard
         {
             yield return new WaitForSeconds(2f);
             var currentWord = textPreview.text;
-            var trackerSpriteRenderers = progressTracker.GetComponentsInChildren<SpriteRenderer>();
+            var trackers = progressTracker.GetComponentsInChildren<PhaseTracker>();
             
             if (currentWord.Equals(phrases[^1]))
             {
                 Debug.Log("Turns out you DONT suck!");
-                var lastTrackerRenderer = trackerSpriteRenderers[0];
-                lastTrackerRenderer.color = Color.green;
+                var lastTracker = trackers[0];
+                lastTracker.ChangeStatus(TrackerStatus.Passed);
                 SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.WinType1, score = 0 });
             }
             else
@@ -77,17 +77,17 @@ namespace GameLogic.Keyboard
                 
                 // also update hud
                 // the way these are instance we gotta iterate through the list backwards
-                for (var i = trackerSpriteRenderers.Length - 1; i >= 0; i--)
+                for (var i = trackers.Length - 1; i >= 0; i--)
                 {
-                    var sr = trackerSpriteRenderers[i];
-                    if (sr.color.Equals(Color.green))
+                    var tracker = trackers[i];
+                    if (tracker.CurrentStatus.Equals(TrackerStatus.Passed))
                         continue;
-                    if (sr.color.Equals(Color.white))
+                    if (tracker.CurrentStatus.Equals(TrackerStatus.Active))
                     {
                         // that's the current one we just beat, mark as valid and the next one as current
-                        sr.color = Color.green;
-                        var nextSpriteRenderer = trackerSpriteRenderers[i - 1];
-                        nextSpriteRenderer.color = Color.white;
+                        tracker.ChangeStatus(TrackerStatus.Passed);
+                        var nextTracker = trackers[i - 1];
+                        nextTracker.ChangeStatus(TrackerStatus.Active);
                         break;
                     }
                 }

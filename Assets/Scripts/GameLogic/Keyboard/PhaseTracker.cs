@@ -6,21 +6,16 @@ namespace GameLogic.Keyboard
     {
 
         [SerializeField] private Sprite inactiveSprite, activeSprite, passedSprite;
-        private SpriteRenderer spriteRenderer;
-        public TrackerStatus CurrentStatus { get; private set; } = TrackerStatus.INACTIVE;
-
-        private void Start()
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        [SerializeField ]private SpriteRenderer spriteRenderer;
+        public TrackerStatus CurrentStatus { get; private set; } = TrackerStatus.Inactive;
 
         public void ChangeStatus(TrackerStatus status)
         {
             spriteRenderer.sprite = status switch
             {
-                TrackerStatus.ACTIVE => activeSprite,
-                TrackerStatus.INACTIVE => inactiveSprite,
-                TrackerStatus.PASSED => passedSprite,
+                TrackerStatus.Active => activeSprite,
+                TrackerStatus.Inactive => inactiveSprite,
+                TrackerStatus.Passed => passedSprite,
                 _ => spriteRenderer.sprite
             };
 
@@ -30,8 +25,8 @@ namespace GameLogic.Keyboard
 
     public enum TrackerStatus
     {
-        ACTIVE,
-        INACTIVE,
-        PASSED,
+        Active,
+        Inactive,
+        Passed,
     }
 }
