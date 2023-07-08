@@ -69,12 +69,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -782,7 +782,7 @@ TextureImporter:
         width: 77
         height: 129
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -803,7 +803,7 @@ TextureImporter:
         width: 275
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -811,6 +811,69 @@ TextureImporter:
       bones: []
       spriteID: 4b17cb1042acbf94da57b59da3b2aa69
       internalID: -1456977805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menus_29
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1368
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f45cc44367fa11b4b8dccb7bf36d3b08
+      internalID: 500912397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menus_30
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 1368
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebbaee31e7133b4c91dcab0b2ef8d43
+      internalID: 1118238881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menus_31
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 1367
+        width: 55
+        height: 53
+      alignment: 9
+      pivot: {x: 0.35179555, y: 0.35474554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32475ed5b3952c2458cbfc6c6682ba19
+      internalID: -2130952493
       vertices: []
       indices: 
       edges: []
@@ -848,7 +911,10 @@ TextureImporter:
       menus_26: 854099852
       menus_27: -760895680
       menus_28: -1456977805
+      menus_29: 500912397
       menus_3: 88317523
+      menus_30: 1118238881
+      menus_31: -2130952493
       menus_4: 1361156727
       menus_5: 1802616480
       menus_6: 281016215

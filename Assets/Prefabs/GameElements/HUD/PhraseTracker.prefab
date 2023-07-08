@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 6099064008190003587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 500912397, guid: 67966b9e591f90445b80616ff9193571, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d9b5d36b43cff47b767a96a47da246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inactiveSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  activeSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  passedSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  inactiveSprite: {fileID: 500912397, guid: 67966b9e591f90445b80616ff9193571, type: 3}
+  activeSprite: {fileID: 1118238881, guid: 67966b9e591f90445b80616ff9193571, type: 3}
+  passedSprite: {fileID: -2130952493, guid: 67966b9e591f90445b80616ff9193571, type: 3}
   spriteRenderer: {fileID: 5127225482995611373}
