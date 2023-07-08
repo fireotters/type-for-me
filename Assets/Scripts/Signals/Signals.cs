@@ -11,9 +11,7 @@ namespace Signals
         public bool Showing;
         public string LevelName, ScoreType1, ScoreType2;
     }
-
-
-
+    
     // Game End Signals
     public enum GameEndCondition
     {
@@ -24,13 +22,21 @@ namespace Signals
         public GameEndCondition result;
         public int score;
     }
-
-
-
+    
     // Game Signals
     public struct SignalToggleEffect
     {
         public bool Enabled;
+    }
+
+    public struct SignalKeyboardKeyPress
+    {
+        public string Letter;
+    }
+
+    public struct SignalKeyboardBackspacePress
+    {
+        // no payload needed
     }
 }
 

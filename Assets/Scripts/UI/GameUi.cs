@@ -1,11 +1,10 @@
+using System;
 using Audio;
 using FMODUnity;
 using Signals;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace UI
 {
@@ -134,7 +133,7 @@ namespace UI
     // Classes for common GameUi Objects
     // --------------------------------------------------------------------------------------------------------------
 
-    [System.Serializable]
+    [Serializable]
     public class GameUiDialogs
     {
         // Support for victory screen, high scores, remembering the tutorials shown to the player
@@ -180,12 +179,12 @@ namespace UI
             }
         }
     }
-    [System.Serializable]
+    [Serializable]
     public class GameUiPlayerUi
     {
         // Implement
     }
-    [System.Serializable]
+    [Serializable]
     public class GameUiSound
     {
         public StudioEventEmitter musicStage;
