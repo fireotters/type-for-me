@@ -8,44 +8,46 @@ namespace GameLogic.Keyboard
     {
         [SerializeField] private string letter;
         [SerializeField] private TMP_Text keyLabel;
-        [SerializeField] private SpecialKeyStatus specialKeyStatus;
+        [SerializeField] private SpecialKey specialKeyStatus;
         [SerializeField] private bool isUnusable; // For aesthetic reasons, keys are on the keyboard which functionally do nothing.
         private SpriteRenderer _sprite;
         private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
 
-        public enum SpecialKeyStatus
+        public enum SpecialKey
         {
-            None, Backspace, Enter
+            None, Backspace, Enter, Pause
         }
 
         private void Start()
         {
             _sprite = GetComponent<SpriteRenderer>();
 
-            if (specialKeyStatus == SpecialKeyStatus.Backspace)
-                keyLabel.text = "Backspace";
-            else if (specialKeyStatus == SpecialKeyStatus.Enter)
-                keyLabel.text = "Enter";
-            else if (isUnusable)
+            if (isUnusable)
             {
                 keyLabel.text = "";
                 _sprite.color = _colorUnusable;
             }
-            else
+            else if (specialKeyStatus == SpecialKey.None)
                 keyLabel.text = letter.ToUpper();
+            // Add else-ifs for specialKeyStatus if necessary
         }
 
         private void OnMouseDown()
         {
-            if (specialKeyStatus == SpecialKeyStatus.Backspace)
+            if (specialKeyStatus == SpecialKey.Backspace)
             {
                 Debug.Log("<Key> Pressed Backspace!");
                 SignalBus<SignalKeyboardBackspacePress>.Fire();
             }
-            else if (specialKeyStatus == SpecialKeyStatus.Enter)
+            else if (specialKeyStatus == SpecialKey.Enter)
             {
                 Debug.Log("<Key> Pressed Enter!");
-                // SignalBus<SignalKeyboardEnterPress>.Fire(); // TODO Implement pressing 'Enter' to finish a level
+                SignalBus<SignalKeyboardEnterPress>.Fire(); // TODO Implement pressing 'Enter' to finish a prompt
+            }
+            else if (specialKeyStatus == SpecialKey.Pause)
+            {
+                Debug.Log("<Key> Pressed Pause!");
+                SignalBus<SignalKeyboardPausePress>.Fire();
             }
             else if (isUnusable)
             {

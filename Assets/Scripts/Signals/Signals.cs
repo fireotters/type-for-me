@@ -23,11 +23,7 @@ namespace Signals
         public int score;
     }
     
-    // Game Signals
-    public struct SignalToggleEffect
-    {
-        public bool Enabled;
-    }
+    // Key Signals
 
     public struct SignalKeyboardKeyPress
     {
@@ -35,6 +31,15 @@ namespace Signals
     }
 
     public struct SignalKeyboardBackspacePress
+    {
+        // no payload needed
+    }
+    public struct SignalKeyboardEnterPress
+    {
+        // TODO Implement
+    }
+
+    public struct SignalKeyboardPausePress
     {
         // no payload needed
     }

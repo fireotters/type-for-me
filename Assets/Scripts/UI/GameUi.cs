@@ -28,6 +28,7 @@ namespace UI
                 Debug.LogWarning("No 'CanvasGameUi.nextSceneToLoad' set! Selecting 'Next Level' will fail.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
+            SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
         }
         private void OnDestroy()
         {
@@ -96,6 +97,13 @@ namespace UI
             _sound.fmodMixer.FindAllSfxAndPlayPause(isGamePaused: intent);
         }
 
+        private void PauseGame(SignalKeyboardPausePress context)
+        {
+            if (Time.timeScale == 1)
+                GameIsPaused(true);
+            else
+                GameIsPaused(false);
+        }
         public void ResumeGame()
         {
             GameIsPaused(false);

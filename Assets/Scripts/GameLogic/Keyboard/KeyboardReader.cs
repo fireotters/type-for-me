@@ -63,12 +63,16 @@ namespace GameLogic.Keyboard
             Debug.Log("<KeyboardReader> Backspace pressed!");
             var curText = inputtedText.text;
             string newText;
-            if (curText.EndsWith(">"))
+            if (curText.Length == 0)
             {
-                // Remove RTF tags. E.g.: 123<color="">4</color>
-                // Everything from the last char to the first instance of "<" will be deleted
-                int posOfSecondLastRTFOpener = curText.Substring(0, curText.LastIndexOf("<")).LastIndexOf("<");
-                newText = curText.Substring(0, posOfSecondLastRTFOpener);
+                return;
+            }
+            else if (curText.EndsWith(">"))
+            {
+                // Remove RTF tags. E.g: 123<color>4</color>
+                // Everything from the last '>' to the second-last '<' will be deleted
+                int posOfSecondLastRTFOpener = curText[..curText.LastIndexOf("<")].LastIndexOf("<");
+                newText = curText[..posOfSecondLastRTFOpener];
             }
             else
             {
