@@ -6,7 +6,7 @@ namespace GameLogic.Keyboard
     {
 
         [SerializeField] private Sprite inactiveSprite, activeSprite, passedSprite;
-        [SerializeField ]private SpriteRenderer spriteRenderer;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         public TrackerStatus CurrentStatus { get; private set; } = TrackerStatus.Inactive;
 
         public void ChangeStatus(TrackerStatus status)
