@@ -16,6 +16,26 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1812470777004745639, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/3D/Key Space
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812470777004745639, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1812162220
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812470777004745639, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1149294100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812470777004745639, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -136518528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812470777004745639, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -988525400
+      objectReference: {fileID: 0}
     - target: {fileID: 2009824704399197930, guid: 785668071fa9207428e6e85231cfb2e1, type: 3}
       propertyPath: m_Name
       value: Key-5.00-Space

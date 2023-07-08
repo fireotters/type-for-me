@@ -1,6 +1,6 @@
+using FMODUnity;
 using Signals;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameLogic.Keyboard
@@ -13,6 +13,7 @@ namespace GameLogic.Keyboard
         [SerializeField] private bool isUnusable; // For aesthetic reasons, keys are on the keyboard which functionally do nothing.
         private SpriteRenderer _sprite;
         private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
+        private StudioEventEmitter keySound;
 
         public enum SpecialKey
         {
@@ -22,6 +23,7 @@ namespace GameLogic.Keyboard
         private void Start()
         {
             _sprite = GetComponent<SpriteRenderer>();
+            keySound = GetComponent<StudioEventEmitter>();
 
             if (isUnusable)
             {
@@ -33,31 +35,47 @@ namespace GameLogic.Keyboard
             // Add else-ifs for specialKeyStatus if necessary
         }
 
+        public void KeyPress()
+        {
+            DoKeyPress();
+        }
+        
         private void OnMouseDown()
         {
-            if (specialKeyStatus == SpecialKey.Backspace)
+            DoKeyPress();
+        }
+
+        private void DoKeyPress()
+        {
+            keySound.Play();
+            switch (specialKeyStatus)
             {
-                Debug.Log("<Key> Pressed Backspace!");
-                SignalBus<SignalKeyboardBackspacePress>.Fire();
-            }
-            else if (specialKeyStatus == SpecialKey.Enter)
-            {
-                Debug.Log("<Key> Pressed Enter!");
-                SignalBus<SignalKeyboardEnterPress>.Fire(); // TODO Implement pressing 'Enter' to finish a prompt
-            }
-            else if (specialKeyStatus == SpecialKey.Pause)
-            {
-                Debug.Log("<Key> Pressed Pause!");
-                SignalBus<SignalKeyboardPausePress>.Fire();
-            }
-            else if (isUnusable)
-            {
-                Debug.Log("<Key> Pressed Unusable! Play a 'useless thocking' sfx...");
-            }
-            else
-            {
-                Debug.Log($"<Key> Pressed {letter}!");
-                SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = letter });
+                case SpecialKey.Backspace:
+                    Debug.Log("<Key> Pressed Backspace!");
+                    SignalBus<SignalKeyboardBackspacePress>.Fire();
+                    break;
+                case SpecialKey.Enter:
+                    Debug.Log("<Key> Pressed Enter!");
+                    SignalBus<SignalKeyboardEnterPress>.Fire(); // TODO Implement pressing 'Enter' to finish a prompt
+                    break;
+                case SpecialKey.Pause:
+                    Debug.Log("<Key> Pressed Pause!");
+                    SignalBus<SignalKeyboardPausePress>.Fire();
+                    break;
+                default:
+                {
+                    if (isUnusable)
+                    {
+                        Debug.Log("<Key> Pressed Unusable! Play a 'useless thocking' sfx...");
+                    }
+                    else
+                    {
+                        Debug.Log($"<Key> Pressed {letter}!");
+                        SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = letter });
+                    }
+
+                    break;
+                }
             }
         }
 

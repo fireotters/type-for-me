@@ -13,7 +13,7 @@ namespace Audio
 
         [SerializeField]
         private List<EventReference> GameSongEvents;
-        private List<FMOD.GUID> gameSongGuids;
+        private List<FMOD.GUID> gameSongGuids = new();
 
         private void Start()
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections;
+using FMODUnity;
 using Signals;
 using TMPro;
 using UnityEngine;
@@ -16,11 +17,13 @@ namespace GameLogic.Keyboard
 
         [SerializeField] private GameObject progressTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
+        private StudioEventEmitter phraseFinishedSound;
         
         private void Start()
         {
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
+            phraseFinishedSound = GetComponent<StudioEventEmitter>();
 
             if (phrases.Length == 0)
             {
@@ -45,6 +48,7 @@ namespace GameLogic.Keyboard
         {
             if (textPreview.text.Equals(inputtedText.text))
             {
+                phraseFinishedSound.Play();
                 Debug.Log("gaming yo yo gaming gaming yo");
                 inputtedText.text = $"<color=#4EFF00>{inputtedText.text}</color>";
                 StartCoroutine(UpdateGameState());
@@ -147,6 +151,11 @@ namespace GameLogic.Keyboard
                 newText = curText[..^1]; // Remove last character
             }
             inputtedText.text = newText;
+        }
+        
+        private void OnDestroy()
+        {
+            disposables.Dispose();
         }
     }
 }
