@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 31429395}
   - component: {fileID: 31429394}
   - component: {fileID: 31429393}
+  - component: {fileID: 31429396}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -296,6 +297,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &31429396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31429392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1578459113
+      Data2: 1149513716
+      Data3: -1459518830
+      Data4: -656049838
+    Path: event:/2D/Main menu - Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &50075621
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +454,6 @@ GameObject:
   - component: {fileID: 51711106}
   - component: {fileID: 51711109}
   - component: {fileID: 51711108}
-  - component: {fileID: 51711110}
   - component: {fileID: 51711107}
   m_Layer: 5
   m_Name: ExitButton
@@ -534,22 +564,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51711105}
   m_CullTransparentMesh: 1
---- !u!114 &51711110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51711105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!1 &63632466
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +848,6 @@ GameObject:
   - component: {fileID: 137984316}
   - component: {fileID: 137984320}
   - component: {fileID: 137984319}
-  - component: {fileID: 137984318}
   - component: {fileID: 137984317}
   m_Layer: 5
   m_Name: SettingsButton
@@ -919,22 +932,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &137984318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137984315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &137984319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +981,6 @@ GameObject:
   - component: {fileID: 284365456}
   - component: {fileID: 284365460}
   - component: {fileID: 284365459}
-  - component: {fileID: 284365458}
   - component: {fileID: 284365457}
   m_Layer: 5
   m_Name: PlayButton
@@ -1081,22 +1077,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &284365458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284365455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &284365459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,7 +1261,6 @@ GameObject:
   - component: {fileID: 394740098}
   - component: {fileID: 394740101}
   - component: {fileID: 394740100}
-  - component: {fileID: 394740102}
   - component: {fileID: 394740099}
   m_Layer: 5
   m_Name: HelpButton
@@ -1404,22 +1383,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394740097}
   m_CullTransparentMesh: 1
---- !u!114 &394740102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394740097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!1 &408290599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1685,7 @@ RectTransform:
   - {fileID: 997934460}
   - {fileID: 930372007}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2024,7 +1987,6 @@ GameObject:
   - component: {fileID: 795906791}
   - component: {fileID: 795906794}
   - component: {fileID: 795906793}
-  - component: {fileID: 795906795}
   - component: {fileID: 795906792}
   m_Layer: 5
   m_Name: PlayButton
@@ -2159,22 +2121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795906790}
   m_CullTransparentMesh: 1
---- !u!114 &795906795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795906790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!1 &849306846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2741,6 @@ GameObject:
   - component: {fileID: 1025128635}
   - component: {fileID: 1025128638}
   - component: {fileID: 1025128637}
-  - component: {fileID: 1025128639}
   - component: {fileID: 1025128636}
   m_Layer: 5
   m_Name: SettingsButton
@@ -2918,22 +2863,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025128634}
   m_CullTransparentMesh: 1
---- !u!114 &1025128639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025128634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!1 &1149967943
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,87 +3980,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -34.999992}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1638985057
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1638985060}
-  - component: {fileID: 1638985059}
-  - component: {fileID: 1638985058}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1638985058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638985057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -722030184
-      Data2: 1232939717
-      Data3: -357546348
-      Data4: -1858405644
-    Path: event:/2D/Test
-  Event: 
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!114 &1638985059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638985057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadEvent: 1
-  UnloadEvent: 0
-  Banks:
-  - Master
-  CollisionTag: 
-  PreloadSamples: 0
---- !u!4 &1638985060
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638985057}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4198885, y: 10.365127, z: 0.17651583}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1646096606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,7 +4409,6 @@ GameObject:
   - component: {fileID: 1906106175}
   - component: {fileID: 1906106179}
   - component: {fileID: 1906106178}
-  - component: {fileID: 1906106177}
   - component: {fileID: 1906106176}
   m_Layer: 5
   m_Name: HelpButton
@@ -4646,22 +4493,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1906106177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906106174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d39b8e0a5c48541bd01ae8e5776269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  highlightColor: {r: 0.253471, g: 0.6037736, b: 0.27143475, a: 1}
-  clickColor: {r: 0.10565582, g: 0.4339623, b: 0.07164471, a: 1}
-  _forceBaseColorAfterClick: 0
 --- !u!114 &1906106178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,7 +4943,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067372410
 GameObject:
