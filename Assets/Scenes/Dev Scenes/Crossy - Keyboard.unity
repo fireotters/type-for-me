@@ -883,6 +883,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxPokeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minPokeSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minHeightAfterPoke
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _rangePokeSpeed.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4543547006624513796, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_Name
       value: PokeDestination (Read attached note!)

@@ -20,13 +20,13 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
+        float[] rangePokeSpeed = { _minPokeSpeed, _maxPokeSpeed };
+        float[] rangeHeightAfterPoke = { _minPokeSpeed, _maxPokeSpeed };
+        float[] rangeSwingHori = { _minPokeSpeed, _maxPokeSpeed };
+        float[] rangeSwingVert = { _minPokeSpeed, _maxPokeSpeed };
         foreach (Arm arm in _armObjects)
         {
-            float randPokeSpeed = Random.Range(_minPokeSpeed, _maxPokeSpeed);
-            float randHeightAfterPoke = Random.Range(_minHeightAfterPoke, _maxHeightAfterPoke);
-            float randSwingHori = Random.Range(_minSwingHori, _maxSwingHori);
-            float randSwingVert = Random.Range(_minSwingVert, _maxSwingVert);
-            arm.SetMovementProperties(randPokeSpeed, randHeightAfterPoke, randSwingHori, randSwingVert);
+            arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, rangeSwingHori, rangeSwingVert);
         }
     }
 }
