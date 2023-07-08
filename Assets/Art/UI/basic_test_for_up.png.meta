@@ -459,7 +459,7 @@ TextureImporter:
         width: 117
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,6 +467,258 @@ TextureImporter:
       bones: []
       spriteID: 0c4ef95214eb15c41bc2d5cb3306123c
       internalID: 1874619071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_16
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 2029
+        width: 59
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03221ff966d1874aa71340873e92bd5
+      internalID: 653376552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_17
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2030
+        width: 106
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c1058990bfa8d64b97b244f4e9d5fe5
+      internalID: 976107838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_18
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 2026
+        width: 78
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c0e079a3cc876478212c049ed03a6f
+      internalID: -1310107241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_19
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 2028
+        width: 92
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47bca251ebd808940a8e748c103ddfbc
+      internalID: -2120488821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_20
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 2029
+        width: 118
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ced3df36e22a6f4cb834f95df26805b
+      internalID: 1598148646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_21
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 2028
+        width: 142
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5060f1a8a6c156b4aa3758db3a18b13a
+      internalID: -1376143646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_22
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 2030
+        width: 65
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2bf5100a185fb044bf54c8858ea2cd0
+      internalID: 1907727309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_23
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 2032
+        width: 98
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f83a38515f11e7458fc56156a4c21fc
+      internalID: 337678795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_24
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1980
+        width: 42
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f15111ed8aa267479db9bb14a83a91b
+      internalID: -520427973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_25
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1947
+        width: 315
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7941602055c961145a1b8e4fcf960c65
+      internalID: 64377755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_26
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1946
+        width: 151
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b183bb8e1f51a3448c274d025eb682d
+      internalID: -323443912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_test_for_up_27
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 1950
+        width: 115
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb4598799c94f84399bb2b5c51c827d
+      internalID: 622920078
       vertices: []
       indices: 
       edges: []
@@ -490,7 +742,19 @@ TextureImporter:
       basic_test_for_up_13: 535577831
       basic_test_for_up_14: 1436448149
       basic_test_for_up_15: 1874619071
+      basic_test_for_up_16: 653376552
+      basic_test_for_up_17: 976107838
+      basic_test_for_up_18: -1310107241
+      basic_test_for_up_19: -2120488821
       basic_test_for_up_2: 1468567855
+      basic_test_for_up_20: 1598148646
+      basic_test_for_up_21: -1376143646
+      basic_test_for_up_22: 1907727309
+      basic_test_for_up_23: 337678795
+      basic_test_for_up_24: -520427973
+      basic_test_for_up_25: 64377755
+      basic_test_for_up_26: -323443912
+      basic_test_for_up_27: 622920078
       basic_test_for_up_3: -2056900439
       basic_test_for_up_4: 992406634
       basic_test_for_up_5: 1663264911
