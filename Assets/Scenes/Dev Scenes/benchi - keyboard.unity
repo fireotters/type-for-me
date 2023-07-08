@@ -374,7 +374,6 @@ GameObject:
   - component: {fileID: 578606224}
   - component: {fileID: 578606223}
   - component: {fileID: 578606225}
-  - component: {fileID: 578606226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -461,36 +460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
---- !u!114 &578606226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578606221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1184050144
-      Data2: 1161450357
-      Data3: -1263605363
-      Data4: 1492684335
-    Path: event:/2D/Level Tutorial - Music
-  Event: 
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 8.55
 --- !u!1 &792224018
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +861,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxPokeSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minPokeSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -957,6 +934,7 @@ GameObject:
   - component: {fileID: 1696224491}
   - component: {fileID: 1696224490}
   - component: {fileID: 1696224492}
+  - component: {fileID: 1696224493}
   m_Layer: 0
   m_Name: Objects_Reader
   m_TagString: Untagged
@@ -984,6 +962,8 @@ MonoBehaviour:
   inputtedText: {fileID: 885631872}
   progressTracker: {fileID: 792224018}
   wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
+  phraseFinishedSound: {fileID: 1696224492}
+  voiceGruntsSfx: {fileID: 1696224493}
 --- !u!4 &1696224491
 Transform:
   m_ObjectHideFlags: 0
@@ -1033,6 +1013,38 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &1696224493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696224489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1434458937
+      Data2: 1076267593
+      Data3: 2010273717
+      Data4: -468555821
+    Path: event:/2D/Level Tutorial - Voice
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: voiceFrequency
+    Value: 3
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1748922645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1064,6 +1076,14 @@ PrefabInstance:
     - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: GameSongEvents.Array.data[0].Guid.Data4
       value: 1492684335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535773649999258127, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535773649999258127, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 381
       objectReference: {fileID: 0}
     - target: {fileID: 4341101249688090784, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_Pivot.x
@@ -1153,6 +1173,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasGameUi
       objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: PlayEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: Params.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/2D/Level Tutorial - Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 8.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1184050144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1161450357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1263605363
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 1492684335
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: Params.Array.data[0].Name
+      value: 2Dsound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1205,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5118676309023061454, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.85
+      value: -7.61
       objectReference: {fileID: 0}
     - target: {fileID: 5118676309023061454, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1288,10 +1348,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 454928044005459170, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7343128577127725119, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7916176249866622315, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6993163976498468955, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2504938584236976404, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 8de0f1b0da2d11340976178cc29aa731, type: 3}

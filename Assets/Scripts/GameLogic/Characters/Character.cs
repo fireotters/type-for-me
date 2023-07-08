@@ -7,16 +7,16 @@ public class Character : MonoBehaviour
     // Characters can have multiple arms. Use this character script to control each character's arm behaviour.
     [SerializeField] private Arm[] _armObjects;
     [Space(20)]
-    [SerializeField] private int _minPokeSpeed;
-    [SerializeField] private int _maxPokeSpeed;
+    [SerializeField] private float _minPokeSpeed;
+    [SerializeField] private float _maxPokeSpeed;
     [Space(20)]
-    [SerializeField] private int _minHeightAfterPoke;
-    [SerializeField] private int _maxHeightAfterPoke;
+    [SerializeField] private float _minHeightAfterPoke;
+    [SerializeField] private float _maxHeightAfterPoke;
     [Space(20)]
-    [SerializeField] private int _minSwingHori;
-    [SerializeField] private int _maxSwingHori;
-    [SerializeField] private int _minSwingVert;
-    [SerializeField] private int _maxSwingVert;
+    [SerializeField] private float _minSwingHori;
+    [SerializeField] private float _maxSwingHori;
+    [SerializeField] private float _minSwingVert;
+    [SerializeField] private float _maxSwingVert;
 
     private void Start()
     {

@@ -10,20 +10,25 @@ namespace GameLogic.Keyboard
 {
     public class KeyboardReader : MonoBehaviour
     {
+        [Header("Text related variables")]
         [SerializeField] private string[] phrases;
         [SerializeField] private TMP_Text textPreview;
         [SerializeField] private TMP_Text inputtedText;
-        private readonly CompositeDisposable disposables = new();
 
+        [Header("Progress Tracker")]
         [SerializeField] private GameObject progressTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
-        private StudioEventEmitter phraseFinishedSound;
         
+        [Header("Sound effects")]
+        [SerializeField] private StudioEventEmitter phraseFinishedSound;
+        [SerializeField] private StudioEventEmitter voiceGruntsSfx;
+
+        private readonly CompositeDisposable disposables = new();
+
         private void Start()
         {
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
-            phraseFinishedSound = GetComponent<StudioEventEmitter>();
 
             if (phrases.Length == 0)
             {
@@ -115,16 +120,16 @@ namespace GameLogic.Keyboard
                     if (keyPress.Letter == " ")
                         keyPress.Letter = "_"; // Indicate an incorrect SpaceKey usage
                     inputtedText.text += $"<color=#FF0000>{keyPress.Letter}</color>";
+                    voiceGruntsSfx.Play();
                 }
                 else
                 {
                     inputtedText.text += keyPress.Letter;
                 }
             }
-            catch (IndexOutOfRangeException ioore)
+            catch (IndexOutOfRangeException)
             {
-                // TODO: perhaps a "bzzt wrong" sound could play here?
-                // should we let the player keep typing???
+                voiceGruntsSfx.Play();
             }
 
             CheckForCompletedTest();
