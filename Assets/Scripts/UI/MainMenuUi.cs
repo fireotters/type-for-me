@@ -13,9 +13,9 @@ namespace UI
         [Header("Main Menu UI")]
         [SerializeField] private GameObject desktopButtons;
         [SerializeField] private GameObject webButtons;
-        private StudioEventEmitter menuSong;
-
-        private readonly CompositeDisposable _disposables = new();
+        [SerializeField] private StudioEventEmitter menuSong;
+        
+        private readonly CompositeDisposable disposables = new();
 
         private void Start()
         {
@@ -32,14 +32,13 @@ namespace UI
 
 
             // Main Menu start tasks
-            // menuSong = GetComponent<StudioEventEmitter>();
             base.ConfigureVersionText();
-            SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
+            SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(disposables);
         }
 
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
-            // menuSong.Stop();
+            menuSong.Stop();
             SceneManager.LoadScene($"Scenes/LevelScenes/{signal.levelToLoad}");
         }
         public void OpenHelp()
@@ -50,6 +49,11 @@ namespace UI
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        private void OnDestroy()
+        {
+            disposables.Dispose();
         }
     }
 }
