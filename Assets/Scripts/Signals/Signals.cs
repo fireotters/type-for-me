@@ -1,6 +1,10 @@
+using System.Numerics;
+
 namespace Signals
 {
+    // --------------------------------------------------------------------------------------------------------------
     // UI Signals
+    // --------------------------------------------------------------------------------------------------------------
     public struct SignalUiMainMenuStartGame
     {
         public string levelToLoad;
@@ -11,8 +15,10 @@ namespace Signals
         public bool Showing;
         public string LevelName, ScoreType1, ScoreType2;
     }
-    
-    // Game End Signals
+
+    // --------------------------------------------------------------------------------------------------------------
+    // Game End Functions
+    // --------------------------------------------------------------------------------------------------------------
     public enum GameEndCondition
     {
         Loss, WinType1, WinType2
@@ -22,9 +28,10 @@ namespace Signals
         public GameEndCondition result;
         public int score;
     }
-    
-    // Key Signals
 
+    // --------------------------------------------------------------------------------------------------------------
+    // Key Signals
+    // --------------------------------------------------------------------------------------------------------------
     public struct SignalKeyboardKeyPress
     {
         public string Letter;
@@ -42,6 +49,14 @@ namespace Signals
     public struct SignalKeyboardPausePress
     {
         // no payload needed
+    }
+
+    // --------------------------------------------------------------------------------------------------------------
+    // Character Signals
+    // --------------------------------------------------------------------------------------------------------------
+    public struct SignalFingerPoke
+    {
+        public Vector2 pokeLocation;
     }
 }
 
