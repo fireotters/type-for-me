@@ -100,4 +100,5 @@ MonoBehaviour:
   inactiveSprite: {fileID: 500912397, guid: 67966b9e591f90445b80616ff9193571, type: 3}
   activeSprite: {fileID: 1118238881, guid: 67966b9e591f90445b80616ff9193571, type: 3}
   passedSprite: {fileID: -2130952493, guid: 67966b9e591f90445b80616ff9193571, type: 3}
+  mistakeSprite: {fileID: -768092421, guid: 67966b9e591f90445b80616ff9193571, type: 3}
   spriteRenderer: {fileID: 5127225482995611373}

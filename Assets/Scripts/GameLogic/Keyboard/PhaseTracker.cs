@@ -21,6 +21,12 @@ namespace GameLogic.Keyboard
             };
 
             CurrentStatus = status;
+
+            if (CurrentStatus == TrackerStatus.Passed)
+                spriteRenderer.color = Color.green;
+
+            if (CurrentStatus == TrackerStatus.Mistake)
+                spriteRenderer.color = Color.red;
         }
     }
 
