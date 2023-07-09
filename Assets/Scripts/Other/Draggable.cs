@@ -15,7 +15,7 @@ namespace Other
         
         private void Update()
         {
-            if (dragging)
+            if (dragging && Time.timeScale != 0)
             {
                 transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + pointerOffset;
             }
@@ -23,7 +23,6 @@ namespace Other
 
         private void OnMouseDown()
         {
-            print("got clicked!");
             pointerOffset = transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
             dragging = true;
         }

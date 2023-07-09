@@ -107,10 +107,12 @@ namespace UI
             else
                 GameIsPaused(false);
         }
+        
         public void ResumeGame()
         {
             GameIsPaused(false);
         }
+        
         public void TutorialPause(bool intent)
         {
             Time.timeScale = intent ? 0 : 1;
