@@ -1536,7 +1536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INSERT DANI SITE
+  m_text: danirbu.itch.io
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
   m_sharedMaterial: {fileID: -4750692565339166616, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
@@ -1545,8 +1545,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285823224
-  m_fontColor: {r: 0.972549, g: 0.47042528, b: 0.454902, a: 1}
+    rgba: 4294494837
+  m_fontColor: {r: 0.45882356, g: 0.79215693, b: 0.9725491, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3913,7 +3913,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INSERT GAME NAME
+  m_text: T<color=#ABF1FF>y</color>p<color=#ABF1FF>e</color> f<color=#ABF1FF>o</color>r
+    m<color=#ABF1FF>e</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
   m_sharedMaterial: {fileID: -4750692565339166616, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
@@ -3922,8 +3923,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281485567
-  m_fontColor: {r: 1, g: 0.28411537, b: 0.19607842, a: 1}
+    rgba: 4294901502
+  m_fontColor: {r: 0.9960785, g: 0.9960785, b: 0.9960785, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3940,8 +3941,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.1
-  m_fontSizeBase: 23.1
+  m_fontSize: 41.69
+  m_fontSizeBase: 41.69
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
