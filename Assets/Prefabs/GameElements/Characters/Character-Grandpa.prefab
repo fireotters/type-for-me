@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8181717895817453683}
   - component: {fileID: 4338186169438254228}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character-Grandpa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,14 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arm: {fileID: 1069746594169967311}
-  _minPokeSpeed: 2
-  _maxPokeSpeed: 2
-  _minHeightAfterPoke: 2
-  _maxHeightAfterPoke: 2
+  _minArmRaiseSpeed: 2
+  _maxArmRaiseSpeed: 2
+  _minArmRaiseHeight: 1.5
+  _maxArmRaiseHeight: 1.5
   _limitPokeRangeNW: {fileID: 6894618244650227371}
   _limitPokeRangeSE: {fileID: 8125582629642937956}
   _minPokeMove: 0
-  _maxPokeMove: 0
+  _maxPokeMove: 0.5
 --- !u!1 &2873545832954609530
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2873545832954609530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: -1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8290656714981111158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.42, y: 1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,5 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feef7eaaf0d4e042b71bb473bfc6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iWantToStopArm: 0
   _tFingertip: {fileID: 2195942773911430595}
   _pokeOrigin: {fileID: 2537236549482054867}

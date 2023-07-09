@@ -120,7 +120,9 @@ public class Arm : MonoBehaviour
 
     private void MovePokeOrigin()
     {
-        var step = 10 * Time.deltaTime;
+        // Move the PokeOrigin, taking into consideration how fast the arm is and how far the journey is
+        float distance = Vector2.Distance(_pokeOrigin.position, _pokeDestination);
+        float step = _armSpeed * distance * Time.deltaTime;
         _pokeOrigin.position = Vector2.MoveTowards(_pokeOrigin.position, _pokeDestination, step);
     }
 
@@ -144,6 +146,7 @@ public class Arm : MonoBehaviour
         _rangePokeMove = rangePokeMove;
 
         SetNewPropertiesOnRaise();
+        _pokeDestination = new Vector2(0, 0); // First poke is always at 0,0
     }
 
     private void PokeTarget()

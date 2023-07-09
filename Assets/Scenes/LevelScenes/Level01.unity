@@ -1030,15 +1030,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1271836983812499868, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_Name
-      value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
-      propertyPath: _maxPokeSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
-      propertyPath: _minPokeSpeed
-      value: 2
+      value: Character-Grandpa
       objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
@@ -1133,8 +1125,6 @@ MonoBehaviour:
   inputtedText: {fileID: 885631872}
   progressTracker: {fileID: 792224018}
   wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
-  phraseFinishedSound: {fileID: 1696224492}
-  voiceGruntsSfx: {fileID: 1696224493}
 --- !u!4 &1696224491
 Transform:
   m_ObjectHideFlags: 0
