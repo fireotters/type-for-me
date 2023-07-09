@@ -1806,6 +1806,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: PlayEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: EventReference.Path
       value: event:/2D/Level Cat - Voice
       objectReference: {fileID: 0}
