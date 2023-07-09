@@ -140,12 +140,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 15
-        y: 2505
+        y: 2517
         width: 959
-        height: 364
+        height: 352
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 16, y: 31, z: 16, w: 15}
+      border: {x: 16, y: 17, z: 16, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
