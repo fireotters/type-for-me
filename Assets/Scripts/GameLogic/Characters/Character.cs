@@ -6,12 +6,12 @@ public class Character : MonoBehaviour
     [SerializeField] private Arm _arm;
     [Space(20)]
     [Header("Arm: How fast to move up/down")]
-    [SerializeField] private float _minPokeSpeed;
-    [SerializeField] private float _maxPokeSpeed;
+    [SerializeField] private float _minArmRaiseSpeed;
+    [SerializeField] private float _maxArmRaiseSpeed;
     [Space(20)]
     [Header("Arm: How far to move up/down")]
-    [SerializeField] private float _minHeightAfterPoke;
-    [SerializeField] private float _maxHeightAfterPoke;
+    [SerializeField] private float _minArmRaiseHeight;
+    [SerializeField] private float _maxArmRaiseHeight;
     [Space(20)]
     [Header("Use the PokeRangeNW/SE gameobjects to restrict the maximum range of the PokeOrigin")]
     [SerializeField] private Transform _limitPokeRangeNW;
@@ -23,13 +23,13 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        float[] rangePokeSpeed = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeHeightAfterPoke = { _minHeightAfterPoke, _maxHeightAfterPoke };
+        float[] rangeArmRaiseSpeed = { _minArmRaiseSpeed, _maxArmRaiseSpeed };
+        float[] rangeArmRaiseHeight = { _minArmRaiseHeight, _maxArmRaiseHeight };
         Vector2 limitPokeNW = _limitPokeRangeNW.position;
         Vector2 limitPokeSE = _limitPokeRangeSE.position;
         float[] rangePokeMove = { _minPokeMove, _maxPokeMove };
 
 
-        _arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, limitPokeNW, limitPokeSE, rangePokeMove);
+        _arm.FirstTimeSetProperties(rangeArmRaiseSpeed, rangeArmRaiseHeight, limitPokeNW, limitPokeSE, rangePokeMove);
     }
 }

@@ -7,8 +7,8 @@ using UnityEngine;
 public class Arm : MonoBehaviour
 {
     // Movement Properties of Arm and PokeOrigin
-    private float[] _rangeArmSpeed = { 0f, 0f };            // Arm: How quick between pokes?
-    private float[] _rangeArmHeightAfterPoke = { 0f, 0f };  // Arm: How high to raise before coming back down?
+    private float[] _rangeArmRaiseSpeed = { 0f, 0f };       // Arm: How quick between pokes?
+    private float[] _rangeArmRaiseHeight = { 0f, 0f };      // Arm: How high to raise before coming back down?
     private Vector2 _limitPokeNW, _limitPokeSE = new(0, 0); // PokeOrigin: What are the bounds of where PokeOrigin can go?
     private float[] _rangePokeMove = { 0f, 0f };            // PokeOrigin: What's the min/max distance the PokeOrigin can travel per poke?
     private float _armSpeed, _armHeightAfterPoke;
@@ -90,21 +90,32 @@ public class Arm : MonoBehaviour
 
     private void SetNewPropertiesOnRaise()
     {
-        _armSpeed = Random.Range(_rangeArmSpeed[0], _rangeArmSpeed[1]);
-        _armHeightAfterPoke = Random.Range(_rangeArmHeightAfterPoke[0], _rangeArmHeightAfterPoke[1]);
+        _armSpeed = Random.Range(_rangeArmRaiseSpeed[0], _rangeArmRaiseSpeed[1]);
+        _armHeightAfterPoke = Random.Range(_rangeArmRaiseHeight[0], _rangeArmRaiseHeight[1]);
 
         float _pokeHoriDest = Random.Range(_limitPokeNW.x, _limitPokeSE.x);
         float _pokeVertDest = Random.Range(_limitPokeNW.y, _limitPokeSE.y);
+
         _pokeDestination = new Vector2(_pokeHoriDest, _pokeVertDest);
     }
 
-    public void FirstTimeSetProperties(float[] rangeArmSpeed, float[] rangeArmHeightAfterPoke, Vector2 limitPokeNW, Vector2 limitPokeSE, float[] rangePokeMove)
+    public void FirstTimeSetProperties(float[] rangeArmRaiseSpeed, float[] rangeArmRaiseHeight, Vector2 limitPokeNW, Vector2 limitPokeSE, float[] rangePokeMove)
     {
-        _rangeArmSpeed = rangeArmSpeed;
-        _rangeArmHeightAfterPoke = rangeArmHeightAfterPoke;
+        _rangeArmRaiseSpeed = rangeArmRaiseSpeed;
+        _rangeArmRaiseHeight = rangeArmRaiseHeight;
         _limitPokeNW = limitPokeNW;
         _limitPokeSE = limitPokeSE;
         _rangePokeMove = rangePokeMove;
+
+        if (Debug.isDebugBuild)
+        {
+            if (_limitPokeSE.x - _limitPokeNW.x < rangePokeMove[1] ||
+                _limitPokeNW.y - _limitPokeSE.y < rangePokeMove[1])
+            {
+                Debug.LogWarning("Character: Set up incorrectly! The maximum range of the PokeOrigin movements exceeds the size of its bounding box. " +
+                    "This means that the PokeOrigin could move outside the box if not stopped!");
+            }
+        }
         SetNewPropertiesOnRaise();
     }
 

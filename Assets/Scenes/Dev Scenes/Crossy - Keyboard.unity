@@ -949,6 +949,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 2537236549482054867, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537236549482054867, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxPokeMove
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minPokeMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxArmRaiseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minArmRaiseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxArmRaiseHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minArmRaiseHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894618244650227371, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894618244650227371, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125582629642937956, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125582629642937956, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.22
+      objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
       value: -1
