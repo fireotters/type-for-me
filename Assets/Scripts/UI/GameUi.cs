@@ -11,6 +11,7 @@ namespace UI
     public class GameUi : MonoBehaviour
     {
         public string nextSceneToLoad;
+        public string currentCharacter;
 
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
@@ -26,6 +27,8 @@ namespace UI
             // Debug stuff
             if (nextSceneToLoad == "")
                 Debug.LogWarning("No 'CanvasGameUi.nextSceneToLoad' set! Selecting 'Next Level' will fail.");
+            if (currentCharacter == "")
+                Debug.LogWarning("No 'CanvasGameUi.currentCharacter' set! Loss dialogs and other contextual messages will fail.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
@@ -74,6 +77,7 @@ namespace UI
             if (context.result == GameEndCondition.Loss)
             {
                 _dialogs.gameLost.SetActive(true);
+                _dialogs.SetupLossDialog(currentCharacter);
                 return;
             }
 
@@ -161,6 +165,7 @@ namespace UI
         public GameObject gameLost, gameWon;
         public Color clrVictoryScore1, clrVictoryScore1Best, clrVictoryScore2, clrVictoryScore2Best;
         public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
+        public TextMeshProUGUI txtCharLostPatience;
 
         public void SetupVictoryDialog(int combo, int bestCombo, bool wasThisNewHighCombo, int accuracy, int bestAccuracy, bool wasThisNewAccuracy, bool isBrandNewScore)
         {
@@ -186,12 +191,11 @@ namespace UI
                 else
                     txtAccuracyBest.text = $"Best: {bestAccuracy}";
             }
-            
         }
 
         public void SetupLossDialog(string character)
         {
-
+            txtCharLostPatience.text = character.ToUpper();
         }
     }
     [Serializable]

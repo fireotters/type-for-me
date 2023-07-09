@@ -843,6 +843,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasGameUi
       objectReference: {fileID: 0}
+    - target: {fileID: 6219922664801357915, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: nextSceneToLoad
+      value: Level02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: currentCharacter
+      value: Grandpa
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
