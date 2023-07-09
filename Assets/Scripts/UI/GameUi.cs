@@ -84,7 +84,6 @@ namespace UI
             string levelName = SceneManager.GetActiveScene().name;
             int bestCombo = context.bestCombo;
             int accuracy = context.accuracy;
-            Debug.Log(bestCombo + " " + accuracy);
             (bool wasThisNewBestCombo, bool wasThisNewAccuracy,
                 int highscoreBestCombo, int highscoreAccuracy) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy);
             _dialogs.SetupVictoryDialog(bestCombo, highscoreBestCombo, wasThisNewBestCombo, accuracy, highscoreAccuracy, wasThisNewAccuracy);

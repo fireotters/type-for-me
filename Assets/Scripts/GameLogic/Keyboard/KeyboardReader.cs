@@ -77,7 +77,7 @@ namespace GameLogic.Keyboard
                 Debug.Log("Turns out you DONT suck!");
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
-                int accuracy = (int)((double)numOfPresses / numOfCorrectPresses * 100);
+                int accuracy = (int)((double)numOfCorrectPresses / numOfPresses * 100);
                 SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy });
             }
             else

@@ -15,7 +15,7 @@ public static class HighScoreManagement
     }
 
     // Check new score against existing highscore for a level. Return the original highscore or new highscore as int.
-    public static (bool, bool, int, int) TryAddScoreThenReturnHighscore(string levelName, int currentBestCombo, int currentAccuracy)
+    public static (bool, bool, int, int) TryAddScoreThenReturnHighscore(string levelName, int bestCombo, int accuracy)
     {
         string jsonString = PlayerPrefs.GetString("LevelScores");
 
@@ -32,19 +32,27 @@ public static class HighScoreManagement
         // Find the high score for the current level. If two or more exist, flag an error.
         int numOfCurrentLevelEntries = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).Count();
         HighscoreEntry currentLevelScore;
+        bool bestComboBeaten = false, accuracyBeaten = false;
         if (numOfCurrentLevelEntries == 1)
         {
             // If one score exists, then overwrite or notify that the score wasn't beaten.
-            //currentLevelScore = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).ToList()[0];
-            //if (scoreType == GameEndCondition.WinType1 && score > currentLevelScore.scoreType1)
-            //    currentLevelScore.scoreType1 = score;
-            //else if (scoreType == GameEndCondition.WinType2 && score > currentLevelScore.scoreType2)
-            //    currentLevelScore.scoreType2 = score;
-            //else
-            //{
-            //    int highscoreToReturn = scoreType == GameEndCondition.WinType1 ? currentLevelScore.scoreType1 : currentLevelScore.scoreType2;
-            //    return (false, highscoreToReturn);
-            //}
+            currentLevelScore = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).ToList()[0];
+            bool ifScoreSameOrWorse = bestCombo <= currentLevelScore.bestCombo && accuracy <= currentLevelScore.accuracy;
+            if (ifScoreSameOrWorse)
+            {
+                // Don't bother to update PlayerPrefs.LevelScores
+                return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy);
+            }
+            if (bestCombo > currentLevelScore.bestCombo)
+            {
+                bestComboBeaten = true;
+                currentLevelScore.bestCombo = bestCombo;
+            }
+            if (accuracy > currentLevelScore.accuracy)
+            {
+                accuracyBeaten = true;
+                currentLevelScore.accuracy = accuracy;
+            }
         }
         else
         {
@@ -53,23 +61,17 @@ public static class HighScoreManagement
             if (numOfCurrentLevelEntries != 0)
                 Debug.LogError($"Level '{levelName}': Multiple HighscoreEntry entries in PlayerPrefs. This isn't expected. Overwrite them all with latest score.");
 
-            //if (scoreType == GameEndCondition.WinType1)
-            //    currentLevelScore = new HighscoreEntry { levelName = levelName, scoreType1 = score, scoreType2 = -1 };
-            //else if (scoreType == GameEndCondition.WinType2)
-            //    currentLevelScore = new HighscoreEntry { levelName = levelName, scoreType1 = -1, scoreType2 = score };
-            //else
-            //    throw new InvalidEnumArgumentException();
-            // score = -1; // Flag highscore as the first attempt at a level, don't congratulate for new high score
+            currentLevelScore = new HighscoreEntry { levelName = levelName, bestCombo = bestCombo, accuracy = accuracy };
         }
 
-        // listOfLevelScores.Add(currentLevelScore);
+        listOfLevelScores.Add(currentLevelScore);
         Highscores fullListOfScores = new Highscores { highscoreEntryList = listOfLevelScores };
 
         string json = JsonUtility.ToJson(fullListOfScores);
         Debug.Log(json);
         PlayerPrefs.SetString("LevelScores", json);
         PlayerPrefs.Save();
-        return (true, true, 0, 0);
+        return (bestComboBeaten, accuracyBeaten, currentLevelScore.bestCombo, currentLevelScore.accuracy);
     }
 }
 
@@ -88,6 +90,6 @@ public class Highscores
 public class HighscoreEntry
 {
     public string levelName;
-    public int scoreType1;
-    public int scoreType2;
+    public int bestCombo;
+    public int accuracy;
 }
