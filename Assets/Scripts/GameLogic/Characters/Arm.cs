@@ -16,7 +16,7 @@ public class Arm : MonoBehaviour
 
     // Stopping arm movement. At the apex of an Arm Raise, 'iWantToStopArm' is checked.
     // When unchecked, it'll wait until the next apex of the raise to resume again.
-    public bool iWantToStopArm = false;
+    private bool iWantToStopArm = true;
     private bool armStopped = false;
 
     // Fingertip
