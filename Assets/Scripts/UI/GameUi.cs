@@ -183,8 +183,15 @@ namespace UI
             // Highscore doesn't exist. Don't display a message.
             if (isBrandNewScore)
             {
-                txtComboBest.text = "";
-                txtAccuracyBest.text = "";
+                if (wasComboPerfect)
+                    txtComboBest.text = "Perfect!";
+                else
+                    txtComboBest.text = "";
+
+                if (wasAccuracyPerfect)
+                    txtAccuracyBest.text = "Perfect!";
+                else
+                    txtAccuracyBest.text = "";
             }
             else
             {

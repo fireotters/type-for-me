@@ -48,7 +48,7 @@ public class ButtonLevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         // Show the tooltip if the button is interactible
         if (button.interactable)
         {
-            string tempLevelName = levelNum + ". " + levelName;
+            string tempLevelName = levelNum + "." + levelName;
             string tempAccuracy = _highAccuracy != "-" ? $"{_highAccuracy}%" : "...";
             string tempCombo = _highCombo != "-" ? _highCombo : "...";
             SignalBus<SignalUiMainMenuTooltipChange>.Fire(new SignalUiMainMenuTooltipChange
