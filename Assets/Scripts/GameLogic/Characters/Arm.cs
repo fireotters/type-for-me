@@ -16,6 +16,7 @@ public class Arm : MonoBehaviour
     // PokeOrigin. Moving this around will adjust where the fingertip pokes.
     [SerializeField] private Transform _pokeOrigin;
     private Vector3 _posPokeOrigin;
+    private Vector3 _baseSizeForShadow = new Vector2(0.15f, 0.15f);
     private Vector3 _offsetForFingertip;
 
     // Checking whether fingertip is currently pressing a key
@@ -41,13 +42,20 @@ public class Arm : MonoBehaviour
 
     private void RaiseLowerArm()
     {
+        float howHighIsArmRaised = Mathf.Sin(Time.time * _pokeSpeed);
         float newX = _posPokeOrigin.x
             + _offsetForFingertip.x;
-        float newY = Mathf.Sin(Time.time * _pokeSpeed) * _heightAfterPoke
+        float newY = howHighIsArmRaised * _heightAfterPoke
             + _posPokeOrigin.y // Compensate for where the pokeOrigin is moved to
             + _heightAfterPoke // Ensure the bottom of the poke is at pokeOrigin by adding the sin wave's amplitude
             + _offsetForFingertip.y;
+
+        // Move arm
         transform.position = new Vector2(newX, newY);
+        // Make shadow grow/shrink
+        float howFarFromKeyIsFinger = -(howHighIsArmRaised - 1f) / 3f;
+        _pokeOrigin.localScale = _baseSizeForShadow + (_baseSizeForShadow * howFarFromKeyIsFinger);
+
     }
 
     private void CheckIfPokeFinished()
@@ -65,9 +73,7 @@ public class Arm : MonoBehaviour
 
         // Only trigger the Signal once, until the bool is reset later.
         if (_isPokingKey)
-        {
             PokeTarget();
-        }
     }
 
     private void SetNewPropertiesOnRaise()
@@ -101,10 +107,5 @@ public class Arm : MonoBehaviour
             if (key)
                 key.KeyPress();
         }
-        else
-        {
-            Debug.Log("Missed all keys! Play a grunt here");
-        }
     }
-
 }
