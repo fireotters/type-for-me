@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background Objects
+    uniqueID: 2729861665
+    locked: 0
+  - name: Keys
+    uniqueID: 4028288327
+    locked: 0
+  - name: FingerShadow
+    uniqueID: 284222277
+    locked: 0
+  - name: Arm
+    uniqueID: 2878799303
+    locked: 0
+  - name: TypingUI
+    uniqueID: 248582939
+    locked: 0

@@ -1,32 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     // Characters can have multiple arms. Use this character script to control each character's arm behaviour.
-    [SerializeField] private Arm[] _armObjects;
+    [SerializeField] private Arm _arm;
     [Space(20)]
-    [SerializeField] private float _minPokeSpeed;
-    [SerializeField] private float _maxPokeSpeed;
+    [Header("Arm: How fast to move up/down")]
+    [SerializeField] private float _minArmRaiseSpeed;
+    [SerializeField] private float _maxArmRaiseSpeed;
     [Space(20)]
-    [SerializeField] private float _minHeightAfterPoke;
-    [SerializeField] private float _maxHeightAfterPoke;
+    [Header("Arm: How far to move up/down")]
+    [SerializeField] private float _minArmRaiseHeight;
+    [SerializeField] private float _maxArmRaiseHeight;
     [Space(20)]
-    [SerializeField] private float _minSwingHori;
-    [SerializeField] private float _maxSwingHori;
-    [SerializeField] private float _minSwingVert;
-    [SerializeField] private float _maxSwingVert;
+    [Header("Use the PokeRangeNW/SE gameobjects to restrict the maximum range of the PokeOrigin")]
+    [SerializeField] private Transform _limitPokeRangeNW;
+    [SerializeField] private Transform _limitPokeRangeSE;
+    [Space(20)]
+    [Header("This is how far the PokeOrigin is allowed to move per poke.")]
+    [SerializeField] private float _minPokeMove;
+    [SerializeField] private float _maxPokeMove;
 
     private void Start()
     {
-        float[] rangePokeSpeed = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeHeightAfterPoke = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeSwingHori = { _minPokeSpeed, _maxPokeSpeed };
-        float[] rangeSwingVert = { _minPokeSpeed, _maxPokeSpeed };
-        foreach (Arm arm in _armObjects)
-        {
-            arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, rangeSwingHori, rangeSwingVert);
-        }
+        float[] rangeArmRaiseSpeed = { _minArmRaiseSpeed, _maxArmRaiseSpeed };
+        float[] rangeArmRaiseHeight = { _minArmRaiseHeight, _maxArmRaiseHeight };
+        Vector2 limitPokeNW = _limitPokeRangeNW.position;
+        Vector2 limitPokeSE = _limitPokeRangeSE.position;
+        float[] rangePokeMove = { _minPokeMove, _maxPokeMove };
+
+        _arm.FirstTimeSetProperties(rangeArmRaiseSpeed, rangeArmRaiseHeight, limitPokeNW, limitPokeSE, rangePokeMove);
     }
 }

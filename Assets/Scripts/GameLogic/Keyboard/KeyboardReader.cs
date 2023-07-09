@@ -19,9 +19,7 @@ namespace GameLogic.Keyboard
         [SerializeField] private GameObject progressTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
         
-        [Header("Sound effects")]
-        [SerializeField] private StudioEventEmitter phraseFinishedSound;
-        [SerializeField] private StudioEventEmitter voiceGruntsSfx;
+        private StudioEventEmitter phraseFinishedSound;
 
         private readonly CompositeDisposable disposables = new();
 
@@ -29,7 +27,8 @@ namespace GameLogic.Keyboard
         {
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
-
+            phraseFinishedSound = GetComponent<StudioEventEmitter>();
+            
             if (phrases.Length == 0)
             {
                 Debug.LogError("NO PHRASES SET IN INSPECTOR! how tf u gonna play binch");
@@ -120,7 +119,6 @@ namespace GameLogic.Keyboard
                     if (keyPress.Letter == " ")
                         keyPress.Letter = "_"; // Indicate an incorrect SpaceKey usage
                     inputtedText.text += $"<color=#FF0000>{keyPress.Letter}</color>";
-                    voiceGruntsSfx.Play();
                 }
                 else
                 {
@@ -129,7 +127,6 @@ namespace GameLogic.Keyboard
             }
             catch (IndexOutOfRangeException)
             {
-                voiceGruntsSfx.Play();
             }
 
             CheckForCompletedTest();

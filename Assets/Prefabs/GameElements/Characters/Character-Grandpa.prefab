@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8181717895817453683}
   - component: {fileID: 4338186169438254228}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character-Grandpa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,8 @@ Transform:
   m_Children:
   - {fileID: 2544573499467144647}
   - {fileID: 2537236549482054867}
+  - {fileID: 6894618244650227371}
+  - {fileID: 8125582629642937956}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,16 +48,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c96b65d317aeb6458285f665675b8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _armObjects:
-  - {fileID: 1069746594169967311}
-  _minPokeSpeed: 2
-  _maxPokeSpeed: 2
-  _minHeightAfterPoke: 1
-  _maxHeightAfterPoke: 1
-  _minSwingHori: 0
-  _maxSwingHori: 0
-  _minSwingVert: 0
-  _maxSwingVert: 0
+  _arm: {fileID: 1069746594169967311}
+  _minArmRaiseSpeed: 2
+  _maxArmRaiseSpeed: 2
+  _minArmRaiseHeight: 1.5
+  _maxArmRaiseHeight: 1.5
+  _limitPokeRangeNW: {fileID: 6894618244650227371}
+  _limitPokeRangeSE: {fileID: 8125582629642937956}
+  _minPokeMove: 0
+  _maxPokeMove: 0.5
+--- !u!1 &2873545832954609530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8125582629642937956}
+  m_Layer: 0
+  m_Name: PokeLimitSE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8125582629642937956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873545832954609530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7, y: -1.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8181717895817453683}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4543547006624513796
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,10 +97,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537236549482054867}
-  - component: {fileID: 6552598943457056199}
   - component: {fileID: 4253316449486603325}
   m_Layer: 0
-  m_Name: PokeDestination (Read attached note!)
+  m_Name: PokeDestination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,21 +120,6 @@ Transform:
   m_Father: {fileID: 8181717895817453683}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6552598943457056199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4543547006624513796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f649ca9c9d1fe469b0a6e724b4e188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Notes: Switch the move tool to 'Pivot' mode to see where the poke destination is.
-    Using 'Center' will make it appear that the poke destination is sliding up &
-    down.
 --- !u!212 &4253316449486603325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -142,11 +158,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 284222277
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.038640022, a: 1}
+  m_Color: {r: 0.8867924, g: 0.15477037, b: 0.19863057, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -156,6 +172,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8290656714981111158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6894618244650227371}
+  m_Layer: 0
+  m_Name: PokeLimitNW
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6894618244650227371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8290656714981111158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.42, y: 1.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8181717895817453683}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8121727468002142311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,6 +211,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8181717895817453683}
     m_Modifications:
+    - target: {fileID: 678384442590923456, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 678384442590923456, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1416167993
+      objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -171,10 +226,6 @@ PrefabInstance:
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -212,6 +263,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arm
       objectReference: {fileID: 0}
+    - target: {fileID: 6339850616861206353, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339850616861206353, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1416167993
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894255870700553269, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894255870700553269, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1416167993
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -220,6 +287,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1069746594169967311}
   m_SourcePrefab: {fileID: 100100000, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+--- !u!4 &2195942773911430595 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7984779096869522852, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+  m_PrefabInstance: {fileID: 8121727468002142311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2544573499467144647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
@@ -242,5 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3feef7eaaf0d4e042b71bb473bfc6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iWantToStopArm: 0
+  _tFingertip: {fileID: 2195942773911430595}
   _pokeOrigin: {fileID: 2537236549482054867}
-  _isOffscreen: 0

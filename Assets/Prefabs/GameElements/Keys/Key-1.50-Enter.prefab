@@ -13,8 +13,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2781739251377112707, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
+      propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781739251377112707, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
       propertyPath: specialKeyStatus
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3572644786617793941, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
       propertyPath: m_Name

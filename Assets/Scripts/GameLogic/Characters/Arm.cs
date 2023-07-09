@@ -6,53 +6,95 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
-    // Movement Properties. Each has a min and max assigned by 'Character' script.
-    private float[] _rangePokeSpeed = { 0f, 0f };        // How quick between pokes
-    private float[] _rangeHeightAfterPoke = { 0f, 0f };  // How high the arm will raise before coming back down
-    private float[] _rangeSwingHori = { 0f, 0f };        // How far from the center will the finger deviate per poke?
-    private float[] _rangeSwingVert = { 0f, 0f };
-    private float _pokeSpeed, _heightAfterPoke, _swingHori, _swingVert;
+    // Movement Properties of Arm and PokeOrigin
+    private float[] _rangeArmRaiseSpeed = { 0f, 0f };       // Arm: How quick between pokes?
+    private float[] _rangeArmRaiseHeight = { 0f, 0f };      // Arm: How high to raise before coming back down?
+    private Vector2 _limitPokeNW, _limitPokeSE = new(0, 0); // PokeOrigin: What are the bounds of where PokeOrigin can go?
+    private float[] _rangePokeMove = { 0f, 0f };            // PokeOrigin: What's the min/max distance the PokeOrigin can travel per poke?
+    private float _armSpeed, _armHeightAfterPoke;
+    private Vector2 _pokeDestination;
 
-    // PokeOrigin. Moving this around will adjust where the fingertip pokes.
+    // Stopping arm movement. At the apex of an Arm Raise, 'iWantToStopArm' is checked.
+    // When unchecked, it'll wait until the next apex of the raise to resume again.
+    private bool iWantToStopArm = true;
+    private bool armStopped = false;
+
+    // Fingertip
+    [SerializeField] private Transform _tFingertip;
+    private Vector3 _posFingertip;
+    private Vector3 _offsetFromArmToFingertip;
+    private float _pokingKeyEndThreshold = 0.1f; // How much of a Y-level above the key be considered a 'Press'?
+    private bool _isPokingKey;
+
+    // PokeOrigin. Moving this around will adjust where the fingertip pokes
     [SerializeField] private Transform _pokeOrigin;
     private Vector3 _posPokeOrigin;
-    private Vector3 _offsetForFingertip;
+    private Vector3 _baseSizeForShadow = new Vector2(0.15f, 0.15f);
 
-    // Checking whether fingertip is currently pressing a key
-    private Vector3 _posFingertip;
-    private float _pokeEndThreshold = 0.2f;
-    private bool _isPokingKey;
+    private readonly CompositeDisposable _disposables = new();
 
     private void Start()
     {
-        // The sprite's fingertip is offset slightly from where 0,0 actually is.
-        _offsetForFingertip = transform.position;
+        // The Arm's fingertip is offset slightly 0,0 of the Arm is.
+        _offsetFromArmToFingertip = -_tFingertip.localPosition;
+
+        // Attempt to stop the arm when asked
+        SignalBus<SignalArmStopMovement>.Subscribe(StopArm).AddTo(_disposables);
     }
 
     private void Update()
     {
         // Set positions for the fingertip's current location, and where the poke origin is.
-        _posFingertip = transform.position - _offsetForFingertip;
+        _posFingertip = _tFingertip.position;
         _posPokeOrigin = _pokeOrigin.position;
 
         RaiseLowerArm();
         CheckIfPokeFinished();
+        MovePokeOrigin();
     }
 
     private void RaiseLowerArm()
     {
+        float howHighIsArmRaised = -Mathf.Sin(Time.time * _armSpeed); // Reverse the sinwave so levels start with hand in the air
+
+        // Stop Arm logic.
+        if (iWantToStopArm && armStopped)
+            // If we want to stop arm, and it's stopped... Keep it stopped.
+            return;
+        else if (iWantToStopArm && howHighIsArmRaised > 0.99f)
+        {
+            // If we want to stop arm, but it isn't yet... Continue to process movements, and wait til the hand is raised to above .99f
+            armStopped = true;
+            return;
+        }
+        else if (!iWantToStopArm && armStopped)
+        {
+            // If we want to resume arm, and it's stopped... Wait til the sin wave would be above .99f before resuming. Ensures smooth transition
+            if (howHighIsArmRaised > 0.99f)
+                armStopped = false;
+            else
+                return;
+        }
+
+        // Deciding Arm coordinates
         float newX = _posPokeOrigin.x
-            + _offsetForFingertip.x;
-        float newY = Mathf.Sin(Time.time * _pokeSpeed) * _heightAfterPoke
+            + _offsetFromArmToFingertip.x;
+        float newY = howHighIsArmRaised * _armHeightAfterPoke
             + _posPokeOrigin.y // Compensate for where the pokeOrigin is moved to
-            + _heightAfterPoke // Ensure the bottom of the poke is at pokeOrigin by adding the sin wave's amplitude
-            + _offsetForFingertip.y;
+            + _armHeightAfterPoke // Ensure the bottom of the poke is at pokeOrigin by adding the sin wave's amplitude
+            + _offsetFromArmToFingertip.y;
+
+        // Move arm
         transform.position = new Vector2(newX, newY);
+        // Make shadow grow/shrink
+        float howFarFromKeyIsFinger = -(howHighIsArmRaised - 1f) / 3f;
+        _pokeOrigin.localScale = _baseSizeForShadow + (_baseSizeForShadow * howFarFromKeyIsFinger);
+
     }
 
     private void CheckIfPokeFinished()
     {
-        if (_posFingertip.y < _posPokeOrigin.y + _pokeEndThreshold)
+        if (_posFingertip.y < _posPokeOrigin.y + _pokingKeyEndThreshold)
             IsPokingKey(true);
         else
             IsPokingKey(false);
@@ -63,32 +105,48 @@ public class Arm : MonoBehaviour
             return;
         _isPokingKey = pokeState;
 
-        // Only trigger the Signal once, until the bool is reset later.
+        // Only trigger these actions once the boolean changes. All other frames are ignored until bool changes again.
         if (_isPokingKey)
-        {
             PokeTarget();
-        }
+        else
+            Invoke(nameof(SetNewPropertiesOnRaise), 0.5f);
+            
+    }
+
+    public void StopArm(SignalArmStopMovement context)
+    {
+        iWantToStopArm = context.iWantToStopArm;
+    }
+
+    private void MovePokeOrigin()
+    {
+        // Move the PokeOrigin, taking into consideration how fast the arm is and how far the journey is
+        float distance = Vector2.Distance(_pokeOrigin.position, _pokeDestination);
+        float step = _armSpeed * distance * Time.deltaTime;
+        _pokeOrigin.position = Vector2.MoveTowards(_pokeOrigin.position, _pokeDestination, step);
     }
 
     private void SetNewPropertiesOnRaise()
     {
-        _pokeSpeed = Random.Range(_rangePokeSpeed[0], _rangePokeSpeed[1]);
-        _heightAfterPoke = Random.Range(_rangeHeightAfterPoke[0], _rangeHeightAfterPoke[1]);
-        _swingHori = Random.Range(_rangeSwingHori[0], _rangeSwingHori[1]);
-        _swingVert = Random.Range(_rangeSwingVert[0], _rangeSwingVert[1]);
+        _armSpeed = Random.Range(_rangeArmRaiseSpeed[0], _rangeArmRaiseSpeed[1]);
+        _armHeightAfterPoke = Random.Range(_rangeArmRaiseHeight[0], _rangeArmRaiseHeight[1]);
+
+        float _pokeHoriDest = Random.Range(_limitPokeNW.x, _limitPokeSE.x);
+        float _pokeVertDest = Random.Range(_limitPokeNW.y, _limitPokeSE.y);
+
+        _pokeDestination = new Vector2(_pokeHoriDest, _pokeVertDest);
     }
 
-    public void FirstTimeSetProperties(float[] rangePokeSpeed, float[] rangeHeightAfterPoke, float[] rangeSwingHori, float[] rangeSwingVert)
+    public void FirstTimeSetProperties(float[] rangeArmRaiseSpeed, float[] rangeArmRaiseHeight, Vector2 limitPokeNW, Vector2 limitPokeSE, float[] rangePokeMove)
     {
-        _rangePokeSpeed = rangePokeSpeed;
-        _rangeHeightAfterPoke = rangeHeightAfterPoke;
-        _rangeSwingHori = rangeSwingHori;
-        _rangeSwingVert = rangeSwingVert;
+        _rangeArmRaiseSpeed = rangeArmRaiseSpeed;
+        _rangeArmRaiseHeight = rangeArmRaiseHeight;
+        _limitPokeNW = limitPokeNW;
+        _limitPokeSE = limitPokeSE;
+        _rangePokeMove = rangePokeMove;
 
-        _pokeSpeed = Random.Range(_rangePokeSpeed[0], _rangePokeSpeed[1]);
-        _heightAfterPoke = Random.Range(_rangeHeightAfterPoke[0], _rangeHeightAfterPoke[1]);
-        _swingHori = Random.Range(_rangeSwingHori[0], _rangeSwingHori[1]);
-        _swingVert = Random.Range(_rangeSwingVert[0], _rangeSwingVert[1]);
+        SetNewPropertiesOnRaise();
+        _pokeDestination = new Vector2(0, 0); // First poke is always at 0,0
     }
 
     private void PokeTarget()
@@ -101,10 +159,5 @@ public class Arm : MonoBehaviour
             if (key)
                 key.KeyPress();
         }
-        else
-        {
-            Debug.Log("Missed all keys! Play a grunt here");
-        }
     }
-
 }

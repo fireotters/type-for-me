@@ -119,6 +119,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -126,10 +139,10 @@ TextureImporter:
       name: menus_play
       rect:
         serializedVersion: 2
-        x: 29
-        y: 2741
-        width: 470
-        height: 132
+        x: 31
+        y: 2745
+        width: 468
+        height: 126
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +160,10 @@ TextureImporter:
       name: menus_settings
       rect:
         serializedVersion: 2
-        x: 29
-        y: 2600
-        width: 308
-        height: 132
+        x: 32
+        y: 2603
+        width: 301
+        height: 126
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +181,10 @@ TextureImporter:
       name: menus_help_credits
       rect:
         serializedVersion: 2
-        x: 31
-        y: 2463
-        width: 683
-        height: 125
+        x: 32
+        y: 2465
+        width: 681
+        height: 122
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +202,10 @@ TextureImporter:
       name: menus_exit
       rect:
         serializedVersion: 2
-        x: 28
-        y: 2313
-        width: 124
-        height: 133
+        x: 31
+        y: 2317
+        width: 118
+        height: 125
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -884,8 +897,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1871
         y: 2745
-        width: 467
-        height: 113
+        width: 468
+        height: 126
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -924,10 +937,10 @@ TextureImporter:
       name: menus_34
       rect:
         serializedVersion: 2
-        x: 1872
-        y: 2606
+        x: 1873
+        y: 2603
         width: 301
-        height: 113
+        height: 126
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -945,9 +958,9 @@ TextureImporter:
       name: menus_35
       rect:
         serializedVersion: 2
-        x: 2593
+        x: 2592
         y: 2603
-        width: 300
+        width: 301
         height: 126
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -969,7 +982,7 @@ TextureImporter:
         x: 1872
         y: 2464
         width: 681
-        height: 109
+        height: 122
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1008,10 +1021,10 @@ TextureImporter:
       name: menus_38
       rect:
         serializedVersion: 2
-        x: 1872
+        x: 1871
         y: 2316
-        width: 117
-        height: 114
+        width: 118
+        height: 125
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1092,6 +1105,7 @@ TextureImporter:
       menus_38: -1619994487
       menus_39: -1218226503
       menus_4: 1361156727
+      menus_40: -768092421
       menus_5: 1802616480
       menus_6: 281016215
       menus_7: -1102901389
