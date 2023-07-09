@@ -23,14 +23,14 @@ namespace UI
                 case "cross":
                     Application.OpenURL("https://crossfirecam.itch.io/");
                     break;
-                case "rioni":
-                    Application.OpenURL("https://rioni.itch.io/");
+                case "danirbu":
+                    Application.OpenURL("https://danirbu.itch.io/");
                     break;
                 case "darelt":
                     Application.OpenURL("https://darelt.itch.io/");
                     break;
                 case "tesla":
-                    Application.OpenURL("https://teslasp2.itch.io/");
+                    Application.OpenURL("https://teslasp2.com/");
                     break;
                 case "fireotters":
                     Application.OpenURL("https://fireotters.com");
