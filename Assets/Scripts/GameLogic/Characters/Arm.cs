@@ -49,8 +49,9 @@ public class Arm : MonoBehaviour
         _posPokeOrigin = _pokeOrigin.position;
 
         RaiseLowerArm();
-        CheckIfPokeFinished();
-        MovePokeOrigin();
+        if (!armStopped)
+            CheckIfPokeFinished();
+            MovePokeOrigin();
     }
 
     private void RaiseLowerArm()

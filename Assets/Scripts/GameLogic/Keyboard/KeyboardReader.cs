@@ -18,6 +18,9 @@ namespace GameLogic.Keyboard
         [Header("Progress Tracker")]
         [SerializeField] private GameObject progressTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
+
+        public int numOfPresses = 0, numOfCorrectPresses = 0;
+        public int highestCombo = 0, currentCombo = 0;
         
         private StudioEventEmitter phraseFinishedSound;
 
@@ -116,6 +119,7 @@ namespace GameLogic.Keyboard
                 var expectedCharacter = textPreview.text[inputtedText.text.Length];
                 if (expectedCharacter.ToString() != keyPress.Letter)
                 {
+                    IncrementStats(false);
                     if (keyPress.Letter == " ")
                         keyPress.Letter = "_"; // Indicate an incorrect SpaceKey usage
                     inputtedText.text += $"<color=#FF0000>{keyPress.Letter}</color>";
@@ -123,6 +127,7 @@ namespace GameLogic.Keyboard
                 else
                 {
                     inputtedText.text += keyPress.Letter;
+                    IncrementStats(true);
                 }
             }
             catch (IndexOutOfRangeException)
@@ -135,12 +140,11 @@ namespace GameLogic.Keyboard
         private void BackspaceAction(SignalKeyboardBackspacePress backspacePress)
         {
             Debug.Log("<KeyboardReader> Backspace pressed!");
+            ResetCombo();
             var curText = inputtedText.text;
             string newText;
             if (curText.Length == 0)
-            {
                 return;
-            }
             else if (curText.EndsWith(">"))
             {
                 // Remove RTF tags. E.g: 123<color>4</color>
@@ -149,15 +153,33 @@ namespace GameLogic.Keyboard
                 newText = curText[..posOfSecondLastRTFOpener];
             }
             else
-            {
                 newText = curText[..^1]; // Remove last character
-            }
+
             inputtedText.text = newText;
         }
         
         private void OnDestroy()
         {
             disposables.Dispose();
+        }
+
+        private void IncrementStats(bool correct)
+        {
+            numOfPresses++;
+            if (correct)
+            {
+                numOfCorrectPresses++;
+                currentCombo++;
+            }
+            else
+                ResetCombo();
+        }
+
+        private void ResetCombo()
+        {
+            currentCombo = 0;
+            if (currentCombo > highestCombo)
+                highestCombo = currentCombo;
         }
     }
 }
