@@ -368,7 +368,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311502293538127971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.88, y: -1.0999999, z: 0}
+  m_LocalPosition: {x: 6.88, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -494,8 +494,9 @@ Transform:
   - {fileID: 5375122271340233030}
   - {fileID: 7265038425412690726}
   - {fileID: 842416172199186667}
+  - {fileID: 1741653167557252796}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5070150079909811131
 MonoBehaviour:
@@ -516,7 +517,9 @@ MonoBehaviour:
   textPreview: {fileID: 1778736661165068066}
   inputtedText: {fileID: 5346665615178328086}
   progressTracker: {fileID: 3311502293538127971}
+  mistakeTracker: {fileID: 8161804174134921945}
   wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
+  allowedMistakes: 3
   numOfPresses: 0
   numOfCorrectPresses: 0
   highestCombo: 0
@@ -583,3 +586,34 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!1 &8161804174134921945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1741653167557252796}
+  m_Layer: 0
+  m_Name: MistakeTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1741653167557252796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161804174134921945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.88, y: -1.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 503431982682084773}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
