@@ -133,6 +133,8 @@ namespace GameLogic.Keyboard
             }
             catch (IndexOutOfRangeException)
             {
+                // There is already an incorrect letter, and another has been attempted.
+                IncrementStats(false);
             }
 
             CheckForCompletedTest();

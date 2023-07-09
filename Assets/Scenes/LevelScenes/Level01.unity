@@ -755,38 +755,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.data[0].Path
-      value: event:/2D/Level Tutorial - Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.data[0].Guid.Data1
-      value: 1184050144
-      objectReference: {fileID: 0}
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.data[0].Guid.Data2
-      value: 1161450357
-      objectReference: {fileID: 0}
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.data[0].Guid.Data3
-      value: -1263605363
-      objectReference: {fileID: 0}
-    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: GameSongEvents.Array.data[0].Guid.Data4
-      value: 1492684335
-      objectReference: {fileID: 0}
-    - target: {fileID: 1535773649999258127, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1535773649999258127, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 381
-      objectReference: {fileID: 0}
     - target: {fileID: 4341101249688090784, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -874,46 +842,6 @@ PrefabInstance:
     - target: {fileID: 4341101249688090812, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_Name
       value: CanvasGameUi
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: PlayEvent
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: Params.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: EventReference.Path
-      value: event:/2D/Level Tutorial - Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: OverrideMaxDistance
-      value: 8.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: OverrideMinDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: EventReference.Guid.Data1
-      value: 1184050144
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: EventReference.Guid.Data2
-      value: 1161450357
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: EventReference.Guid.Data3
-      value: -1263605363
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: EventReference.Guid.Data4
-      value: 1492684335
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-      propertyPath: Params.Array.data[0].Name
-      value: 2Dsound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
