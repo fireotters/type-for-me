@@ -85,7 +85,6 @@ namespace GameLogic.Keyboard
 
         private IEnumerator UpdateGameState()
         {
-            yield return new WaitForSeconds(2f);
             var currentWord = textPreview.text;
             var trackers = progressTracker.GetComponentsInChildren<PhaseTracker>();
             
@@ -95,10 +94,13 @@ namespace GameLogic.Keyboard
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
                 int accuracy = (int) ((double)numOfCorrectPresses / numOfPresses * 100);
+                SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
+                yield return new WaitForSeconds(2f);
                 SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy });
             }
             else
             {
+                yield return new WaitForSeconds(2f);
                 // last word wasn't reached yet, NEEXT!
                 inputtedText.text = string.Empty;
                 var nextWordIndex = phrases.ToList().IndexOf(currentWord) + 1;
