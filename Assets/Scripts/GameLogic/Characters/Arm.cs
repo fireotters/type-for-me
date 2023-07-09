@@ -7,11 +7,12 @@ using UnityEngine;
 public class Arm : MonoBehaviour
 {
     // Movement Properties of Arm and PokeOrigin
-    private float[] _rangeArmSpeed = { 0f, 0f };            // How quick between pokes
-    private float[] _rangeArmHeightAfterPoke = { 0f, 0f };  // How high the arm will raise before coming back down
-    private float[] _rangePokeHori = { 0f, 0f };            // How far from the center will the PokeOrigin deviate per poke?
-    private float[] _rangePokeVert = { 0f, 0f };
-    private float _armSpeed, _armHeightAfterPoke, _pokeHoriDest, _pokeVertDest;
+    private float[] _rangeArmSpeed = { 0f, 0f };            // Arm: How quick between pokes?
+    private float[] _rangeArmHeightAfterPoke = { 0f, 0f };  // Arm: How high to raise before coming back down?
+    private Vector2 _limitPokeNW, _limitPokeSE = new(0, 0); // PokeOrigin: What are the bounds of where PokeOrigin can go?
+    private float[] _rangePokeMove = { 0f, 0f };            // PokeOrigin: What's the min/max distance the PokeOrigin can travel per poke?
+    private float _armSpeed, _armHeightAfterPoke;
+    private Vector2 _pokeDestination;
 
     // Fingertip
     [SerializeField] private Transform _tFingertip;
@@ -39,6 +40,7 @@ public class Arm : MonoBehaviour
 
         RaiseLowerArm();
         CheckIfPokeFinished();
+        MovePokeOrigin();
     }
 
     private void RaiseLowerArm()
@@ -76,23 +78,33 @@ public class Arm : MonoBehaviour
         if (_isPokingKey)
             PokeTarget();
         else
-            SetNewPropertiesOnRaise();
+            Invoke(nameof(SetNewPropertiesOnRaise), 0.5f);
+            
+    }
+
+    private void MovePokeOrigin()
+    {
+        var step = 10 * Time.deltaTime;
+        _pokeOrigin.position = Vector2.MoveTowards(_pokeOrigin.position, _pokeDestination, step);
     }
 
     private void SetNewPropertiesOnRaise()
     {
         _armSpeed = Random.Range(_rangeArmSpeed[0], _rangeArmSpeed[1]);
         _armHeightAfterPoke = Random.Range(_rangeArmHeightAfterPoke[0], _rangeArmHeightAfterPoke[1]);
-        _pokeHoriDest = Random.Range(_rangePokeHori[0], _rangePokeHori[1]);
-        _pokeVertDest = Random.Range(_rangePokeVert[0], _rangePokeVert[1]);
+
+        float _pokeHoriDest = Random.Range(_limitPokeNW.x, _limitPokeSE.x);
+        float _pokeVertDest = Random.Range(_limitPokeNW.y, _limitPokeSE.y);
+        _pokeDestination = new Vector2(_pokeHoriDest, _pokeVertDest);
     }
 
-    public void FirstTimeSetProperties(float[] rangePokeSpeed, float[] rangeHeightAfterPoke, float[] rangeSwingHori, float[] rangeSwingVert)
+    public void FirstTimeSetProperties(float[] rangeArmSpeed, float[] rangeArmHeightAfterPoke, Vector2 limitPokeNW, Vector2 limitPokeSE, float[] rangePokeMove)
     {
-        _rangeArmSpeed = rangePokeSpeed;
-        _rangeArmHeightAfterPoke = rangeHeightAfterPoke;
-        _rangePokeHori = rangeSwingHori;
-        _rangePokeVert = rangeSwingVert;
+        _rangeArmSpeed = rangeArmSpeed;
+        _rangeArmHeightAfterPoke = rangeArmHeightAfterPoke;
+        _limitPokeNW = limitPokeNW;
+        _limitPokeSE = limitPokeSE;
+        _rangePokeMove = rangePokeMove;
         SetNewPropertiesOnRaise();
     }
 

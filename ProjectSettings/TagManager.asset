@@ -50,3 +50,6 @@ TagManager:
   - name: Arm
     uniqueID: 2878799303
     locked: 0
+  - name: ProgressTracker
+    uniqueID: 248582939
+    locked: 0
