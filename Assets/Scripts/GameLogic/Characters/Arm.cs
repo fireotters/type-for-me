@@ -116,7 +116,6 @@ public class Arm : MonoBehaviour
 
     public void StopArm(SignalArmStopMovement context)
     {
-        print("HIIIII");
         iWantToStopArm = context.iWantToStopArm;
     }
 
