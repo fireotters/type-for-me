@@ -1295,7 +1295,7 @@ PrefabInstance:
       objectReference: {fileID: 667765617}
     - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: nextSceneToLoad
-      value: Level02
+      value: Level04
       objectReference: {fileID: 0}
     - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: currentCharacter
