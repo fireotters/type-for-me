@@ -33,7 +33,13 @@ public static class HighScoreManagement
         int numOfCurrentLevelEntries = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).Count();
         HighscoreEntry currentLevelScore;
         bool bestComboBeaten = false, accuracyBeaten = false, isBrandNewScore = false;
+
         bool wasComboPerfect = false, wasAccuracyPerfect = false;
+        if (bestCombo >= levelHighestComboPossible)
+            wasComboPerfect = true;
+        if (accuracy == 100)
+            wasAccuracyPerfect = true;
+
         if (numOfCurrentLevelEntries == 1)
         {
             // If one score exists, then overwrite or notify that the score wasn't beaten.
@@ -41,10 +47,6 @@ public static class HighScoreManagement
             bool ifScoreSameOrWorse = bestCombo <= currentLevelScore.bestCombo && accuracy <= currentLevelScore.accuracy;
             if (ifScoreSameOrWorse)
             {
-                if (currentLevelScore.bestCombo >= levelHighestComboPossible)
-                    wasComboPerfect = true;
-                if (currentLevelScore.accuracy == 100)
-                    wasAccuracyPerfect = true;
                 // Don't bother to update PlayerPrefs.LevelScores
                 return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy, wasComboPerfect, wasAccuracyPerfect, isBrandNewScore);
             }
@@ -52,11 +54,13 @@ public static class HighScoreManagement
             {
                 bestComboBeaten = true;
                 currentLevelScore.bestCombo = bestCombo;
+                currentLevelScore.perfectCombo = wasComboPerfect;
             }
             if (accuracy > currentLevelScore.accuracy)
             {
                 accuracyBeaten = true;
                 currentLevelScore.accuracy = accuracy;
+                currentLevelScore.perfectAccuracy = wasAccuracyPerfect;
             }
         }
         else
@@ -66,14 +70,11 @@ public static class HighScoreManagement
             if (numOfCurrentLevelEntries != 0)
                 Debug.LogError($"Level '{levelName}': Multiple HighscoreEntry entries in PlayerPrefs. This isn't expected. Overwrite them all with latest score.");
 
-            currentLevelScore = new HighscoreEntry { levelName = levelName, bestCombo = bestCombo, accuracy = accuracy };
+            currentLevelScore = new HighscoreEntry {
+                levelName = levelName, bestCombo = bestCombo, accuracy = accuracy,
+                perfectCombo = wasComboPerfect, perfectAccuracy = wasAccuracyPerfect };
             isBrandNewScore = true;
         }
-
-        if (currentLevelScore.bestCombo >= levelHighestComboPossible)
-            wasComboPerfect = true;
-        if (currentLevelScore.accuracy == 100)
-            wasAccuracyPerfect = true;
 
         listOfLevelScores.Add(currentLevelScore);
         Highscores fullListOfScores = new Highscores { highscoreEntryList = listOfLevelScores };
@@ -103,4 +104,6 @@ public class HighscoreEntry
     public string levelName;
     public int bestCombo;
     public int accuracy;
+    public bool perfectCombo;
+    public bool perfectAccuracy;
 }

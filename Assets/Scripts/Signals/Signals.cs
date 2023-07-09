@@ -14,7 +14,7 @@ namespace Signals
     public struct SignalUiMainMenuTooltipChange
     {
         public bool Showing;
-        public string LevelName, ScoreType1, ScoreType2;
+        public string LevelName, Acc, Com;
     }
 
     // --------------------------------------------------------------------------------------------------------------

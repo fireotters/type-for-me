@@ -8,7 +8,7 @@ public class TooltipLevelSelect : MonoBehaviour
 {
     public bool _showing;
     private GameObject _tooltipBg;
-    private TextMeshProUGUI _textLevelName, _textScore1, _textScore2;
+    private TextMeshProUGUI _textLevelName, _txtAcc, _txtCom;
     private RectTransform _rectTransform, _canvasRectTransform;
     private Vector3 tooltipOffset = new Vector3(10, -10, 0);
     private readonly CompositeDisposable _disposables = new();
@@ -27,8 +27,8 @@ public class TooltipLevelSelect : MonoBehaviour
         _canvasRectTransform = FindObjectOfType<Canvas>().GetComponent<RectTransform>();
         _tooltipBg = transform.Find("TooltipBg").gameObject;
         _textLevelName = _tooltipBg.transform.Find("TextLevelName").GetComponent<TextMeshProUGUI>();
-        _textScore1 = _tooltipBg.transform.Find("Text1").GetComponent<TextMeshProUGUI>();
-        _textScore2 = _tooltipBg.transform.Find("Text2").GetComponent<TextMeshProUGUI>();
+        _txtAcc = _tooltipBg.transform.Find("TxtAcc").GetComponent<TextMeshProUGUI>();
+        _txtCom = _tooltipBg.transform.Find("TxtCom").GetComponent<TextMeshProUGUI>();
         SignalBus<SignalUiMainMenuTooltipChange>.Subscribe(ChangeState).AddTo(_disposables);
     }
     private void OnDestroy()
@@ -56,18 +56,8 @@ public class TooltipLevelSelect : MonoBehaviour
     private void ChangeState(SignalUiMainMenuTooltipChange signal)
     {
         _textLevelName.text = signal.LevelName;
-        _textScore1.text = signal.ScoreType1 switch
-        {
-            "..." => "...",
-            "1" => "1 pt",
-            _ => signal.ScoreType1 + " pts",
-        };
-        _textScore2.text = signal.ScoreType2 switch
-        {
-            "..." => "...",
-            "1" => "1 pt",
-            _ => signal.ScoreType2 + " pts",
-        };
+        _txtAcc.text = signal.Acc;
+        _txtCom.text = signal.Com;
         _tooltipBg.SetActive(signal.Showing);
         Cursor.SetCursor(signal.Showing ? tooltipCursor : normalCursor, cursorHotspot, cursorMode);
     }

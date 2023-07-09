@@ -22,7 +22,7 @@ public class ButtonLevelSelectParent : MonoBehaviour
                 {
                     if (entry.levelName == button.attachedLevel)
                     {
-                        // button.UpdateLevelHighscores(entry.scoreType1, entry.scoreType2); TODO FIX
+                        button.UpdateLevelHighscores(entry.bestCombo, entry.accuracy, entry.perfectCombo, entry.perfectAccuracy);
                         numOfUnlocks++;
                         break;
                     }

@@ -11,8 +11,8 @@ public class ButtonLevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public string levelNum, levelName;
     [HideInInspector] public string attachedLevel;
     private Button button;
-    private string _highscore1 = "-", _highscore2 = "-";
-    private TextMeshProUGUI _textLevelNum, _textScore1, _textScore2;
+    private string _highAccuracy = "-", _highCombo = "-";
+    private TextMeshProUGUI _textLevelNum, _txtCombo, _txtAccuracy;
 
     private void Awake()
     {
@@ -21,8 +21,8 @@ public class ButtonLevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         button.onClick.AddListener(LoadLevel);
         _textLevelNum = transform.Find("TxtLvlNum").GetComponent<TextMeshProUGUI>();
         _textLevelNum.text = levelNum;
-        _textScore1 = transform.Find("ScoreRecords").Find("TxtScore1").GetComponent<TextMeshProUGUI>();
-        _textScore2 = transform.Find("ScoreRecords").Find("TxtScore2").GetComponent<TextMeshProUGUI>();
+        _txtCombo = transform.Find("ScoreRecords").Find("TxtCombo").GetComponent<TextMeshProUGUI>();
+        _txtAccuracy = transform.Find("ScoreRecords").Find("TxtAccuracy").GetComponent<TextMeshProUGUI>();
     }
 
     private void LoadLevel()
@@ -30,12 +30,17 @@ public class ButtonLevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         SignalBus<SignalUiMainMenuStartGame>.Fire(new SignalUiMainMenuStartGame { levelToLoad = attachedLevel });
     }
 
-    public void UpdateLevelHighscores(int bingoScore, int pieceScore)
-    {
-        _highscore1 = bingoScore == -1 ? "-" : bingoScore.ToString();
-        _highscore2 = pieceScore == -1 ? "-" : pieceScore.ToString();
-        _textScore1.text = _highscore1;
-        _textScore2.text = _highscore2;
+    public void UpdateLevelHighscores(int combo, int accuracy, bool perfectCombo, bool perfectAccuracy)
+    { 
+        _txtCombo.text = $"C:{combo}";
+        _txtAccuracy.text = $"{accuracy}%";
+        _highCombo = $"{combo}";
+        _highAccuracy = $"{accuracy}";
+        if (perfectCombo)
+            _txtCombo.color = Color.yellow;
+        if (perfectAccuracy)
+            _txtAccuracy.color = Color.yellow;
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -44,19 +49,19 @@ public class ButtonLevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         if (button.interactable)
         {
             string tempLevelName = levelNum + ". " + levelName;
-            string tempHighscore1 = _highscore1 != "-" ? _highscore1 : "...";
-            string tempHighscore2 = _highscore2 != "-" ? _highscore2 : "...";
+            string tempAccuracy = _highAccuracy != "-" ? $"{_highAccuracy}%" : "...";
+            string tempCombo = _highCombo != "-" ? _highCombo : "...";
             SignalBus<SignalUiMainMenuTooltipChange>.Fire(new SignalUiMainMenuTooltipChange
             {
                 Showing = true,
                 LevelName = tempLevelName,
-                ScoreType1 = tempHighscore1,
-                ScoreType2 = tempHighscore2
+                Acc = tempAccuracy,
+                Com = tempCombo
             });
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        SignalBus<SignalUiMainMenuTooltipChange>.Fire(new SignalUiMainMenuTooltipChange { Showing = false, LevelName = "", ScoreType1 = "", ScoreType2 = "" });
+        SignalBus<SignalUiMainMenuTooltipChange>.Fire(new SignalUiMainMenuTooltipChange { Showing = false, LevelName = "", Acc = "", Com = "" });
     }
 }
