@@ -105,6 +105,12 @@ namespace UI
                 bestCombo, highscoreBestCombo, wasThisNewBestCombo, wasComboPerfect,
                 accuracy, highscoreAccuracy, wasThisNewAccuracy, wasAccuracyPerfect,
                 isBrandNewScore);
+
+
+            foreach (GameObject gameObject in justhideeverything)
+            {
+                gameObject.SetActive(false);
+            }
             Invoke(nameof(HideGameplayDoLevelEnd), 1f);
             Invoke(nameof(ShowGameWon), 3f);
         }
@@ -127,14 +133,11 @@ namespace UI
         }
         private void HideGameplayDoLevelEnd()
         {
-            foreach(GameObject gameObject in justhideeverything)
-            {
-                gameObject.SetActive(false);
-            }
             animator.SetBool("levelClose", true);
         }
         public void ShowGameWon()
         {
+            Time.timeScale = 0;
             _dialogs.gameWon.SetActive(true);
         }
 
@@ -175,16 +178,19 @@ namespace UI
 
         public void LoadNextScene()
         {
+            Time.timeScale = 1;
             _sound.fmodMixer.KillEverySound();
             SceneManager.LoadScene(nextSceneToLoad);
         }
         public void ResetCurrentLevel()
         {
+            Time.timeScale = 1;
             _sound.fmodMixer.KillEverySound();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         public void ExitGameFromPause()
         {
+            Time.timeScale = 1;
             _sound.fmodMixer.KillEverySound();
             SceneManager.LoadScene("MainMenu");
             Time.timeScale = 1;
