@@ -31,11 +31,12 @@ Transform:
   m_Children:
   - {fileID: 2866401363750698081}
   - {fileID: 2544573499467144647}
+  - {fileID: 1371192460341695592}
   - {fileID: 2537236549482054867}
   - {fileID: 6894618244650227371}
   - {fileID: 8125582629642937956}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4338186169438254228
 MonoBehaviour:
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c96b65d317aeb6458285f665675b8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arm: {fileID: 1069746594169967311}
+  _arm: {fileID: 0}
   _minArmRaiseSpeed: 2
   _maxArmRaiseSpeed: 2
   _minArmRaiseHeight: 1.5
@@ -106,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2866401363750698081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ GameObject:
   - component: {fileID: 2537236549482054867}
   - component: {fileID: 4253316449486603325}
   m_Layer: 0
-  m_Name: PokeDestination
+  m_Name: PokeOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,14 +390,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8181717895817453683}
     m_Modifications:
-    - target: {fileID: 678384442590923456, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 678384442590923456, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1416167993
-      objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -404,6 +397,10 @@ PrefabInstance:
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.29
       objectReference: {fileID: 0}
     - target: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -441,56 +438,95 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arm
       objectReference: {fileID: 0}
-    - target: {fileID: 6339850616861206353, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
+    - target: {fileID: 6322110413939607725, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6339850616861206353, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1416167993
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894255870700553269, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894255870700553269, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1416167993
-      objectReference: {fileID: 0}
+    - target: {fileID: 7430580273423966011, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: _pokeOrigin
+      value: 
+      objectReference: {fileID: 2537236549482054867}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6322110413939607725, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1069746594169967311}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
---- !u!4 &2195942773911430595 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7984779096869522852, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-  m_PrefabInstance: {fileID: 8121727468002142311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2544573499467144647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6045528364143375776, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
   m_PrefabInstance: {fileID: 8121727468002142311}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2813212603032527050 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6322110413939607725, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
-  m_PrefabInstance: {fileID: 8121727468002142311}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1069746594169967311
-MonoBehaviour:
+--- !u!1001 &8427771742050261585
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8181717895817453683}
+    m_Modifications:
+    - target: {fileID: 5983789255376430242, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: _pokeOrigin
+      value: 
+      objectReference: {fileID: 2537236549482054867}
+    - target: {fileID: 7181178794661393204, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_Name
+      value: Arm-Kid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181178794661393204, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+--- !u!4 &1371192460341695592 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7490051296438210105, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+  m_PrefabInstance: {fileID: 8427771742050261585}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2813212603032527050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3feef7eaaf0d4e042b71bb473bfc6b7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tFingertip: {fileID: 2195942773911430595}
-  _pokeOrigin: {fileID: 2537236549482054867}
