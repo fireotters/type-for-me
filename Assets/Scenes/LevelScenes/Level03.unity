@@ -135,6 +135,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character-Kid
       objectReference: {fileID: 0}
+    - target: {fileID: 2512924487633372523, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: _maxArmRaiseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512924487633372523, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: _minArmRaiseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512924487633372523, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: _maxArmRaiseHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512924487633372523, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: _minArmRaiseHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703301812548560724, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703301812548560724, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937656527099664283, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937656527099664283, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.67
+      objectReference: {fileID: 0}
     - target: {fileID: 8025603394653802892, guid: ee0fa352ac050014bada62b3ba2342cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1121,6 +1153,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: GameSongEvents.Array.data[0].Path
+      value: event:/2D/Level Gamer - Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: GameSongEvents.Array.data[0].Guid.Data1
+      value: 826592960
+      objectReference: {fileID: 0}
+    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: GameSongEvents.Array.data[0].Guid.Data2
+      value: 1082354610
+      objectReference: {fileID: 0}
+    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: GameSongEvents.Array.data[0].Guid.Data3
+      value: 608799403
+      objectReference: {fileID: 0}
+    - target: {fileID: 282186198177518754, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: GameSongEvents.Array.data[0].Guid.Data4
+      value: -1675688269
+      objectReference: {fileID: 0}
     - target: {fileID: 413335239608409202, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1212,6 +1264,26 @@ PrefabInstance:
     - target: {fileID: 4341101249688090812, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_Name
       value: CanvasGameUi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/2D/Level Gamer - Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 826592960
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1082354610
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 608799403
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -1675688269
       objectReference: {fileID: 0}
     - target: {fileID: 6219922664801357915, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_IsActive
@@ -1507,39 +1579,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 842416172199186667, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 7.37
       objectReference: {fileID: 0}
     - target: {fileID: 842416172199186667, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1741653167557252796, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 7.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741653167557252796, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1778736661165068066, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: PlayEvent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/2D/Level Gamer - Voice
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 171477192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1225527603
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1124274533
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688634401452777406, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 1283287298
+      objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: allowedMistakes
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[0]
-      value: a
+      value: get good noobs
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[1]
-      value: am i dyxelsic
+      value: yall suck omg
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[2]
-      value: what to do when oven beeps
+      value: guys were gonna lose
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: phrases.Array.data[3]
+      value: this game sucks ass
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: phrases.Array.data[4]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5346665615178328086, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_text
