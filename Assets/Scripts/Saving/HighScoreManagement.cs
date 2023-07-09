@@ -15,7 +15,7 @@ public static class HighScoreManagement
     }
 
     // Check new score against existing highscore for a level. Return the original highscore or new highscore as int.
-    public static (bool, bool, int, int) TryAddScoreThenReturnHighscore(string levelName, int bestCombo, int accuracy)
+    public static (bool, bool, int, int, bool) TryAddScoreThenReturnHighscore(string levelName, int bestCombo, int accuracy)
     {
         string jsonString = PlayerPrefs.GetString("LevelScores");
 
@@ -32,7 +32,7 @@ public static class HighScoreManagement
         // Find the high score for the current level. If two or more exist, flag an error.
         int numOfCurrentLevelEntries = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).Count();
         HighscoreEntry currentLevelScore;
-        bool bestComboBeaten = false, accuracyBeaten = false;
+        bool bestComboBeaten = false, accuracyBeaten = false, isBrandNewScore = false;
         if (numOfCurrentLevelEntries == 1)
         {
             // If one score exists, then overwrite or notify that the score wasn't beaten.
@@ -41,7 +41,7 @@ public static class HighScoreManagement
             if (ifScoreSameOrWorse)
             {
                 // Don't bother to update PlayerPrefs.LevelScores
-                return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy);
+                return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy, isBrandNewScore);
             }
             if (bestCombo > currentLevelScore.bestCombo)
             {
@@ -62,6 +62,7 @@ public static class HighScoreManagement
                 Debug.LogError($"Level '{levelName}': Multiple HighscoreEntry entries in PlayerPrefs. This isn't expected. Overwrite them all with latest score.");
 
             currentLevelScore = new HighscoreEntry { levelName = levelName, bestCombo = bestCombo, accuracy = accuracy };
+            isBrandNewScore = true;
         }
 
         listOfLevelScores.Add(currentLevelScore);
@@ -71,7 +72,7 @@ public static class HighScoreManagement
         Debug.Log(json);
         PlayerPrefs.SetString("LevelScores", json);
         PlayerPrefs.Save();
-        return (bestComboBeaten, accuracyBeaten, currentLevelScore.bestCombo, currentLevelScore.accuracy);
+        return (bestComboBeaten, accuracyBeaten, currentLevelScore.bestCombo, currentLevelScore.accuracy, isBrandNewScore);
     }
 }
 

@@ -15,10 +15,13 @@ namespace GameLogic.Keyboard
         [SerializeField] private TMP_Text textPreview;
         [SerializeField] private TMP_Text inputtedText;
 
-        [Header("Progress Tracker")]
+        [Header("Progress Trackers")]
         [SerializeField] private GameObject progressTracker;
+        [SerializeField] private GameObject mistakeTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
-
+        [Range(3, 15)] [SerializeField] private int allowedMistakes = 3;
+        
+        
         public int numOfPresses = 0, numOfCorrectPresses = 0;
         public int highestCombo = 0, currentCombo = 0;
         
@@ -38,19 +41,37 @@ namespace GameLogic.Keyboard
             }
             else
             {
-                var startingXAxisPos = progressTracker.transform.position.x;
-                for (var i = 0; i < phrases.Length; i++)
-                {
-                    var newGameObject 
-                        = Instantiate(wordTrackerPrefab, new Vector3(startingXAxisPos, progressTracker.transform.position.y), Quaternion.identity,  progressTracker.transform);
-                    startingXAxisPos -= .5f;
-                    var tracker = newGameObject.GetComponent<PhaseTracker>();
-                    tracker.ChangeStatus(i == phrases.Length - 1 ? TrackerStatus.Active : TrackerStatus.Inactive);
-                }
+                SetUpProgressTracker();
+                SetUpMistakeTracker();
                 textPreview.text = phrases[0];
             }
         }
 
+        private void SetUpProgressTracker()
+        {
+            var startingXAxisPos = progressTracker.transform.position.x;
+            for (var i = 0; i < phrases.Length; i++)
+            {
+                var newGameObject
+                    = Instantiate(wordTrackerPrefab, new Vector3(startingXAxisPos, progressTracker.transform.position.y),
+                        Quaternion.identity, progressTracker.transform);
+                startingXAxisPos -= .5f;
+                var tracker = newGameObject.GetComponent<PhaseTracker>();
+                tracker.ChangeStatus(i == phrases.Length - 1 ? TrackerStatus.Active : TrackerStatus.Inactive);
+            }
+        }
+
+        private void SetUpMistakeTracker()
+        {
+            var startingXAxisPos = mistakeTracker.transform.position.x;
+            for (var i = 0; i < allowedMistakes; i++)
+            {
+                Instantiate(wordTrackerPrefab, new Vector3(startingXAxisPos, mistakeTracker.transform.position.y),
+                        Quaternion.identity, mistakeTracker.transform);
+                startingXAxisPos -= .5f;
+            }
+        }
+        
         private void CheckForCompletedTest()
         {
             if (textPreview.text.Equals(inputtedText.text))
@@ -60,15 +81,10 @@ namespace GameLogic.Keyboard
                 inputtedText.text = $"<color=#4EFF00>{inputtedText.text}</color>";
                 StartCoroutine(UpdateGameState());
             }
-            //else
-            //{
-            //    Debug.Log("keep goin");
-            //}
         }
 
         private IEnumerator UpdateGameState()
         {
-            yield return new WaitForSeconds(2f);
             var currentWord = textPreview.text;
             var trackers = progressTracker.GetComponentsInChildren<PhaseTracker>();
             
@@ -77,11 +93,14 @@ namespace GameLogic.Keyboard
                 Debug.Log("Turns out you DONT suck!");
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
-                int accuracy = (int)((double)numOfCorrectPresses / numOfPresses * 100);
+                int accuracy = (int) ((double)numOfCorrectPresses / numOfPresses * 100);
+                SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
+                yield return new WaitForSeconds(2f);
                 SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy });
             }
             else
             {
+                yield return new WaitForSeconds(2f);
                 // last word wasn't reached yet, NEEXT!
                 inputtedText.text = string.Empty;
                 var nextWordIndex = phrases.ToList().IndexOf(currentWord) + 1;
@@ -133,6 +152,8 @@ namespace GameLogic.Keyboard
             }
             catch (IndexOutOfRangeException)
             {
+                // There is already an incorrect letter, and another has been attempted.
+                IncrementStats(false);
             }
 
             CheckForCompletedTest();
@@ -175,9 +196,34 @@ namespace GameLogic.Keyboard
                     highestCombo = currentCombo;
             }
             else
+            {
                 ResetCombo();
+                IncreaseMistakeCounter();
+                if (Mathf.Abs(numOfPresses - numOfCorrectPresses) == allowedMistakes)
+                {
+                    // you fucking suck
+                    SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
+                }
+            }
         }
 
+        private void IncreaseMistakeCounter()
+        {
+            var mistakeTrackers = mistakeTracker.GetComponentsInChildren<PhaseTracker>();
+
+            for (var i = mistakeTrackers.Length - 1; i >= 0; i--)
+            {
+                var currentTracker = mistakeTrackers[i];
+                if (currentTracker.CurrentStatus.Equals(TrackerStatus.Mistake))
+                    continue;
+                if (currentTracker.CurrentStatus.Equals(TrackerStatus.Inactive))
+                {
+                    currentTracker.ChangeStatus(TrackerStatus.Mistake);
+                    break;
+                }
+            }
+        }
+        
         private void ResetCombo()
         {
             if (currentCombo > highestCombo)

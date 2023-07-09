@@ -11,6 +11,7 @@ namespace UI
     public class GameUi : MonoBehaviour
     {
         public string nextSceneToLoad;
+        public string currentCharacter;
 
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
@@ -26,6 +27,8 @@ namespace UI
             // Debug stuff
             if (nextSceneToLoad == "")
                 Debug.LogWarning("No 'CanvasGameUi.nextSceneToLoad' set! Selecting 'Next Level' will fail.");
+            if (currentCharacter == "")
+                Debug.LogWarning("No 'CanvasGameUi.currentCharacter' set! Loss dialogs and other contextual messages will fail.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
@@ -74,6 +77,7 @@ namespace UI
             if (context.result == GameEndCondition.Loss)
             {
                 _dialogs.gameLost.SetActive(true);
+                _dialogs.SetupLossDialog(currentCharacter);
                 return;
             }
 
@@ -85,8 +89,9 @@ namespace UI
             int bestCombo = context.bestCombo;
             int accuracy = context.accuracy;
             (bool wasThisNewBestCombo, bool wasThisNewAccuracy,
-                int highscoreBestCombo, int highscoreAccuracy) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy);
-            _dialogs.SetupVictoryDialog(bestCombo, highscoreBestCombo, wasThisNewBestCombo, accuracy, highscoreAccuracy, wasThisNewAccuracy);
+                int highscoreBestCombo, int highscoreAccuracy,
+                bool isBrandNewScore) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy);
+            _dialogs.SetupVictoryDialog(bestCombo, highscoreBestCombo, wasThisNewBestCombo, accuracy, highscoreAccuracy, wasThisNewAccuracy, isBrandNewScore);
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -159,31 +164,38 @@ namespace UI
         public GameObject paused, options;
         public GameObject gameLost, gameWon;
         public Color clrVictoryScore1, clrVictoryScore1Best, clrVictoryScore2, clrVictoryScore2Best;
-        public TextMeshProUGUI txtVictoryCurrent, txtVictoryBest;
+        public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
+        public TextMeshProUGUI txtCharLostPatience;
 
-        public void SetupVictoryDialog(int currentCombo, int bestCombo, bool wasThisNewHighCombo, int accuracy, int bestAccuracy, bool wasThisNewAccuracy)
+        public void SetupVictoryDialog(int combo, int bestCombo, bool wasThisNewHighCombo, int accuracy, int bestAccuracy, bool wasThisNewAccuracy, bool isBrandNewScore)
         {
-            //txtVictoryCurrent.text = currentScore.ToString() + (currentScore > 1 ? " pts" : " pt");
-            //if (bestScore == -1)
-            //{
-            //    txtVictoryBest.text = "";
-            //    txtVictoryCurrent.verticalAlignment = VerticalAlignmentOptions.Middle;
-            //}
-            //else if (wasThisNewHighscore)
-            //    txtVictoryBest.text = "New best score!";
-            //else
-            //    txtVictoryBest.text = "Best: " + bestScore.ToString() + (bestScore > 1 ? " pts" : " pt");
+            txtComboCurrent.text = $"{combo}";
+            txtAccuracyCurrent.text = $"{accuracy}";
 
+            // Highscore doesn't exist. Don't display a message.
+            if (isBrandNewScore)
+            {
+                txtComboBest.text = "";
+                txtAccuracyBest.text = "";
+            }
+            else
+            {
+                // Highscore exists. Show congrats messages if it's a new best, or a previous best if not.
+                if (wasThisNewHighCombo)
+                    txtComboBest.text = "New best!";
+                else
+                    txtComboBest.text = $"Best: {bestCombo}";
 
-            //// Set tutorial as completed, so it won't appear next time
-            //if (tutorialIndex != 0)
-            //{
-            //    if (PlayerPrefs.GetInt("tutorialUpTo", 0) < tutorialIndex)
-            //    {
-            //        PlayerPrefs.SetInt("tutorialUpTo", tutorialIndex);
-            //        PlayerPrefs.Save();
-            //    }
-            //}
+                if (wasThisNewAccuracy)
+                    txtAccuracyBest.text = "New best!";
+                else
+                    txtAccuracyBest.text = $"Best: {bestAccuracy}";
+            }
+        }
+
+        public void SetupLossDialog(string character)
+        {
+            txtCharLostPatience.text = character.ToUpper();
         }
     }
     [Serializable]
