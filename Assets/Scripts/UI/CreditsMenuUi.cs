@@ -3,10 +3,8 @@ using UnityEngine.SceneManagement;
 
 namespace UI
 {
-    public class HelpMenuUi : BaseUI
+    public class CreditsMenuUi : BaseUI
     {
-        [SerializeField] private GameObject helpPage, creditsPage;
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

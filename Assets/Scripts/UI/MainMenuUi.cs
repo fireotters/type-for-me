@@ -42,10 +42,10 @@ namespace UI
             SceneManager.LoadScene($"Scenes/LevelScenes/{signal.levelToLoad}");
         }
         
-        public void OpenHelp()
+        public void OpenCredits()
         {
             menuSong.Stop();
-            SceneManager.LoadScene($"Scenes/HelpMenu");
+            SceneManager.LoadScene($"Scenes/CreditsMenu");
         }
 
         public void QuitGame()
