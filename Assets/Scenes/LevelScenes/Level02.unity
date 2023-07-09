@@ -1612,11 +1612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[0]
-      value: a
+      value: are birds real
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[1]
@@ -1705,13 +1705,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 503431982682084773, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       insertIndex: 0
       addedObject: {fileID: 695855999}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3199661907500293778, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 681381398114492129, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
 --- !u!4 &2121387481 stripped
 Transform:
