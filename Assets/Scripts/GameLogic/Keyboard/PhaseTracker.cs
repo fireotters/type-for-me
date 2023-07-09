@@ -9,6 +9,11 @@ namespace GameLogic.Keyboard
         [SerializeField] private SpriteRenderer spriteRenderer;
         public TrackerStatus CurrentStatus { get; private set; } = TrackerStatus.Inactive;
 
+        private void Start()
+        {
+            spriteRenderer.color = Color.gray;
+        }
+        
         public void ChangeStatus(TrackerStatus status)
         {
             spriteRenderer.sprite = status switch
