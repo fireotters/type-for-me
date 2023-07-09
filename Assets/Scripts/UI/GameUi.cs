@@ -82,10 +82,12 @@ namespace UI
             _dialogs.gameWon.SetActive(true);
 
             string levelName = SceneManager.GetActiveScene().name;
-            GameEndCondition scoreType = context.result;
-            int score = context.score;
-            (bool wasThisNewHighscore, int highScore) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, scoreType, score);
-            _dialogs.SetupVictoryDialog(scoreType, score, highScore, wasThisNewHighscore);
+            int bestCombo = context.bestCombo;
+            int accuracy = context.accuracy;
+            Debug.Log(bestCombo + " " + accuracy);
+            (bool wasThisNewBestCombo, bool wasThisNewAccuracy,
+                int highscoreBestCombo, int highscoreAccuracy) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy);
+            _dialogs.SetupVictoryDialog(bestCombo, highscoreBestCombo, wasThisNewBestCombo, accuracy, highscoreAccuracy, wasThisNewAccuracy);
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -158,40 +160,29 @@ namespace UI
         public Color clrVictoryScore1, clrVictoryScore1Best, clrVictoryScore2, clrVictoryScore2Best;
         public TextMeshProUGUI txtVictoryCurrent, txtVictoryBest;
 
-        public void SetupVictoryDialog(GameEndCondition victoryType, int currentScore, int bestScore, bool wasThisNewHighscore)
+        public void SetupVictoryDialog(int currentCombo, int bestCombo, bool wasThisNewHighCombo, int accuracy, int bestAccuracy, bool wasThisNewAccuracy)
         {
-            if (victoryType == GameEndCondition.WinType1)
-            {
-                txtVictoryCurrent.color = clrVictoryScore1;
-                txtVictoryBest.color = clrVictoryScore1Best;
-            }
-            else if (victoryType == GameEndCondition.WinType2)
-            {
-                txtVictoryCurrent.color = clrVictoryScore2;
-                txtVictoryBest.color = clrVictoryScore2Best;
-            }
-
-            txtVictoryCurrent.text = currentScore.ToString() + (currentScore > 1 ? " pts" : " pt");
-            if (bestScore == -1)
-            {
-                txtVictoryBest.text = "";
-                txtVictoryCurrent.verticalAlignment = VerticalAlignmentOptions.Middle;
-            }
-            else if (wasThisNewHighscore)
-                txtVictoryBest.text = "New best score!";
-            else
-                txtVictoryBest.text = "Best: " + bestScore.ToString() + (bestScore > 1 ? " pts" : " pt");
+            //txtVictoryCurrent.text = currentScore.ToString() + (currentScore > 1 ? " pts" : " pt");
+            //if (bestScore == -1)
+            //{
+            //    txtVictoryBest.text = "";
+            //    txtVictoryCurrent.verticalAlignment = VerticalAlignmentOptions.Middle;
+            //}
+            //else if (wasThisNewHighscore)
+            //    txtVictoryBest.text = "New best score!";
+            //else
+            //    txtVictoryBest.text = "Best: " + bestScore.ToString() + (bestScore > 1 ? " pts" : " pt");
 
 
-            // Set tutorial as completed, so it won't appear next time
-            if (tutorialIndex != 0)
-            {
-                if (PlayerPrefs.GetInt("tutorialUpTo", 0) < tutorialIndex)
-                {
-                    PlayerPrefs.SetInt("tutorialUpTo", tutorialIndex);
-                    PlayerPrefs.Save();
-                }
-            }
+            //// Set tutorial as completed, so it won't appear next time
+            //if (tutorialIndex != 0)
+            //{
+            //    if (PlayerPrefs.GetInt("tutorialUpTo", 0) < tutorialIndex)
+            //    {
+            //        PlayerPrefs.SetInt("tutorialUpTo", tutorialIndex);
+            //        PlayerPrefs.Save();
+            //    }
+            //}
         }
     }
     [Serializable]

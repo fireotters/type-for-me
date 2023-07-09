@@ -1173,6 +1173,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: phrases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: phrases.Array.data[0]
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
+      propertyPath: phrases.Array.data[1]
+      value: 98765
+      objectReference: {fileID: 0}
     - target: {fileID: 6824307380379580054, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: m_Name
       value: TypingManager

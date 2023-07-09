@@ -77,7 +77,8 @@ namespace GameLogic.Keyboard
                 Debug.Log("Turns out you DONT suck!");
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
-                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.WinType1, score = 0 });
+                int accuracy = (int)((double)numOfPresses / numOfCorrectPresses * 100);
+                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy });
             }
             else
             {
@@ -170,6 +171,8 @@ namespace GameLogic.Keyboard
             {
                 numOfCorrectPresses++;
                 currentCombo++;
+                if (currentCombo > highestCombo)
+                    highestCombo = currentCombo;
             }
             else
                 ResetCombo();
@@ -177,9 +180,9 @@ namespace GameLogic.Keyboard
 
         private void ResetCombo()
         {
-            currentCombo = 0;
             if (currentCombo > highestCombo)
                 highestCombo = currentCombo;
+            currentCombo = 0;
         }
     }
 }

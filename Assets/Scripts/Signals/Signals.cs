@@ -22,12 +22,13 @@ namespace Signals
     // --------------------------------------------------------------------------------------------------------------
     public enum GameEndCondition
     {
-        Loss, WinType1, WinType2
+        Loss, Win
     }
     public struct SignalGameEnded
     {
         public GameEndCondition result;
-        public int score;
+        public int bestCombo;
+        public int accuracy;
     }
 
     // --------------------------------------------------------------------------------------------------------------
