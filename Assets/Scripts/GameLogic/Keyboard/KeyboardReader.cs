@@ -93,10 +93,16 @@ namespace GameLogic.Keyboard
                 Debug.Log("Turns out you DONT suck!");
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
-                int accuracy = (int) ((double)numOfCorrectPresses / numOfPresses * 100);
                 SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
                 yield return new WaitForSeconds(2f);
-                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy });
+                int accuracy = (int)((double)numOfCorrectPresses / numOfPresses * 100);
+                int levelHighestComboPossible = 0;
+                foreach (string phrase in phrases)
+                {
+                    levelHighestComboPossible += phrase.Length;
+                }
+                print(levelHighestComboPossible);
+                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy, levelHighestComboPossible = levelHighestComboPossible });
             }
             else
             {

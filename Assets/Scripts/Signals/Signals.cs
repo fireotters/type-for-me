@@ -29,6 +29,7 @@ namespace Signals
         public GameEndCondition result;
         public int bestCombo;
         public int accuracy;
+        public int levelHighestComboPossible;
     }
 
     // --------------------------------------------------------------------------------------------------------------

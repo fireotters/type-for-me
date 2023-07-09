@@ -15,7 +15,7 @@ public static class HighScoreManagement
     }
 
     // Check new score against existing highscore for a level. Return the original highscore or new highscore as int.
-    public static (bool, bool, int, int, bool) TryAddScoreThenReturnHighscore(string levelName, int bestCombo, int accuracy)
+    public static (bool, bool, int, int, bool, bool, bool) TryAddScoreThenReturnHighscore(string levelName, int bestCombo, int accuracy, int levelHighestComboPossible)
     {
         string jsonString = PlayerPrefs.GetString("LevelScores");
 
@@ -33,6 +33,7 @@ public static class HighScoreManagement
         int numOfCurrentLevelEntries = levelScores.highscoreEntryList.Where(hs => hs.levelName == levelName).Count();
         HighscoreEntry currentLevelScore;
         bool bestComboBeaten = false, accuracyBeaten = false, isBrandNewScore = false;
+        bool wasComboPerfect = false, wasAccuracyPerfect = false;
         if (numOfCurrentLevelEntries == 1)
         {
             // If one score exists, then overwrite or notify that the score wasn't beaten.
@@ -40,8 +41,12 @@ public static class HighScoreManagement
             bool ifScoreSameOrWorse = bestCombo <= currentLevelScore.bestCombo && accuracy <= currentLevelScore.accuracy;
             if (ifScoreSameOrWorse)
             {
+                if (currentLevelScore.bestCombo >= levelHighestComboPossible)
+                    wasComboPerfect = true;
+                if (currentLevelScore.accuracy == 100)
+                    wasAccuracyPerfect = true;
                 // Don't bother to update PlayerPrefs.LevelScores
-                return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy, isBrandNewScore);
+                return (false, false, currentLevelScore.bestCombo, currentLevelScore.accuracy, wasComboPerfect, wasAccuracyPerfect, isBrandNewScore);
             }
             if (bestCombo > currentLevelScore.bestCombo)
             {
@@ -65,6 +70,11 @@ public static class HighScoreManagement
             isBrandNewScore = true;
         }
 
+        if (currentLevelScore.bestCombo >= levelHighestComboPossible)
+            wasComboPerfect = true;
+        if (currentLevelScore.accuracy == 100)
+            wasAccuracyPerfect = true;
+
         listOfLevelScores.Add(currentLevelScore);
         Highscores fullListOfScores = new Highscores { highscoreEntryList = listOfLevelScores };
 
@@ -72,7 +82,7 @@ public static class HighScoreManagement
         Debug.Log(json);
         PlayerPrefs.SetString("LevelScores", json);
         PlayerPrefs.Save();
-        return (bestComboBeaten, accuracyBeaten, currentLevelScore.bestCombo, currentLevelScore.accuracy, isBrandNewScore);
+        return (bestComboBeaten, accuracyBeaten, currentLevelScore.bestCombo, currentLevelScore.accuracy, wasComboPerfect, wasAccuracyPerfect, isBrandNewScore);
     }
 }
 

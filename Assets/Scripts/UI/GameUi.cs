@@ -88,10 +88,15 @@ namespace UI
             string levelName = SceneManager.GetActiveScene().name;
             int bestCombo = context.bestCombo;
             int accuracy = context.accuracy;
+            int levelHighestComboPossible = context.levelHighestComboPossible;
             (bool wasThisNewBestCombo, bool wasThisNewAccuracy,
                 int highscoreBestCombo, int highscoreAccuracy,
-                bool isBrandNewScore) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy);
-            _dialogs.SetupVictoryDialog(bestCombo, highscoreBestCombo, wasThisNewBestCombo, accuracy, highscoreAccuracy, wasThisNewAccuracy, isBrandNewScore);
+                bool wasComboPerfect, bool wasAccuracyPerfect,
+                bool isBrandNewScore) = HighScoreManagement.TryAddScoreThenReturnHighscore(levelName, bestCombo, accuracy, levelHighestComboPossible);
+            _dialogs.SetupVictoryDialog(
+                bestCombo, highscoreBestCombo, wasThisNewBestCombo, wasComboPerfect,
+                accuracy, highscoreAccuracy, wasThisNewAccuracy, wasAccuracyPerfect,
+                isBrandNewScore);
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -167,10 +172,13 @@ namespace UI
         public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
         public TextMeshProUGUI txtCharLostPatience;
 
-        public void SetupVictoryDialog(int combo, int bestCombo, bool wasThisNewHighCombo, int accuracy, int bestAccuracy, bool wasThisNewAccuracy, bool isBrandNewScore)
+        public void SetupVictoryDialog(
+            int combo, int bestCombo, bool wasThisNewHighCombo, bool wasComboPerfect,
+            int accuracy, int bestAccuracy, bool wasThisNewAccuracy, bool wasAccuracyPerfect,
+            bool isBrandNewScore)
         {
             txtComboCurrent.text = $"{combo}";
-            txtAccuracyCurrent.text = $"{accuracy}";
+            txtAccuracyCurrent.text = $"{accuracy}%";
 
             // Highscore doesn't exist. Don't display a message.
             if (isBrandNewScore)
@@ -181,15 +189,19 @@ namespace UI
             else
             {
                 // Highscore exists. Show congrats messages if it's a new best, or a previous best if not.
-                if (wasThisNewHighCombo)
+                if (wasComboPerfect)
+                    txtComboBest.text = "Perfect!";
+                else if (wasThisNewHighCombo)
                     txtComboBest.text = "New best!";
                 else
                     txtComboBest.text = $"Best: {bestCombo}";
 
-                if (wasThisNewAccuracy)
+                if (wasAccuracyPerfect)
+                    txtAccuracyBest.text = "Perfect!";
+                else if (wasThisNewAccuracy)
                     txtAccuracyBest.text = "New best!";
                 else
-                    txtAccuracyBest.text = $"Best: {bestAccuracy}";
+                    txtAccuracyBest.text = $"Best: {bestAccuracy}%";
             }
         }
 
