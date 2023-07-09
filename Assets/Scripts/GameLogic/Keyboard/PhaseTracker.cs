@@ -5,7 +5,7 @@ namespace GameLogic.Keyboard
     public class PhaseTracker : MonoBehaviour
     {
 
-        [SerializeField] private Sprite inactiveSprite, activeSprite, passedSprite;
+        [SerializeField] private Sprite inactiveSprite, activeSprite, passedSprite, mistakeSprite;
         [SerializeField] private SpriteRenderer spriteRenderer;
         public TrackerStatus CurrentStatus { get; private set; } = TrackerStatus.Inactive;
 
@@ -16,6 +16,7 @@ namespace GameLogic.Keyboard
                 TrackerStatus.Active => activeSprite,
                 TrackerStatus.Inactive => inactiveSprite,
                 TrackerStatus.Passed => passedSprite,
+                TrackerStatus.Mistake => mistakeSprite,
                 _ => spriteRenderer.sprite
             };
 
@@ -28,5 +29,6 @@ namespace GameLogic.Keyboard
         Active,
         Inactive,
         Passed,
+        Mistake,
     }
 }
