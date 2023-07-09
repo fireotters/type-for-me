@@ -55,9 +55,10 @@ namespace Signals
     // --------------------------------------------------------------------------------------------------------------
     // Character Signals
     // --------------------------------------------------------------------------------------------------------------
-    public struct SignalFingerPoke
+
+    public struct SignalArmStopMovement
     {
-        public Vector2 pokeLocation;
+        public bool iWantToStopArm;
     }
 }
 

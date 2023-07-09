@@ -29,7 +29,6 @@ public class Character : MonoBehaviour
         Vector2 limitPokeSE = _limitPokeRangeSE.position;
         float[] rangePokeMove = { _minPokeMove, _maxPokeMove };
 
-
         _arm.FirstTimeSetProperties(rangeArmRaiseSpeed, rangeArmRaiseHeight, limitPokeNW, limitPokeSE, rangePokeMove);
     }
 }

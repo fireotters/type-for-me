@@ -14,6 +14,11 @@ public class Arm : MonoBehaviour
     private float _armSpeed, _armHeightAfterPoke;
     private Vector2 _pokeDestination;
 
+    // Stopping arm movement. At the apex of an Arm Raise, 'iWantToStopArm' is checked.
+    // When unchecked, it'll wait until the next apex of the raise to resume again.
+    public bool iWantToStopArm = false;
+    private bool armStopped = false;
+
     // Fingertip
     [SerializeField] private Transform _tFingertip;
     private Vector3 _posFingertip;
@@ -26,10 +31,15 @@ public class Arm : MonoBehaviour
     private Vector3 _posPokeOrigin;
     private Vector3 _baseSizeForShadow = new Vector2(0.15f, 0.15f);
 
+    private readonly CompositeDisposable _disposables = new();
+
     private void Start()
     {
         // The Arm's fingertip is offset slightly 0,0 of the Arm is.
         _offsetFromArmToFingertip = -_tFingertip.localPosition;
+
+        // Attempt to stop the arm when asked
+        SignalBus<SignalArmStopMovement>.Subscribe(StopArm).AddTo(_disposables);
     }
 
     private void Update()
@@ -46,6 +56,27 @@ public class Arm : MonoBehaviour
     private void RaiseLowerArm()
     {
         float howHighIsArmRaised = -Mathf.Sin(Time.time * _armSpeed); // Reverse the sinwave so levels start with hand in the air
+
+        // Stop Arm logic.
+        if (iWantToStopArm && armStopped)
+            // If we want to stop arm, and it's stopped... Keep it stopped.
+            return;
+        else if (iWantToStopArm && howHighIsArmRaised > 0.99f)
+        {
+            // If we want to stop arm, but it isn't yet... Continue to process movements, and wait til the hand is raised to above .99f
+            armStopped = true;
+            return;
+        }
+        else if (!iWantToStopArm && armStopped)
+        {
+            // If we want to resume arm, and it's stopped... Wait til the sin wave would be above .99f before resuming. Ensures smooth transition
+            if (howHighIsArmRaised > 0.99f)
+                armStopped = false;
+            else
+                return;
+        }
+
+        // Deciding Arm coordinates
         float newX = _posPokeOrigin.x
             + _offsetFromArmToFingertip.x;
         float newY = howHighIsArmRaised * _armHeightAfterPoke
@@ -82,6 +113,11 @@ public class Arm : MonoBehaviour
             
     }
 
+    public void StopArm(SignalArmStopMovement context)
+    {
+        iWantToStopArm = context.iWantToStopArm;
+    }
+
     private void MovePokeOrigin()
     {
         var step = 10 * Time.deltaTime;
@@ -107,15 +143,6 @@ public class Arm : MonoBehaviour
         _limitPokeSE = limitPokeSE;
         _rangePokeMove = rangePokeMove;
 
-        if (Debug.isDebugBuild)
-        {
-            if (_limitPokeSE.x - _limitPokeNW.x < rangePokeMove[1] ||
-                _limitPokeNW.y - _limitPokeSE.y < rangePokeMove[1])
-            {
-                Debug.LogWarning("Character: Set up incorrectly! The maximum range of the PokeOrigin movements exceeds the size of its bounding box. " +
-                    "This means that the PokeOrigin could move outside the box if not stopped!");
-            }
-        }
         SetNewPropertiesOnRaise();
     }
 
