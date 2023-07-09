@@ -108,6 +108,10 @@ namespace UI
         {
             GameIsPaused(false);
         }
+        public void TutorialPause(bool intent)
+        {
+            Time.timeScale = intent ? 0 : 1;
+        }
 
         public void ToggleOptionsPanel()
         {
