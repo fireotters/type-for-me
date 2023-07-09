@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Audio;
 using FMODUnity;
 using Signals;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -12,6 +15,8 @@ namespace UI
     {
         public string nextSceneToLoad;
         public string currentCharacter;
+        public Animator animator;
+        public GameObject[] justhideeverything;
 
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
@@ -32,6 +37,8 @@ namespace UI
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
+
+            Invoke(nameof(ShowGameplayStartLevel), 4f);
         }
         private void OnDestroy()
         {
@@ -48,24 +55,24 @@ namespace UI
 
         private void CheckKeyInputs()
         {
-            // Testing iWantToStopArm
-            if (Debug.isDebugBuild)
-            {
-                if (Input.GetKeyDown(KeyCode.L))
-                {
-                    SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
-                    {
-                        iWantToStopArm = true
-                    });
-                }
-                if (Input.GetKeyDown(KeyCode.O))
-                {
-                    SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
-                    {
-                        iWantToStopArm = false
-                    });
-                }
-            }
+            //// Testing iWantToStopArm
+            //if (Debug.isDebugBuild)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.L))
+            //    {
+            //        SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
+            //        {
+            //            iWantToStopArm = true
+            //        });
+            //    }
+            //    if (Input.GetKeyDown(KeyCode.O))
+            //    {
+            //        SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
+            //        {
+            //            iWantToStopArm = false
+            //        });
+            //    }
+            //}
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -83,7 +90,8 @@ namespace UI
 
             // Win Conditions trigger some similar behaviour
             _sound.musicStage.SetParameter("Win", 1);
-            _dialogs.gameWon.SetActive(true);
+
+            animator.SetBool("levelClose", true);
 
             string levelName = SceneManager.GetActiveScene().name;
             int bestCombo = context.bestCombo;
@@ -97,6 +105,37 @@ namespace UI
                 bestCombo, highscoreBestCombo, wasThisNewBestCombo, wasComboPerfect,
                 accuracy, highscoreAccuracy, wasThisNewAccuracy, wasAccuracyPerfect,
                 isBrandNewScore);
+            Invoke(nameof(HideGameplayDoLevelEnd), 1f);
+            Invoke(nameof(ShowGameWon), 3f);
+        }
+
+        private void ShowGameplayStartLevel()
+        {
+            foreach (GameObject gameObject in justhideeverything)
+            {
+                gameObject.SetActive(true);
+            }
+            Invoke(nameof(TellArmStart), 0.3f);
+        }
+
+        private void TellArmStart()
+        {
+            SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
+            {
+                iWantToStopArm = false
+            });
+        }
+        private void HideGameplayDoLevelEnd()
+        {
+            foreach(GameObject gameObject in justhideeverything)
+            {
+                gameObject.SetActive(false);
+            }
+            animator.SetBool("levelClose", true);
+        }
+        public void ShowGameWon()
+        {
+            _dialogs.gameWon.SetActive(true);
         }
 
         // --------------------------------------------------------------------------------------------------------------

@@ -16,8 +16,8 @@ public class Arm : MonoBehaviour
 
     // Stopping arm movement. At the apex of an Arm Raise, 'iWantToStopArm' is checked.
     // When unchecked, it'll wait until the next apex of the raise to resume again.
-    private bool iWantToStopArm = false;
-    private bool armStopped = false;
+    public bool iWantToStopArm = true;
+    public bool armStopped = true;
 
     // Fingertip
     [SerializeField] private Transform _tFingertip;
@@ -116,6 +116,7 @@ public class Arm : MonoBehaviour
 
     public void StopArm(SignalArmStopMovement context)
     {
+        print("HIIIII");
         iWantToStopArm = context.iWantToStopArm;
     }
 
