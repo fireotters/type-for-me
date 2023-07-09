@@ -208,6 +208,7 @@ namespace GameLogic.Keyboard
                 if (Mathf.Abs(numOfPresses - numOfCorrectPresses) == allowedMistakes)
                 {
                     // you fucking suck
+                    SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
                     SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
                 }
             }
