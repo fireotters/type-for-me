@@ -20,6 +20,12 @@ namespace Audio
             sfx = RuntimeManager.GetBus("bus:/Sfx");
             music = RuntimeManager.GetBus("bus:/music");
 
+            if (!PlayerPrefs.HasKey("music"))
+            {
+                PlayerPrefs.SetFloat("music", -5f);
+                PlayerPrefs.SetFloat("sfx", -5f);
+            }
+
             float dbMusic = PlayerPrefs.GetFloat("music");
             float dbSfx = PlayerPrefs.GetFloat("sfx");
 
@@ -105,7 +111,7 @@ namespace Audio
 
         private float BottomDecibelsIfLowEnough(float dB)
         {
-            return dB == -19.5f ? -200f : dB;
+            return dB <= -19.9f ? -200f : dB;
         }
 
         private void SaveVolumePreferences(string bus, float dB)
