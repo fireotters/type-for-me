@@ -1683,7 +1683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[0]
-      value: 1
+      value: 19650523
       objectReference: {fileID: 0}
     - target: {fileID: 5070150079909811131, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       propertyPath: phrases.Array.data[1]
@@ -1771,13 +1771,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 503431982682084773, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
       insertIndex: 1
       addedObject: {fileID: 631471507}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3199661907500293778, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 681381398114492129, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30f4a5bfdf5ca9c47a202cb4b49deeb6, type: 3}
 --- !u!1001 &8424786184301102345
 PrefabInstance:
