@@ -223,10 +223,10 @@ TextureImporter:
       name: menus_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 2091
-        width: 217
-        height: 217
+        x: 30
+        y: 2094
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: menus_3
       rect:
         serializedVersion: 2
-        x: 30
-        y: 1447
-        width: 200
-        height: 200
+        x: 32
+        y: 1449
+        width: 198
+        height: 197
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 59, y: 70, z: 57, w: 69}
@@ -266,9 +266,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 230
-        y: 1447
-        width: 200
-        height: 200
+        y: 1449
+        width: 197
+        height: 197
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 56, y: 70, z: 61, w: 69}
@@ -286,10 +286,10 @@ TextureImporter:
       name: menus_5
       rect:
         serializedVersion: 2
-        x: 622
-        y: 1446
-        width: 79
-        height: 203
+        x: 624
+        y: 1449
+        width: 74
+        height: 197
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: menus_1
       rect:
         serializedVersion: 2
-        x: 27
-        y: 1870
-        width: 217
-        height: 217
+        x: 30
+        y: 1874
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,10 +328,10 @@ TextureImporter:
       name: menus_2
       rect:
         serializedVersion: 2
-        x: 27
-        y: 1650
-        width: 217
-        height: 217
+        x: 30
+        y: 1654
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,10 +349,10 @@ TextureImporter:
       name: menus_6
       rect:
         serializedVersion: 2
-        x: 257
-        y: 2091
-        width: 217
-        height: 217
+        x: 260
+        y: 2094
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,10 +370,10 @@ TextureImporter:
       name: menus_7
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1871
-        width: 217
-        height: 217
+        x: 260
+        y: 1874
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,10 +391,10 @@ TextureImporter:
       name: menus_8
       rect:
         serializedVersion: 2
-        x: 256
-        y: 1650
-        width: 217
-        height: 217
+        x: 260
+        y: 1654
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,10 +412,10 @@ TextureImporter:
       name: menus_9
       rect:
         serializedVersion: 2
-        x: 487
-        y: 2091
-        width: 217
-        height: 217
+        x: 490
+        y: 2094
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,10 +433,10 @@ TextureImporter:
       name: menus_10
       rect:
         serializedVersion: 2
-        x: 487
-        y: 1871
-        width: 217
-        height: 217
+        x: 490
+        y: 1874
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,10 +454,10 @@ TextureImporter:
       name: menus_11
       rect:
         serializedVersion: 2
-        x: 487
-        y: 1650
-        width: 217
-        height: 217
+        x: 490
+        y: 1654
+        width: 210
+        height: 210
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,13 +475,13 @@ TextureImporter:
       name: menus_12
       rect:
         serializedVersion: 2
-        x: 774
-        y: 1788
-        width: 1071
-        height: 1072
+        x: 776
+        y: 1790
+        width: 1068
+        height: 1068
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 39, y: 44, z: 42, w: 38}
+      border: {x: 36, y: 42, z: 41, w: 35}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -748,10 +748,10 @@ TextureImporter:
       name: menus_25
       rect:
         serializedVersion: 2
-        x: 81
-        y: 1399
-        width: 63
-        height: 40
+        x: 82
+        y: 1401
+        width: 61
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -769,10 +769,10 @@ TextureImporter:
       name: menus_26
       rect:
         serializedVersion: 2
-        x: 154
-        y: 1387
-        width: 78
-        height: 52
+        x: 156
+        y: 1389
+        width: 74
+        height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1067,8 +1067,8 @@ TextureImporter:
         y: 1366
         width: 46
         height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.44008338, y: 0.43514812}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1076,6 +1076,27 @@ TextureImporter:
       bones: []
       spriteID: 1ee61e59465308e44b502e241feaae82
       internalID: -768092421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menus_41
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1449
+        width: 197
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 25, y: 25, z: 25, w: 25}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee833aa9c7826a40abb3e88fa84babf
+      internalID: -1854883865
       vertices: []
       indices: 
       edges: []
@@ -1127,6 +1148,7 @@ TextureImporter:
       menus_39: -1218226503
       menus_4: 1361156727
       menus_40: -768092421
+      menus_41: -1854883865
       menus_5: 1802616480
       menus_6: 281016215
       menus_7: -1102901389
