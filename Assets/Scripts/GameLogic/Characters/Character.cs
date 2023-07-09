@@ -3,7 +3,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     // Characters can have multiple arms. Use this character script to control each character's arm behaviour.
-    [SerializeField] private Arm[] _armObjects;
+    [SerializeField] private Arm _arm;
     [Space(20)]
     [SerializeField] private float _minPokeSpeed;
     [SerializeField] private float _maxPokeSpeed;
@@ -23,9 +23,6 @@ public class Character : MonoBehaviour
         float[] rangeSwingHori = { _minSwingHori, _maxSwingHori };
         float[] rangeSwingVert = { _minSwingVert, _maxSwingVert };
         
-        foreach (var arm in _armObjects)
-        {
-            arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, rangeSwingHori, rangeSwingVert);
-        }
+        _arm.FirstTimeSetProperties(rangePokeSpeed, rangeHeightAfterPoke, rangeSwingHori, rangeSwingVert);
     }
 }
