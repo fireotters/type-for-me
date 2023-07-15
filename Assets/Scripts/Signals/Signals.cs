@@ -44,10 +44,6 @@ namespace Signals
     {
         // no payload needed
     }
-    public struct SignalKeyboardEnterPress
-    {
-        // TODO Implement
-    }
 
     public struct SignalKeyboardPausePress
     {

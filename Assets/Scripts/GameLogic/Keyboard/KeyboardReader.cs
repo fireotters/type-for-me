@@ -12,14 +12,15 @@ namespace GameLogic.Keyboard
     {
         [Header("Text related variables")]
         [SerializeField] private string[] phrases;
-        [SerializeField] private TMP_Text textPreview;
-        [SerializeField] private TMP_Text inputtedText;
+        private int currentPhrase = 0;
 
         [Header("Progress Trackers")]
         [SerializeField] private GameObject progressTracker;
         [SerializeField] private GameObject mistakeTracker;
         [SerializeField] private GameObject wordTrackerPrefab;
         [Range(3, 15)] [SerializeField] private int allowedMistakes = 3;
+
+        [SerializeField] private TypingBox _typingBox;
         
         
         public int numOfPresses = 0, numOfCorrectPresses = 0;
@@ -43,7 +44,9 @@ namespace GameLogic.Keyboard
             {
                 SetUpProgressTracker();
                 SetUpMistakeTracker();
-                textPreview.text = phrases[0];
+
+                string firstWord = phrases[0];
+                _typingBox.Init(firstWord);
             }
         }
 
@@ -71,48 +74,45 @@ namespace GameLogic.Keyboard
                 startingXAxisPos -= .5f;
             }
         }
-        
-        private void CheckForCompletedTest()
-        {
-            if (textPreview.text.Equals(inputtedText.text))
-            {
-                phraseFinishedSound.Play();
-                Debug.Log("gaming yo yo gaming gaming yo");
-                inputtedText.text = $"<color=#4EFF00>{inputtedText.text}</color>";
-                StartCoroutine(UpdateGameState());
-            }
-        }
 
         private IEnumerator UpdateGameState()
         {
-            var currentWord = textPreview.text;
             var trackers = progressTracker.GetComponentsInChildren<PhaseTracker>();
-            
-            if (currentWord.Equals(phrases[^1]))
+
+            var finalWordAvailable = phrases[^1];
+            if (_typingBox.CompletedWordWasFinal(finalWordAvailable))
             {
-                Debug.Log("Turns out you DONT suck!");
+                // Set final tracker to Passed, and tell Arm to stop moving
+                Debug.Log("Level Complete - Turns out you DONT suck!");
                 var lastTracker = trackers[0];
                 lastTracker.ChangeStatus(TrackerStatus.Passed);
                 SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
                 yield return new WaitForSeconds(2f);
+
+                // Calculate stats & report SignalGameEnded
                 int accuracy = (int)((double)numOfCorrectPresses / numOfPresses * 100);
                 int levelHighestComboPossible = 0;
                 foreach (string phrase in phrases)
-                {
                     levelHighestComboPossible += phrase.Length;
-                }
-                print(levelHighestComboPossible);
-                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Win, bestCombo = highestCombo, accuracy = accuracy, levelHighestComboPossible = levelHighestComboPossible });
+                SignalBus<SignalGameEnded>.Fire(new SignalGameEnded {
+                    result = GameEndCondition.Win,
+                    bestCombo = highestCombo,
+                    accuracy = accuracy,
+                    levelHighestComboPossible = levelHighestComboPossible });
             }
             else
             {
-                yield return new WaitForSeconds(2f);
-                // last word wasn't reached yet, NEEXT!
-                inputtedText.text = string.Empty;
-                var nextWordIndex = phrases.ToList().IndexOf(currentWord) + 1;
-                textPreview.text = phrases[nextWordIndex];
+                // Stop arm
+                Debug.Log("Part of Level Complete");
+                SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
+
+                // Init the typingBox after 1s & update HUD
+                yield return new WaitForSeconds(1f);
+                currentPhrase++;
+                var nextWord = phrases[currentPhrase];
+                _typingBox.Init(nextWord);
                 
-                // also update hud
+                // Update HUD
                 // the way these are instance we gotta iterate through the list backwards
                 for (var i = trackers.Length - 1; i >= 0; i--)
                 {
@@ -128,6 +128,10 @@ namespace GameLogic.Keyboard
                         break;
                     }
                 }
+
+                // Start moving arm after 1s
+                yield return new WaitForSeconds(1f);
+                SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = false });
             }
         }
         
@@ -136,25 +140,10 @@ namespace GameLogic.Keyboard
             Debug.Log($"<KeyboardReader> {keyPress.Letter} was pressed!");
             try
             {
-                if (keyPress.Letter == "||")
-                {
-                    Debug.Log("Paused"); // TODO program in pausing signal
-                    return;
-                }
-
-                var expectedCharacter = textPreview.text[inputtedText.text.Length];
-                if (expectedCharacter.ToString() != keyPress.Letter)
-                {
-                    IncrementStats(false);
-                    if (keyPress.Letter == " ")
-                        keyPress.Letter = "_"; // Indicate an incorrect SpaceKey usage
-                    inputtedText.text += $"<color=#FF0000>{keyPress.Letter}</color>";
-                }
+                if (_typingBox.InputIsValid(keyPress.Letter))
+                    IncrementStats(correct:true);
                 else
-                {
-                    inputtedText.text += keyPress.Letter;
-                    IncrementStats(true);
-                }
+                    IncrementStats(correct:false);
             }
             catch (IndexOutOfRangeException)
             {
@@ -162,28 +151,18 @@ namespace GameLogic.Keyboard
                 IncrementStats(false);
             }
 
-            CheckForCompletedTest();
+            if (_typingBox.InputIsFinished())
+            {
+                phraseFinishedSound.Play();
+                StartCoroutine(UpdateGameState());
+            }
         }
 
         private void BackspaceAction(SignalKeyboardBackspacePress backspacePress)
         {
             Debug.Log("<KeyboardReader> Backspace pressed!");
             ResetCombo();
-            var curText = inputtedText.text;
-            string newText;
-            if (curText.Length == 0)
-                return;
-            else if (curText.EndsWith(">"))
-            {
-                // Remove RTF tags. E.g: 123<color>4</color>
-                // Everything from the last '>' to the second-last '<' will be deleted
-                int posOfSecondLastRTFOpener = curText[..curText.LastIndexOf("<")].LastIndexOf("<");
-                newText = curText[..posOfSecondLastRTFOpener];
-            }
-            else
-                newText = curText[..^1]; // Remove last character
-
-            inputtedText.text = newText;
+            _typingBox.PerformBackspace();
         }
         
         private void OnDestroy()

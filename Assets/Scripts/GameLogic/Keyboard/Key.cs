@@ -48,10 +48,6 @@ namespace GameLogic.Keyboard
                     Debug.Log("<Key> Pressed Backspace!");
                     SignalBus<SignalKeyboardBackspacePress>.Fire();
                     break;
-                case SpecialKey.Enter:
-                    Debug.Log("<Key> Pressed Enter!");
-                    SignalBus<SignalKeyboardEnterPress>.Fire(); // TODO Implement pressing 'Enter' to finish a prompt
-                    break;
                 case SpecialKey.Pause:
                     Debug.Log("<Key> Pressed Pause!");
                     SignalBus<SignalKeyboardPausePress>.Fire();

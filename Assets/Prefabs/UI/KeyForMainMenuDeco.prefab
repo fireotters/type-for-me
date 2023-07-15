@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8998468631704095224}
   - component: {fileID: 7495428548231122557}
   m_Layer: 5
-  m_Name: AliveKey
+  m_Name: KeyForMainMenuDeco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
