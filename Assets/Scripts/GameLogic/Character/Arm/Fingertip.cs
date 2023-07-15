@@ -58,7 +58,7 @@ namespace GameLogic.Character.Arm
         private void Poke()
         {
             int layerMask = LayerMask.GetMask("Keys");
-            RaycastHit2D hit = Physics2D.Raycast(_pos, -Vector2.up, 1.0f, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(_pos, -Vector2.up, 0f, layerMask);
             if (hit.collider != null)
             {
                 Key key = hit.collider.GetComponent<Key>();
