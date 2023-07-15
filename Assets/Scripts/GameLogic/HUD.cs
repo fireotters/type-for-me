@@ -8,7 +8,7 @@ namespace GameLogic
     {
         [Header("Drag your chosen Prefabs into this HUD parent,\nthen drag those references here")]
         [SerializeField] private Character.Character chosenCharacter;
-        [SerializeField] private Draggable chosenKeyboard;
+        [SerializeField] private GameObject chosenKeyboard;
         [SerializeField] private TypingBox chosenTypingBox;
 
         [Header("Tutorial Options")]

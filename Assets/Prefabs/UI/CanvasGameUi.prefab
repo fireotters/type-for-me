@@ -1982,6 +1982,9 @@ MonoBehaviour:
   nextSceneToLoad: Level02
   currentCharacter: 
   bgAnimator: {fileID: 0}
+  _mouseLayerMask:
+    serializedVersion: 2
+    m_Bits: 160
   _dialogs:
     paused: {fileID: 5871841619916156956}
     options: {fileID: 4632280914736227127}

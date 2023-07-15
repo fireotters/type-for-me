@@ -18,6 +18,7 @@ namespace UI
         public Animator bgAnimator;
 
         [Header("Components")]
+        [SerializeField] private LayerMask _mouseLayerMask;
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
         [SerializeField] private GameUiSound _sound;
@@ -30,6 +31,9 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
+            // Disable mouse input to certain layers (by asking Camera)
+            Camera.main.eventMask = _mouseLayerMask;
+
             _hud = FindFirstObjectByType<HUD>();
             _hud.HudIsVisible(false);
 

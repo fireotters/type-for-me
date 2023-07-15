@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chosenCharacter: {fileID: 1622958238}
-  chosenKeyboard: {fileID: 831948691}
+  chosenKeyboard: {fileID: 1485320673}
   chosenTypingBox: {fileID: 155301597}
   tutorialUi: {fileID: 182432668}
   willTutorialShow: 0
@@ -615,17 +615,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3338743507600319960, guid: 556da3dc427812541af920229f07302b, type: 3}
   m_PrefabInstance: {fileID: 941662671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &831948691 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7035691217459146351, guid: 556da3dc427812541af920229f07302b, type: 3}
-  m_PrefabInstance: {fileID: 941662671}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e57976811c4f1e41a255e88cb6b8b55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &866080593 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8708275758697868439, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
@@ -851,6 +840,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 556da3dc427812541af920229f07302b, type: 3}
+--- !u!1 &1485320673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726305605012562430, guid: 556da3dc427812541af920229f07302b, type: 3}
+  m_PrefabInstance: {fileID: 941662671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1622958237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}

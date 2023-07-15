@@ -79,4 +79,9 @@ public class Key : MonoBehaviour
             return letter;
         }
     }
+
+    private void OnMouseDown()
+    {
+        print("Whoopsie");
+    }
 }
