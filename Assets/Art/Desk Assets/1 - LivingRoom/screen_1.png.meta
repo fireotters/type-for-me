@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf57616fc1a139a40a7611907d686b24
+guid: 35beb87a586320c43ab4804999c23ada
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: screen 1_0
+      name: prompt
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 135
         width: 548
-        height: 354
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,6 +152,27 @@ TextureImporter:
       bones: []
       spriteID: 93aac39de9bfa6249aba331e8976eaf1
       internalID: 2043718150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: full
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 548
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 932202c9ce3c1c74abf52f97571f5aac
+      internalID: 975496822
       vertices: []
       indices: 
       edges: []
@@ -167,7 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      screen 1_0: 2043718150
+      full: 975496822
+      prompt: 2043718150
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

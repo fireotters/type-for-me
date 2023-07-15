@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 35beb87a586320c43ab4804999c23ada
+guid: 4123d73b963791a4d9b92ea37b420640
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,11 +45,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 155, y: 136, z: 155, w: 122}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: screen 1_0
+      name: prompt
       rect:
         serializedVersion: 2
         x: 0
-        y: 135
-        width: 548
-        height: 95
+        y: 9
+        width: 1287
+        height: 68
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93aac39de9bfa6249aba331e8976eaf1
-      internalID: 2043718150
+      spriteID: 6482c00266be36a4e9f6c0c50b45515a
+      internalID: 392348398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: full
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1287
+        height: 586
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0d49647812a6b4da07efa407834308
+      internalID: -1874692050
       vertices: []
       indices: 
       edges: []
@@ -160,14 +181,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      screen 1_0: 2043718150
+      full: -1874692050
+      prompt: 392348398
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

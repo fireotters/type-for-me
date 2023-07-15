@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1ebe8330ebce5d74ab67cc95ae739c7e
+guid: 149a9579d8077d54eaa3956c739d9e00
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -136,13 +136,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: screen 1_0
+      name: prompt
       rect:
         serializedVersion: 2
         x: 0
-        y: 303
-        width: 927
-        height: 114
+        y: 78
+        width: 548
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d721d731b21cd46ae1b59bdeabc151
+      internalID: -2013162821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: full
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 548
+        height: 354
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 080964847bc3c7543993159dda9ec4b6
-      internalID: -975131307
+      spriteID: 289ab18274a69024a8ed75707537403f
+      internalID: 1407307840
       vertices: []
       indices: 
       edges: []
@@ -167,7 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      screen 1_0: -975131307
+      full: 1407307840
+      prompt: -2013162821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
