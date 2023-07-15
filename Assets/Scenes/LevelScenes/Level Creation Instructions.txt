@@ -1,0 +1,9 @@
+To create a new level:
+
+- Take an existing level, duplicate, change the scene name
+
+- Go to 'HUD' object. Remove all contents. Drag in whichever Character, Keyboard, and TypingBox you want for this level. Drag those references into the 'HUD' object's script.
+- Go to 'KeyboardReader' object. Set which words you want the player to type & set allowedMistakes.
+- If you want a different background, just remove the existing 'BG' object and drag in a new 'BG' prefab. Go to 'CanvasGameUi' and drag this BG prefab into the bgAnimator slot.
+
+- The highscore system should just work, assuming you haven't used an existing scene's name. Avoid that, or players will have buggy high scores for the levels you changed.

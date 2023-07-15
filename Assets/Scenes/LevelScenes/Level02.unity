@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG-Desk1-LivingRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2548126808439616134, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -499,6 +503,10 @@ PrefabInstance:
     - target: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083952081213405893, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

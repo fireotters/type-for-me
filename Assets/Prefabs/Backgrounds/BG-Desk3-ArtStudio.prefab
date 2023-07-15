@@ -348,17 +348,25 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c34b7b805a05d9840a723f6237ecded3, type: 3}
+    - target: {fileID: 1330469010897161294, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -185914525, guid: 41d8076efb4153446a89555677cc2843, type: 3}
     - target: {fileID: 1377103116763497576, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1377103116763497576, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.49
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1832929176490181971, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_Name
       value: BG-Desk3-ArtStudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548126808439616134, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3171111572015271747, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -419,15 +427,43 @@ PrefabInstance:
     - target: {fileID: 6333866136754636761, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -185914525, guid: 41d8076efb4153446a89555677cc2843, type: 3}
+      objectReference: {fileID: 1875212057, guid: 1ebe8330ebce5d74ab67cc95ae739c7e, type: 3}
     - target: {fileID: 6333866136754636761, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083952081213405893, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699027827634798435, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7842751687321638225, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8b86787756d2d2e479d58c28468307a3, type: 3}
+    - target: {fileID: 7845276201645785448, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1503505803, guid: 1782efa63be6ffd429cb24a0bae2767b, type: 3}
+    - target: {fileID: 8223916644654633136, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223916644654633136, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914691027704480519, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914691027704480519, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0999998
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8589588206890497943, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}

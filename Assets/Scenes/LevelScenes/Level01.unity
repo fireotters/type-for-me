@@ -265,6 +265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG-1-LivingRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2548126808439616134, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
       propertyPath: m_RootOrder
       value: 3
