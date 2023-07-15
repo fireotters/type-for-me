@@ -1,6 +1,7 @@
 using System;
 using Audio;
 using FMODUnity;
+using GameLogic;
 using Saving;
 using Signals;
 using TMPro;
@@ -11,14 +12,16 @@ namespace UI
 {
     public class GameUi : MonoBehaviour
     {
+        [Header("These are unique for every level!")]
         public string nextSceneToLoad;
         public string currentCharacter;
-        public Animator animator;
-        public GameObject[] justhideeverything;
+        public Animator bgAnimator;
 
+        [Header("Components")]
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
         [SerializeField] private GameUiSound _sound;
+        private HUD _hud;
 
         private readonly CompositeDisposable _disposables = new();
 
@@ -27,11 +30,16 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
+            _hud = FindFirstObjectByType<HUD>();
+            _hud.HudIsVisible(false);
+
             // Debug stuff
             if (nextSceneToLoad == "")
                 Debug.LogWarning("No 'CanvasGameUi.nextSceneToLoad' set! Selecting 'Next Level' will fail.");
             if (currentCharacter == "")
                 Debug.LogWarning("No 'CanvasGameUi.currentCharacter' set! Loss dialogs and other contextual messages will fail.");
+            if (!bgAnimator)
+                Debug.LogWarning("No 'CanvasGameUi.bgAnimator' set! Background objects won't animate during levelEnd transition.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
@@ -46,32 +54,10 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         // Per-Frame Updates
         // --------------------------------------------------------------------------------------------------------------
-        private void Update()
-        {
-            CheckKeyInputs();
-        }
+        //private void Update()
+        //{
 
-        private void CheckKeyInputs()
-        {
-            //// Testing iWantToStopArm
-            //if (Debug.isDebugBuild)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.L))
-            //    {
-            //        SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
-            //        {
-            //            iWantToStopArm = true
-            //        });
-            //    }
-            //    if (Input.GetKeyDown(KeyCode.O))
-            //    {
-            //        SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement
-            //        {
-            //            iWantToStopArm = false
-            //        });
-            //    }
-            //}
-        }
+        //}
 
         // --------------------------------------------------------------------------------------------------------------
         // Game Event Functions
@@ -86,10 +72,8 @@ namespace UI
                 return;
             }
 
-            // Win Conditions trigger some similar behaviour
             _sound.musicStage.SetParameter("Win", 1);
-
-            animator.SetBool("levelClose", true);
+            bgAnimator.SetBool("levelClose", true);
 
             string levelName = SceneManager.GetActiveScene().name;
             int bestCombo = context.bestCombo;
@@ -104,21 +88,13 @@ namespace UI
                 accuracy, highscoreAccuracy, wasThisNewAccuracy, wasAccuracyPerfect,
                 isBrandNewScore);
 
-
-            foreach (GameObject gameObject in justhideeverything)
-            {
-                gameObject.SetActive(false);
-            }
-            Invoke(nameof(HideGameplayDoLevelEnd), 1f);
+            Invoke(nameof(HideGameplayEndLevel), 1f);
             Invoke(nameof(ShowGameWon), 3f);
         }
 
         private void ShowGameplayStartLevel()
         {
-            foreach (GameObject gameObject in justhideeverything)
-            {
-                gameObject.SetActive(true);
-            }
+            _hud.HudIsVisible(true);
             Invoke(nameof(TellArmStart), 0.3f);
         }
 
@@ -129,9 +105,10 @@ namespace UI
                 iWantToStopArm = false
             });
         }
-        private void HideGameplayDoLevelEnd()
+        private void HideGameplayEndLevel()
         {
-            animator.SetBool("levelClose", true);
+            _hud.HudIsVisible(false);
+            bgAnimator.SetBool("levelClose", true);
         }
         public void ShowGameWon()
         {
@@ -207,11 +184,9 @@ namespace UI
     [Serializable]
     public class GameUiDialogs
     {
-        // Support for victory screen, high scores, remembering the tutorials shown to the player
-        public int tutorialIndex;
+        // Support for victory screen, high scores
         public GameObject paused, options;
         public GameObject gameLost, gameWon;
-        public Color clrVictoryScore1, clrVictoryScore1Best, clrVictoryScore2, clrVictoryScore2Best;
         public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
         public TextMeshProUGUI txtCharLostPatience;
 

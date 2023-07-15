@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4519873807750340654}
   - component: {fileID: 4264278148082894297}
   m_Layer: 0
-  m_Name: TypingBox-1-Pwd
+  m_Name: TypingBox-Desk1--1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5871154053433300348}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4264278148082894297
 MonoBehaviour:
@@ -50,6 +50,7 @@ MonoBehaviour:
   _trackerProgress: {fileID: 7960385811733765388}
   _trackerMistakes: {fileID: 8982645746536866398}
   _wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
+  typingUi: {fileID: 1021933406315547456}
 --- !u!1 &1021933406315547456
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ GameObject:
   - component: {fileID: 5871154053433300348}
   - component: {fileID: 832398347180099350}
   m_Layer: 0
-  m_Name: bg-prompt
+  m_Name: typingUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

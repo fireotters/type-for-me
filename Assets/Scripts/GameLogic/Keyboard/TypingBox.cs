@@ -1,3 +1,6 @@
+using GameLogic.Character.Arm;
+using Signals;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +15,11 @@ namespace GameLogic.Keyboard
         [Header("Progress Trackers")]
         [SerializeField] private GameObject _trackerProgress;
         [SerializeField] private GameObject _trackerMistakes;
-        [SerializeField] private GameObject _wordTrackerPrefab; //change to PhaseTracker
+        [SerializeField] private GameObject _wordTrackerPrefab;
+
+        [Header("Components")]
+        public GameObject typingUi;
+
 
         // --------------------------------------------------------------------------------------------------------------
         // Preview & Input

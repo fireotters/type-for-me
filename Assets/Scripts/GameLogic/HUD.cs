@@ -1,21 +1,34 @@
 using GameLogic.Keyboard;
 using Other;
+using Signals;
+using System;
+using Unity.Properties;
 using UnityEngine;
 
 namespace GameLogic
 {
     public class HUD : MonoBehaviour
     {
-        [Header("Drag your chosen Prefabs for the level")]
+        [Header("Drag your chosen Prefabs into this HUD parent,\nthen drag those references here")]
         [SerializeField] private Character.Character chosenCharacter;
         [SerializeField] private Draggable chosenKeyboard;
         [SerializeField] private TypingBox chosenTypingBox;
 
-        private void Awake()
+        [Header("Tutorial Options")]
+        [SerializeField] private GameObject tutorialUi;
+        [SerializeField] private bool willTutorialShow;
+
+        // --------------------------------------------------------------------------------------------------------------
+        // 
+        // --------------------------------------------------------------------------------------------------------------
+
+        public void HudIsVisible(bool state)
         {
-            Instantiate(chosenCharacter, gameObject.transform);
-            Instantiate(chosenKeyboard, gameObject.transform);
-            Instantiate(chosenTypingBox, gameObject.transform);
+            chosenCharacter.gameObject.SetActive(state);
+            chosenKeyboard.gameObject.SetActive(state);
+            chosenTypingBox.typingUi.SetActive(state);
+            if (willTutorialShow)
+                tutorialUi.SetActive(state);
         }
     }
 }
