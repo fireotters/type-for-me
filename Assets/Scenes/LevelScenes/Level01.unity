@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a401f4efeed3443a4a68133c3f0b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chosenCharacter: {fileID: 0}
+  chosenCharacter: {fileID: 1943774734}
   chosenKeyboard: {fileID: 2070471865}
   chosenTypingBox: {fileID: 923992216}
   tutorialUi: {fileID: 304587934}
@@ -765,6 +765,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+--- !u!114 &1943774734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+  m_PrefabInstance: {fileID: 1322726143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c96b65d317aeb6458285f665675b8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2070471863
 PrefabInstance:
   m_ObjectHideFlags: 0

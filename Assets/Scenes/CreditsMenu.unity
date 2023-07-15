@@ -1217,6 +1217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   versionText: {fileID: 0}
+  showVersionText: 0
 --- !u!222 &652628384
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1639,7 +1640,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: danirbu.itch.io
+            m_StringArgument: danirbu
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &970685302
