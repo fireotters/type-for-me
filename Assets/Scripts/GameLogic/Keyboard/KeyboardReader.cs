@@ -18,7 +18,7 @@ namespace GameLogic.Keyboard
         private int highestCombo = 0, currentCombo = 0;
 
         [Header("Components")]
-        [SerializeField] private TypingBox _typingBox;
+        private TypingBox _typingBox;
         private StudioEventEmitter phraseFinishedSound;
         private readonly CompositeDisposable disposables = new();
 
@@ -28,6 +28,9 @@ namespace GameLogic.Keyboard
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
+            var hud = FindFirstObjectByType<HUD>();
+            _typingBox = hud.GetComponentInChildren<TypingBox>();
+
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
             phraseFinishedSound = GetComponent<StudioEventEmitter>();
