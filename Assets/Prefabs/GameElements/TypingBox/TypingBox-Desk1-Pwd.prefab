@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4519873807750340654}
   - component: {fileID: 4264278148082894297}
   m_Layer: 0
-  m_Name: TypingBox-Desk1--1
+  m_Name: TypingBox-Desk1-Pwd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chosenCharacter: {fileID: 0}
   chosenKeyboard: {fileID: 2070471865}
-  chosenTypingBox: {fileID: 1076400098}
+  chosenTypingBox: {fileID: 923992216}
   tutorialUi: {fileID: 304587934}
   willTutorialShow: 1
 --- !u!4 &242328838
@@ -171,7 +171,7 @@ Transform:
   m_Children:
   - {fileID: 2070471864}
   - {fileID: 1322726144}
-  - {fileID: 1076400097}
+  - {fileID: 923992217}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
---- !u!1001 &1076400096
+--- !u!1001 &923992215
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -437,11 +437,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 90642784019460538, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
       propertyPath: m_Name
-      value: TypingBox-1-Pwd
+      value: TypingBox-Desk1-Pwd
       objectReference: {fileID: 0}
     - target: {fileID: 4519873807750340654, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4519873807750340654, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,15 +494,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
---- !u!4 &1076400097 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4519873807750340654, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
-  m_PrefabInstance: {fileID: 1076400096}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1076400098 stripped
+--- !u!114 &923992216 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4264278148082894297, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
-  m_PrefabInstance: {fileID: 1076400096}
+  m_PrefabInstance: {fileID: 923992215}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -510,6 +505,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2421787f1afc76e46b4f57613d7d6694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &923992217 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4519873807750340654, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
+  m_PrefabInstance: {fileID: 923992215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1322726143
 PrefabInstance:
   m_ObjectHideFlags: 0

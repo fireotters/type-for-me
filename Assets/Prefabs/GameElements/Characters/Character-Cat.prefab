@@ -20,6 +20,22 @@ PrefabInstance:
       propertyPath: _arm
       value: 
       objectReference: {fileID: 6943507446521919328}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxArmRaiseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minArmRaiseSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxArmRaiseHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minArmRaiseHeight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4902112255227489346, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _pokeOrigin
       value: 

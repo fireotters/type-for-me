@@ -1,8 +1,5 @@
 using GameLogic.Keyboard;
 using Other;
-using Signals;
-using System;
-using Unity.Properties;
 using UnityEngine;
 
 namespace GameLogic
