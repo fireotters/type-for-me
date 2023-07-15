@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &35682953
+--- !u!1001 &155301595
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -153,15 +153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2172233789165306220, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2172233789165306220, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2172233789165306220, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2172233789165306220, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2440534803191107832, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       propertyPath: m_Name
-      value: TypingBox-Desk1-Search
+      value: TypingBox-1-2_Search
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -190,15 +190,15 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
---- !u!4 &35682954 stripped
+--- !u!4 &155301596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2172233789165306220, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
-  m_PrefabInstance: {fileID: 35682953}
+  m_PrefabInstance: {fileID: 155301595}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &35682955 stripped
+--- !u!114 &155301597 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1995446724653524123, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
-  m_PrefabInstance: {fileID: 35682953}
+  m_PrefabInstance: {fileID: 155301595}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chosenCharacter: {fileID: 1622958238}
   chosenKeyboard: {fileID: 831948691}
-  chosenTypingBox: {fileID: 35682955}
+  chosenTypingBox: {fileID: 155301597}
   tutorialUi: {fileID: 182432668}
   willTutorialShow: 0
 --- !u!4 &199154597
@@ -259,7 +259,7 @@ Transform:
   m_Children:
   - {fileID: 831948690}
   - {fileID: 1622958237}
-  - {fileID: 35682954}
+  - {fileID: 155301596}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

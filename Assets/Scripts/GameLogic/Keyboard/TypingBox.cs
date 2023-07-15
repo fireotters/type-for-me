@@ -11,6 +11,8 @@ namespace GameLogic.Keyboard
         [Header("Typing Preview / Input")]
         [SerializeField] private TMP_Text _textPreview;
         [SerializeField] private TMP_Text _textInput;
+        [SerializeField] private bool darkModeText;
+        private Color colorDarkPreview = new (1, 1, 1, 0.2f), colorDarkInput = new (1, 1, 1, 1);
 
         [Header("Progress Trackers")]
         [SerializeField] private GameObject _trackerProgress;
@@ -20,6 +22,14 @@ namespace GameLogic.Keyboard
         [Header("Components")]
         public GameObject typingUi;
 
+        private void Start()
+        {
+            if (darkModeText)
+            {
+                _textPreview.color = colorDarkPreview;
+                _textInput.color = colorDarkInput;
+            }
+        }
 
         // --------------------------------------------------------------------------------------------------------------
         // Preview & Input
