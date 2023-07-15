@@ -1,39 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
+using Saving;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonLevelSelectParent : MonoBehaviour
+namespace UI.UI_Elements.Level_Select
 {
-    private ButtonLevelSelect[] levelButtons;
-    void Start()
+    public class ButtonLevelSelectParent : MonoBehaviour
     {
-        levelButtons = GetComponentsInChildren<ButtonLevelSelect>();
-        int numOfUnlocks = 1;
-
-        if (PlayerPrefs.HasKey("LevelScores"))
+        private ButtonLevelSelect[] _levelButtons;
+        
+        private void Start()
         {
-            string jsonString = PlayerPrefs.GetString("LevelScores");
-            //Debug.Log(jsonString);
-            Highscores levelScores = JsonUtility.FromJson<Highscores>(jsonString);
-            foreach (HighscoreEntry entry in levelScores.highscoreEntryList)
+            _levelButtons = GetComponentsInChildren<ButtonLevelSelect>();
+            var numOfUnlocks = 1;
+
+            if (PlayerPrefs.HasKey("LevelScores"))
             {
-                foreach (ButtonLevelSelect button in levelButtons)
+                var jsonString = PlayerPrefs.GetString("LevelScores");
+                //Debug.Log(jsonString);
+                var levelScores = JsonUtility.FromJson<Highscores>(jsonString);
+                foreach (var entry in levelScores.highscoreEntryList)
                 {
-                    if (entry.levelName == button.attachedLevel)
+                    foreach (var button in _levelButtons)
                     {
-                        button.UpdateLevelHighscores(entry.bestCombo, entry.accuracy, entry.perfectCombo, entry.perfectAccuracy);
-                        numOfUnlocks++;
-                        break;
+                        if (entry.levelName == button.attachedLevel)
+                        {
+                            button.UpdateLevelHighscores(entry.bestCombo, entry.accuracy, entry.perfectCombo, entry.perfectAccuracy);
+                            numOfUnlocks++;
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        // Only enable the buttons for completed levels, and the next uncomplete level
-        for (int i = 0; i < numOfUnlocks; i++)
-        {
-            levelButtons[i].GetComponentInChildren<Button>().interactable = true;
+            // Only enable the buttons for completed levels, and the next uncomplete level
+            for (int i = 0; i < numOfUnlocks; i++)
+            {
+                _levelButtons[i].GetComponentInChildren<Button>().interactable = true;
+            }
         }
-    }
+    }    
 }

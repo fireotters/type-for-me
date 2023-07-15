@@ -1,7 +1,5 @@
 using FMODUnity;
 using Signals;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +13,7 @@ namespace UI
         [SerializeField] private GameObject webButtons;
         [SerializeField] private StudioEventEmitter menuSong;
         
-        private readonly CompositeDisposable disposables = new();
+        private readonly CompositeDisposable _disposables = new();
 
         private void Start()
         {
@@ -33,7 +31,7 @@ namespace UI
 
             // Main Menu start tasks
             base.ConfigureVersionText();
-            SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(disposables);
+            SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
         }
 
         public void StartGame(SignalUiMainMenuStartGame signal)
@@ -55,7 +53,7 @@ namespace UI
 
         private void OnDestroy()
         {
-            disposables.Dispose();
+            _disposables.Dispose();
         }
     }
 }

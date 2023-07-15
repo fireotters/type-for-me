@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SineWaveMover : MonoBehaviour
+namespace Other
 {
-    [SerializeField] float oscilationSpeed;
-    [SerializeField] float amplitude;
-    Vector3 initPos;
-    float timer = 0;
-
-    private void Start()
+    public class SineWaveMover : MonoBehaviour
     {
-        initPos = transform.localPosition;
-    }
+        [SerializeField] private float oscilationSpeed;
+        [SerializeField] private float amplitude;
+        private Vector3 _initPos;
+        private float _timer = 0;
 
-    private void Update()
-    {
-        timer += Time.deltaTime * oscilationSpeed;
-        transform.localPosition = amplitude * Mathf.Sin(timer) * Vector3.up + initPos;
+        private void Start()
+        {
+            _initPos = transform.localPosition;
+        }
+
+        private void Update()
+        {
+            _timer += Time.deltaTime * oscilationSpeed;
+            transform.localPosition = amplitude * Mathf.Sin(_timer) * Vector3.up + _initPos;
+        }
     }
 }

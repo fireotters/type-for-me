@@ -1,4 +1,5 @@
 using TMPro;
+using UI.UI_Elements;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,9 +8,8 @@ namespace UI
 {
     public class BaseUI : MonoBehaviour
     {
-        [Header("Base UI")]
-        [SerializeField] private TextMeshProUGUI versionText;
-        private bool showVersionText = false;
+        [Header("Base UI")] [SerializeField] private TextMeshProUGUI versionText;
+        [SerializeField] private bool showVersionText = false;
 
 
         protected void ConfigureVersionText()
@@ -42,26 +42,26 @@ namespace UI
         protected void CheckForIncorrectlySetupComponents()
         {
             // Avoid accidentally forgetting components
-
-            Object[] Btns = FindObjectsOfType(typeof(Button), true);
-            int TMProBtns = 0;
-            int TMProBtnsCorrect = 0;
-            foreach (Object btn in Btns)
+            var btns = FindObjectsOfType(typeof(Button), true);
+            var tmProBtns = 0;
+            var tmProBtnsCorrect = 0;
+            foreach (var btn in btns)
             {
                 if (btn.GetComponentInChildren<TextMeshProUGUI>())
                 {
-                    TMProBtns += 1;
+                    tmProBtns += 1;
                     if (btn.GetComponent<TMPro_BtnText_HoverColor>())
                     {
-                        TMProBtnsCorrect += 1;
+                        tmProBtnsCorrect += 1;
                     }
                 }
             }
-            if (TMProBtns != TMProBtnsCorrect)
+
+            if (tmProBtns != tmProBtnsCorrect)
             {
-                Debug.Log($"<b><color=yellow>(Debug Missing Components Warn)</color></b> - " +
-                          $"TMPro Buttons without 'TMPro_BtnText_HoverColor' script attached: <color=red>{TMProBtns - TMProBtnsCorrect}</color> " +
-                          $"<i>(Buttons in the entire scene with TMPro Text: {TMProBtns})</i>");
+                Debug.LogWarning($"<b><color=yellow>(Debug Missing Components Warn)</color></b> - " +
+                          $"TMPro Buttons without 'TMPro_BtnText_HoverColor' script attached: <color=red>{tmProBtns - tmProBtnsCorrect}</color> " +
+                          $"<i>(Buttons in the entire scene with TMPro Text: {tmProBtns})</i>");
             }
         }
     }

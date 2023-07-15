@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Audio;
 using FMODUnity;
+using Saving;
 using Signals;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -155,7 +153,7 @@ namespace UI
 
         private void PauseGame(SignalKeyboardPausePress context)
         {
-            if (Time.timeScale == 1)
+            if (Time.timeScale == 1f)
                 GameIsPaused(true);
             else
                 GameIsPaused(false);

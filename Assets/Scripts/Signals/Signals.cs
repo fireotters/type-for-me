@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace Signals
 {
     // --------------------------------------------------------------------------------------------------------------
@@ -23,6 +21,7 @@ namespace Signals
     {
         Loss, Win
     }
+    
     public struct SignalGameEnded
     {
         public GameEndCondition result;

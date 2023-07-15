@@ -1,4 +1,3 @@
-using System;
 using Signals;
 using UnityEngine;
 
@@ -6,50 +5,49 @@ namespace Other
 {
     public class Draggable : MonoBehaviour
     {
-        private Vector3 pointerOffset;
-        private bool dragging;
-        private Camera mainCamera;
-        private bool hasGameEnded;
+        private Vector3 _pointerOffset;
+        private bool _dragging;
+        private Camera _mainCamera;
+        private bool _hasGameEnded;
 
-        private readonly CompositeDisposable disposables = new();
+        private readonly CompositeDisposable _disposables = new();
         
         private void Start()
         {
-            mainCamera = Camera.main;
-            SignalBus<SignalGameEnded>.Subscribe(DisableDrag).AddTo(disposables);
+            _mainCamera = Camera.main;
+            SignalBus<SignalGameEnded>.Subscribe(DisableDrag).AddTo(_disposables);
         }
         
         private void Update()
         {
-            if (hasGameEnded)
-                dragging = false;
+            if (_hasGameEnded)
+                _dragging = false;
             
-            if (dragging && Time.timeScale != 0)
+            if (_dragging && Time.timeScale != 0)
             {
-                transform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition) + pointerOffset;
+                transform.position = _mainCamera.ScreenToWorldPoint(Input.mousePosition) + _pointerOffset;
             }
         }
 
         private void DisableDrag(SignalGameEnded signal)
         {
-            hasGameEnded = true;
+            _hasGameEnded = true;
         }
         
         private void OnMouseDown()
         {
-            pointerOffset = transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            dragging = true;
+            _pointerOffset = transform.position - _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            _dragging = true;
         }
 
         private void OnMouseUp()
         {
-            dragging = false;
+            _dragging = false;
         }
 
         private void OnDestroy()
         {
-            disposables.Dispose();
+            _disposables.Dispose();
         }
     }    
 }
-

@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxCamMove : MonoBehaviour
+namespace Other
 {
-    [SerializeField] float vel = 0.005f;
-    
-    private void Update()
+    public class ParallaxCamMove : MonoBehaviour
     {
-        transform.position = new Vector3(transform.position.x + vel, transform.position.y, transform.position.z);
+        [SerializeField] private float vel = 0.005f;
+
+        private void Update()
+        {
+            var currentPos = transform.position;
+            
+            transform.position = new Vector3(currentPos.x + vel, currentPos.y, currentPos.z);
+        }
     }
 }

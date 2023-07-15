@@ -2,33 +2,39 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
-public class Scaler : MonoBehaviour
+namespace Other
 {
-    [SerializeField] float scaleSpeed;
-    [SerializeField] float initialScaleSpeed;
-    [SerializeField] float amplitude;
-    public AnimationCurve curve;
-    Vector3 initPos;
-
-    private void Start()
+    public class Scaler : MonoBehaviour
     {
-        initPos = transform.localScale;
-        transform.localScale = Vector3.zero;
-        transform.DOScale(Vector3.one, initialScaleSpeed).OnComplete(() => StartCoroutine(Scale()));
-    }
+        [SerializeField] private float scaleSpeed;
+        [SerializeField] private float initialScaleSpeed;
+        [SerializeField] private float amplitude;
+        public AnimationCurve curve;
+        private Vector3 _initPos;
 
-    IEnumerator Scale()
-    {
-        float insideTimer = 0;
-        while (true)
+        private void Start()
         {
-            transform.localScale = curve.Evaluate(insideTimer) * Vector3.up * amplitude + initPos;
-            insideTimer += Time.deltaTime;
+            var currentTransform = transform;
+            
+            _initPos = currentTransform.localScale;
+            currentTransform.localScale = Vector3.zero;
+            transform.DOScale(Vector3.one, initialScaleSpeed).OnComplete(() => StartCoroutine(Scale()));
+        }
 
-            if (insideTimer > scaleSpeed)
-                insideTimer -= scaleSpeed;
+        IEnumerator Scale()
+        {
+            float insideTimer = 0;
+            while (true)
+            {
+                transform.localScale = curve.Evaluate(insideTimer) * Vector3.up * amplitude + _initPos;
+                insideTimer += Time.deltaTime;
 
-            yield return null;
+                if (insideTimer > scaleSpeed)
+                    insideTimer -= scaleSpeed;
+
+                yield return null;
+            }
         }
     }
 }
+
