@@ -592,6 +592,10 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6829644157879399479, guid: 1407a5d07bb556b449f53501dbad6b4a, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -616,6 +620,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2781739251377112707, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781739251377112707, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3572644786617793941, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
@@ -731,6 +739,10 @@ PrefabInstance:
     - target: {fileID: 7883190532890040984, guid: 09fba1e7c0debb343bf216d04aa5696c, type: 3}
       propertyPath: letter
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883190532890040984, guid: 09fba1e7c0debb343bf216d04aa5696c, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8820463253021467022, guid: 09fba1e7c0debb343bf216d04aa5696c, type: 3}
       propertyPath: m_Name
@@ -1096,6 +1108,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5602421674242311673, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602421674242311673, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6535251139371253487, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
@@ -2802,6 +2818,10 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5602421674242311673, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6535251139371253487, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
       propertyPath: m_Name
       value: N/A
@@ -2878,6 +2898,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829644157879399479, guid: 1407a5d07bb556b449f53501dbad6b4a, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829644157879399479, guid: 1407a5d07bb556b449f53501dbad6b4a, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3044,6 +3068,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362317341915392983, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362317341915392983, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4154418183636881601, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
@@ -3404,6 +3432,10 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3362317341915392983, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4154418183636881601, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_Name
       value: N/A
@@ -3594,6 +3626,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829644157879399479, guid: 1407a5d07bb556b449f53501dbad6b4a, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829644157879399479, guid: 1407a5d07bb556b449f53501dbad6b4a, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3876,6 +3912,10 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5602421674242311673, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6535251139371253487, guid: 26a855f1b4b905e4da7eb8d0bc337b47, type: 3}
       propertyPath: m_Name
       value: N/A
@@ -3952,6 +3992,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048368616457105844, guid: 917db4d26bfd61149a8f8102b440808b, type: 3}
       propertyPath: isUnusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048368616457105844, guid: 917db4d26bfd61149a8f8102b440808b, type: 3}
+      propertyPath: specialKeyStatus
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -632,6 +632,10 @@ PrefabInstance:
       propertyPath: isUnusable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3362317341915392983, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
+      propertyPath: specialKeyStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4154418183636881601, guid: 676d3f380fa3d7b448376c25bbfb839e, type: 3}
       propertyPath: m_Name
       value: N/A

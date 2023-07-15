@@ -1,4 +1,3 @@
-using GameLogic.Keyboard;
 using System.Numerics;
 
 namespace Signals
@@ -42,12 +41,12 @@ namespace Signals
 
     public struct SignalKeyboardBackspacePress
     {
-        // no payload needed
+        // no payload
     }
 
     public struct SignalKeyboardPausePress
     {
-        // no payload needed
+        // no payload
     }
 
     // --------------------------------------------------------------------------------------------------------------

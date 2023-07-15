@@ -369,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &304587935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1221,6 +1221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textPreview: {fileID: 1123367461432717194}
   _textInput: {fileID: 6704588106313975998}
+  _trackerProgress: {fileID: 4236909349062303947}
+  _trackerMistakes: {fileID: 7385018245834893937}
+  _wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
 --- !u!1001 &1748922645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1828,7 +1831,7 @@ GameObject:
   - component: {fileID: 3994833073175316194}
   - component: {fileID: 6704588106313975998}
   m_Layer: 0
-  m_Name: textInput
+  m_Name: TextInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1978,7 +1981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056045354274697283}
   m_Layer: 0
-  m_Name: ProgressTracker
+  m_Name: TrackerProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1996,7 +1999,7 @@ GameObject:
   - component: {fileID: 2484792924450533273}
   - component: {fileID: 1123367461432717194}
   m_Layer: 0
-  m_Name: textPreview
+  m_Name: TextPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2034,16 +2037,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phrases:
-  - 19650523
-  progressTracker: {fileID: 4236909349062303947}
-  mistakeTracker: {fileID: 7385018245834893937}
-  wordTrackerPrefab: {fileID: 6099064008190003587, guid: 4b96f32f0b4916c4dba43f73ea933bae, type: 3}
+  - 1
+  - 2
   allowedMistakes: 3
   _typingBox: {fileID: 1585586887}
-  numOfPresses: 0
-  numOfCorrectPresses: 0
-  highestCombo: 0
-  currentCombo: 0
 --- !u!114 &6704588106313975998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,7 +2243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1086439554056435220}
   m_Layer: 0
-  m_Name: MistakeTracker
+  m_Name: TrackerMistake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

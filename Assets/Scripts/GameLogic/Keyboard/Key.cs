@@ -4,91 +4,79 @@ using Signals;
 using TMPro;
 using UnityEngine;
 
-namespace GameLogic.Keyboard
+public class Key : MonoBehaviour
 {
-    public class Key : MonoBehaviour
+    [SerializeField] private string letter;
+    [SerializeField] private TMP_Text keyLabel;
+    [SerializeField] private SpecialKey specialKeyStatus;
+    private SpriteRenderer _sprite;
+    private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
+    private StudioEventEmitter keySound;
+    private Animator anim;
+
+    public enum SpecialKey
     {
-        [SerializeField] private string letter;
-        [SerializeField] private TMP_Text keyLabel;
-        [SerializeField] private SpecialKey specialKeyStatus;
-        [SerializeField] private bool isUnusable; // For aesthetic reasons, keys are on the keyboard which functionally do nothing.
-        private SpriteRenderer _sprite;
-        private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
-        private StudioEventEmitter keySound;
-        private Animator anim;
+        None, Unusable, Backspace, Pause
+    }
 
-        public enum SpecialKey
+    private void Start()
+    {
+        _sprite = GetComponent<SpriteRenderer>();
+        keySound = GetComponent<StudioEventEmitter>();
+        anim = GetComponent<Animator>();
+
+        if (specialKeyStatus == SpecialKey.Unusable)
         {
-            None, Backspace, Enter, Pause
+            keyLabel.text = "";
+            _sprite.color = _colorUnusable;
+        }
+        else if (specialKeyStatus == SpecialKey.None)
+            keyLabel.text = letter.ToUpper();
+    }
+
+    private void DoKeyPress()
+    {
+        anim.SetBool("Pressed", true);
+        keySound.Play();
+        switch (specialKeyStatus)
+        {
+            case SpecialKey.Backspace:
+                Debug.Log("<Key> Pressed Backspace!");
+                SignalBus<SignalKeyboardBackspacePress>.Fire();
+                break;
+            case SpecialKey.Pause:
+                Debug.Log("<Key> Pressed Pause!");
+                SignalBus<SignalKeyboardPausePress>.Fire();
+                break;
+            case SpecialKey.Unusable:
+                Debug.Log("<Key> Unusable Key.");
+                break;
+            default:
+                Debug.Log($"<Key> Pressed {letter}!");
+                SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = letter });
+                break;
         }
 
-        private void Start()
-        {
-            _sprite = GetComponent<SpriteRenderer>();
-            keySound = GetComponent<StudioEventEmitter>();
-            anim = GetComponent<Animator>();
+        StartCoroutine(DoKeyUp());
+    }
 
-            if (isUnusable)
-            {
-                keyLabel.text = "";
-                _sprite.color = _colorUnusable;
-            }
-            else if (specialKeyStatus == SpecialKey.None)
-                keyLabel.text = letter.ToUpper();
-            // Add else-ifs for specialKeyStatus if necessary
-        }
+    private IEnumerator DoKeyUp()
+    {
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("Pressed", false);
+    }
 
-        private void DoKeyPress()
-        {
-            anim.SetBool("Pressed", true);
-            keySound.Play();
-            switch (specialKeyStatus)
-            {
-                case SpecialKey.Backspace:
-                    Debug.Log("<Key> Pressed Backspace!");
-                    SignalBus<SignalKeyboardBackspacePress>.Fire();
-                    break;
-                case SpecialKey.Pause:
-                    Debug.Log("<Key> Pressed Pause!");
-                    SignalBus<SignalKeyboardPausePress>.Fire();
-                    break;
-                default:
-                {
-                    if (isUnusable)
-                    {
-                        Debug.Log("<Key> Pressed Unusable! Play a 'useless thocking' sfx...");
-                    }
-                    else
-                    {
-                        Debug.Log($"<Key> Pressed {letter}!");
-                        SignalBus<SignalKeyboardKeyPress>.Fire(new SignalKeyboardKeyPress { Letter = letter });
-                    }
+    public void KeyPress()
+    {
+        DoKeyPress();
+    }
 
-                    break;
-                }
-            }
-
-            StartCoroutine(DoKeyUp());
-        }
-
-        private IEnumerator DoKeyUp()
-        {
-            yield return new WaitForSeconds(1f);
-            anim.SetBool("Pressed", false);
-        }
-
-        public void KeyPress()
-        {
+    public string Letter
+    {
+        get {
+            // 'Letter' is only got upon a successful Key Press
             DoKeyPress();
-        }
-
-        public string Letter
-        {
-            get {
-                // 'Letter' is only got upon a successful Key Press
-                DoKeyPress();
-                return letter;
-            }
+            return letter;
         }
     }
 }
