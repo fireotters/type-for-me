@@ -46,7 +46,7 @@ public class Key : MonoBehaviour
                 break;
             case SpecialKey.Pause:
                 Debug.Log("<Key> Pressed Pause!");
-                SignalBus<SignalKeyboardPausePress>.Fire();
+                SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = true });
                 break;
             case SpecialKey.Unusable:
                 Debug.Log("<Key> Unusable Key.");

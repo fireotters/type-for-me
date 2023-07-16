@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57976811c4f1e41a255e88cb6b8b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableDragging: 0
+  mouseSensitivity: 100
   _draggableType: 0
 --- !u!212 &6147954588063392612
 SpriteRenderer:

@@ -30,6 +30,11 @@ namespace Signals
         public int levelHighestComboPossible;
     }
 
+    public struct SignalGamePaused
+    {
+        public bool paused;
+    }
+
     // --------------------------------------------------------------------------------------------------------------
     // Key Signals
     // --------------------------------------------------------------------------------------------------------------
@@ -39,11 +44,6 @@ namespace Signals
     }
 
     public struct SignalKeyboardBackspacePress
-    {
-        // no payload
-    }
-
-    public struct SignalKeyboardPausePress
     {
         // no payload
     }

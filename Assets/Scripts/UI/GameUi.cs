@@ -46,7 +46,7 @@ namespace UI
                 Debug.LogWarning("No 'CanvasGameUi.bgAnimator' set! Background objects won't animate during levelEnd transition.");
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
-            SignalBus<SignalKeyboardPausePress>.Subscribe(PauseGame).AddTo(_disposables);
+            SignalBus<SignalGamePaused>.Subscribe(PauseGame).AddTo(_disposables);
 
             Invoke(nameof(ShowGameplayStartLevel), 4f);
         }
@@ -58,10 +58,16 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         // Per-Frame Updates
         // --------------------------------------------------------------------------------------------------------------
-        //private void Update()
-        //{
-
-        //}
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (Time.timeScale == 0)
+                    GameIsPaused(false);
+                else
+                    GameIsPaused(true);
+            }
+        }
 
         // --------------------------------------------------------------------------------------------------------------
         // Game Event Functions
@@ -132,9 +138,9 @@ namespace UI
             _sound.fmodMixer.FindAllSfxAndPlayPause(isGamePaused: intent);
         }
 
-        private void PauseGame(SignalKeyboardPausePress context)
+        private void PauseGame(SignalGamePaused context)
         {
-            if (Time.timeScale == 1f)
+            if (context.paused)
                 GameIsPaused(true);
             else
                 GameIsPaused(false);
@@ -143,6 +149,7 @@ namespace UI
         public void ResumeGame()
         {
             GameIsPaused(false);
+            SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = false });
         }
         
         public void TutorialPause(bool intent)

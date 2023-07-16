@@ -5,66 +5,140 @@ namespace Other
 {
     public class Draggable : MonoBehaviour
     {
-        private Vector3 _pointerOffset;
         private bool _dragging;
+        private bool _disableDragging = false;
+        private readonly CompositeDisposable _disposables = new();
+
+        [Header("Mouse Users")]
+        public float mouseSensitivity;
+
+        [Header("Touch Users")]
+        private Vector3 _touchOffset;
         private Camera _mainCamera;
-        private bool _hasGameEnded;
 
         [Header("Bounds of where Draggable can be dragged")]
         [SerializeField] private DraggableType _draggableType;
         private Vector2 _bounds, _boundsNumPad = new(8, 5), _boundsKeyboard = new(15, 7);
+        private bool justStartedDragging = false;
 
-        private readonly CompositeDisposable _disposables = new();
-        
-        public enum DraggableType
-        {
-            Numpad, Keyboard
-        }
+        public enum DraggableType { Numpad, Keyboard }
 
+        // --------------------------------------------------------------------------------------------------------------
+        // Start & End
+        // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
             _mainCamera = Camera.main;
-            SignalBus<SignalGameEnded>.Subscribe(DisableDrag).AddTo(_disposables);
+
+            SignalBus<SignalGameEnded>.Subscribe(DisableDragEnd).AddTo(_disposables);
+            SignalBus<SignalGamePaused>.Subscribe(DisableDragPause).AddTo(_disposables);
 
             if (_draggableType == DraggableType.Numpad)
                 _bounds = _boundsNumPad;
             else if (_draggableType == DraggableType.Keyboard)
                 _bounds = _boundsKeyboard;
         }
-        
-        private void Update()
-        {
-            if (_hasGameEnded)
-                _dragging = false;
-
-            // If using touch, check if the touch has ended.
-            // If this isn't done, the keyboard will have to be tapped twice to pick up again.
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-                _dragging = false;
-
-            if (_dragging && Time.timeScale != 0)
-            {
-                var desiredPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition) + _pointerOffset;
-                transform.position = ValidPosition(desiredPos);
-            }
-        }
-
-        private void DisableDrag(SignalGameEnded signal)
-        {
-            _hasGameEnded = true;
-        }
-
-        private void OnMouseDown()
-        {
-            _pointerOffset = transform.position - _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            _dragging = !_dragging;
-        }
-
         private void OnDestroy()
         {
             _disposables.Dispose();
         }
 
+        // --------------------------------------------------------------------------------------------------------------
+        // Per-Frame Updates
+        // --------------------------------------------------------------------------------------------------------------
+        private void Update()
+        {
+            // Never allow updates while dragging is disabled
+            if (_disableDragging)
+            {
+                _dragging = false;
+                return;
+            }
+
+            if (Input.touchCount > 0)
+                HandleMovementTouch();
+            else
+                HandleMovementMouse();
+
+            justStartedDragging = false;
+        }
+
+        private void HandleMovementMouse()
+        {
+            // If using mouse/trackpad, the cursor is locked in the center. You don't need to click the Draggable to unlock it.
+            bool draggingInterrupted = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape);
+            if (draggingInterrupted && _dragging && !justStartedDragging)
+            {
+                _dragging = false;
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+            if (_dragging)
+            {
+                var mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+                var mouseMovement = mouseSensitivity * Time.deltaTime * mouseDelta;
+                var desiredPos = transform.position + mouseMovement;
+                transform.position = ValidPosition(desiredPos);
+            }
+        }
+
+        private void HandleMovementTouch()
+        {
+            // Ensure the cursor is never locked
+            Cursor.lockState = CursorLockMode.None;
+
+            // Touchscreen has just been let go of
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                _dragging = false;
+                return;
+            }
+
+            if (_dragging)
+            {
+                var desiredPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition) + _touchOffset;
+                transform.position = ValidPosition(desiredPos);
+            }
+        }
+
+        private void OnMouseDown()
+        {
+            if (!_disableDragging)
+            {
+                // Set pointerOffset for touch users
+                _touchOffset = transform.position - _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+                _dragging = !_dragging;
+                if (_dragging)
+                {
+                    justStartedDragging = true;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+        }
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Disabling input
+        // --------------------------------------------------------------------------------------------------------------
+        private void DisableDragEnd(SignalGameEnded signal)
+        {
+            _disableDragging = true;
+        }
+
+        private void DisableDragPause(SignalGamePaused signal)
+        {
+            if (signal.paused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                _disableDragging = true;
+            }
+            else
+                _disableDragging = false;
+        }
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Per-Frame Updates
+        // --------------------------------------------------------------------------------------------------------------
         private Vector3 ValidPosition(Vector3 desiredPos)
         {
             Vector3 origPos = transform.position;
