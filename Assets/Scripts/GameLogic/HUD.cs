@@ -12,11 +12,25 @@ namespace GameLogic
         [SerializeField] private TypingBox chosenTypingBox;
 
         [Header("Tutorial Options")]
-        [SerializeField] private GameObject tutorialUi;
+        private GameObject tutorialUi;
         [SerializeField] private bool willTutorialShow;
 
         // --------------------------------------------------------------------------------------------------------------
-        // 
+        // Start
+        // --------------------------------------------------------------------------------------------------------------
+        private void Awake()
+        {
+            if (willTutorialShow)
+            {
+                tutorialUi = GameObject.Find("/CanvasGameUi").transform.Find("TutorialArea").gameObject;
+                if (!tutorialUi)
+                    Debug.LogWarning("HUD.cs: Can't find 'CanvasGameUi/TutorialArea'. Tutorial won't be activated/deactivated by this script.");
+            }
+        }
+
+
+        // --------------------------------------------------------------------------------------------------------------
+        // HUD Visibility
         // --------------------------------------------------------------------------------------------------------------
 
         public void HudIsVisible(bool state)

@@ -25,12 +25,13 @@ namespace UI
                         desktopButtons.SetActive(true);
                         webButtons.SetActive(false);
             #endif
-            if (Debug.isDebugBuild)
-                base.CheckForIncorrectlySetupComponents();
+            //if (Debug.isDebugBuild)
+            //    base.CheckForIncorrectlySetupComponents();
 
 
             // Main Menu start tasks
             base.ConfigureVersionText();
+            Input.multiTouchEnabled = false; // All scenes after this will obey the No Multitouch rule
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
         }
 
