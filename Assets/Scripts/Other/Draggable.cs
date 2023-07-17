@@ -6,7 +6,7 @@ namespace Other
     public class Draggable : MonoBehaviour
     {
         private bool _dragging;
-        private bool _disableDragging = false;
+        private bool _disableDragging = false, _isInLevelTransition = false;
         private readonly CompositeDisposable _disposables = new();
 
         [Header("Mouse Users")]
@@ -49,7 +49,7 @@ namespace Other
         private void Update()
         {
             // Never allow updates while dragging is disabled
-            if (_disableDragging)
+            if (_disableDragging || _isInLevelTransition)
             {
                 _dragging = false;
                 return;
@@ -103,7 +103,7 @@ namespace Other
 
         private void OnMouseDown()
         {
-            if (!_disableDragging)
+            if (!_disableDragging && !_isInLevelTransition)
             {
                 // Set pointerOffset for touch users
                 _touchOffset = transform.position - _mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -134,6 +134,15 @@ namespace Other
             }
             else
                 _disableDragging = false;
+        }
+
+        public void BeginLevelTransition()
+        {
+            _isInLevelTransition = true;
+        }
+        public void EndLevelTransition()
+        {
+            _isInLevelTransition = false;
         }
 
         // --------------------------------------------------------------------------------------------------------------

@@ -35,7 +35,6 @@ namespace UI
             Camera.main.eventMask = _mouseLayerMask;
 
             _hud = FindFirstObjectByType<HUD>();
-            _hud.HudIsVisible(false);
 
             // Debug stuff
             if (nextSceneToLoad == "")
@@ -104,7 +103,7 @@ namespace UI
 
         private void ShowGameplayStartLevel()
         {
-            _hud.HudIsVisible(true);
+            _hud.HudLevelTransition(true);
             Invoke(nameof(TellArmStart), 0.3f);
         }
 
@@ -117,7 +116,7 @@ namespace UI
         }
         private void HideGameplayEndLevel()
         {
-            _hud.HudIsVisible(false);
+            _hud.HudLevelTransition(false);
             bgAnimator.SetBool("levelClose", true);
         }
         public void ShowGameWon()
