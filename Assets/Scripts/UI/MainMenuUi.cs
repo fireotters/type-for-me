@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using Audio;
 using FMODUnity;
 using Signals;
 using UnityEngine;
@@ -14,27 +16,55 @@ namespace UI
         [SerializeField] private StudioEventEmitter menuSong;
         
         private readonly CompositeDisposable _disposables = new();
-
+        
+        #if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void registerVisibilityChangeEvent();
+        #endif
+        
         private void Start()
         {
             // WebGL & Debug-Only Stuff
             #if UNITY_WEBGL
-                        desktopButtons.SetActive(false);
-                        webButtons.SetActive(true);
+                if (!Application.isEditor)
+                    registerVisibilityChangeEvent();
+                
+                desktopButtons.SetActive(false);
+                webButtons.SetActive(true);
             #else
-                        desktopButtons.SetActive(true);
-                        webButtons.SetActive(false);
+                desktopButtons.SetActive(true);
+                webButtons.SetActive(false);
             #endif
             //if (Debug.isDebugBuild)
-            //    base.CheckForIncorrectlySetupComponents();
+            //    CheckForIncorrectlySetupComponents();
 
 
             // Main Menu start tasks
-            base.ConfigureVersionText();
+            ConfigureVersionText();
             Input.multiTouchEnabled = false; // All scenes after this will obey the No Multitouch rule
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
         }
 
+        #if UNITY_WEBGL
+        // no usages detected because it'll be called from the web browser
+        private void OnVisibilityChange(string visibilityState)
+        {
+            Debug.Log($"Tab is currently {visibilityState}");
+            // every scene should have a canvas with a Mixer
+            var activeFmodMixer = FindObjectOfType<FMODMixer>();
+            var pauseStatus = visibilityState.Equals("hidden");
+
+            if (activeFmodMixer != null)
+            {
+                activeFmodMixer.FindAllSfxAndPlayPause(pauseStatus);
+            }
+            else
+            {
+                Debug.LogError("Missing FMOD Mixer in Scene/Canvas!!");
+            }
+        }
+        #endif
+        
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
             menuSong.Stop();

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Audio;
 using FMODUnity;
 using GameLogic;
@@ -24,6 +25,11 @@ namespace UI
         [SerializeField] private GameUiSound _sound;
         private HUD _hud;
 
+        #if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void registerVisibilityChangeEvent();
+        #endif
+        
         private readonly CompositeDisposable _disposables = new();
 
         // --------------------------------------------------------------------------------------------------------------
@@ -31,6 +37,10 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
+            # if UNITY_WEBGL
+            if (!Application.isEditor)
+                registerVisibilityChangeEvent();
+            #endif
             // Disable mouse input to certain layers (by asking Camera)
             Camera.main.eventMask = _mouseLayerMask;
 
@@ -188,6 +198,16 @@ namespace UI
         {
             return _dialogs.gameLost.activeInHierarchy || _dialogs.gameWon.activeInHierarchy;
         }
+
+        #if UNITY_WEBGL
+        // no usages detected because it'll be called from the web browser
+        private void OnVisibilityChange(string visibilityState)
+        {
+            Debug.Log($"Tab is currently {visibilityState}");
+            var pauseStatus = visibilityState.Equals("hidden");
+            GameIsPaused(pauseStatus);
+        }
+        #endif
     }
 
     // --------------------------------------------------------------------------------------------------------------

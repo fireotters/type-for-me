@@ -11,7 +11,6 @@ namespace UI
         [Header("Base UI")] [SerializeField] private TextMeshProUGUI versionText;
         [SerializeField] private bool showVersionText = false;
 
-
         protected void ConfigureVersionText()
         {
             versionText.gameObject.SetActive(Debug.isDebugBuild || showVersionText);
