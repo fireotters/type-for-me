@@ -59,7 +59,10 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) &&
+                !_dialogs.gameLost.activeInHierarchy &&
+                !_dialogs.gameWon.activeInHierarchy &&
+                !_dialogs.options.activeInHierarchy)
             {
                 if (Time.timeScale == 0)
                     SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = false });

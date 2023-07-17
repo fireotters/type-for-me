@@ -138,10 +138,12 @@ namespace Other
 
         public void BeginLevelTransition()
         {
+            Cursor.lockState = CursorLockMode.None;
             _isInLevelTransition = true;
         }
         public void EndLevelTransition()
         {
+            Cursor.lockState = CursorLockMode.None;
             _isInLevelTransition = false;
         }
 
