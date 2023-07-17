@@ -5,21 +5,19 @@ namespace GameLogic.Character.Arm
 {
     public class Arm : MonoBehaviour
     {
-        // Movement Properties
+        [Header("Movement Properties")]
         private float[] _rangeArmRaiseSpeed = { 0f, 0f }; // Arm: How quick between pokes?
         private float[] _rangeArmRaiseHeight = { 0f, 0f }; // Arm: How high to raise before coming back down?
         private float _armSpeed, _armHeightAfterPoke;
 
-        // Stopping Movement. At the apex of a Raise, 'iWantToStopArm' is checked.
-        // When unchecked, it'll wait until the next apex of the raise to resume again.
-        public bool iWantToStopArm = true;
-        public bool armStopped = true;
+        [Header("Stopping Movement")]
+        // At the apex of a Raise, 'iWantToStopArm' is checked. When unchecked, it'll wait until the next apex of the raise to resume again.
+        [SerializeField] private bool iWantToStopArm = false;
+        [SerializeField] private bool armStopped = false;
 
+        [Header("Components")]
         [SerializeField] private PokeDot _pokedot; // Arm will follow wherever the PokeDot moves to
-
-        [SerializeField]
-        private Fingertip _fingertip; // Fingertip will check if it's touching the PokeDot, then press any Keys it finds
-
+        [SerializeField] private Fingertip _fingertip; // Fingertip will check if it's touching the PokeDot, then press any Keys it finds
         private Vector3 _fingertipOffset;
 
         private readonly CompositeDisposable _disposables = new();
@@ -46,10 +44,15 @@ namespace GameLogic.Character.Arm
         // --------------------------------------------------------------------------------------------------------------
         private void Update()
         {
-            RaiseLowerArm();
-            if (!armStopped)
-                _fingertip.CheckIfPoking(_pokedot.Pos);
-            _pokedot.Move(_armSpeed);
+            //if (!_armCurrentlyMovingOffscreen)
+            {
+                RaiseLowerArm();
+                if (!armStopped)
+                {
+                    _fingertip.CheckIfPoking(_pokedot.Pos);
+                    _pokedot.Move(_armSpeed);
+                }
+            }
         }
 
 
@@ -58,7 +61,7 @@ namespace GameLogic.Character.Arm
         // --------------------------------------------------------------------------------------------------------------
         private void RaiseLowerArm()
         {
-            float raiseSin = -Mathf.Sin(Time.time * _armSpeed);
+            float raiseSin = Mathf.Sin(Time.time * _armSpeed);
             float raiseHeight =
                 (raiseSin * _armHeightAfterPoke) +
                 _armHeightAfterPoke; // Add ArmHeight so the sin wave bottoms out where the PokeDot is
@@ -80,7 +83,7 @@ namespace GameLogic.Character.Arm
                 return true;
 
             // If we want to stop arm, but it isn't yet... Continue to process movements, and wait til the hand is raised to above .99f
-            if (iWantToStopArm && raiseHeight > 0.99f)
+            if (iWantToStopArm && raiseHeight > 0.999f)
             {
                 armStopped = true;
                 return true;

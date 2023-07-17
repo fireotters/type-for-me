@@ -63,9 +63,9 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (Time.timeScale == 0)
-                    GameIsPaused(false);
+                    SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = false });
                 else
-                    GameIsPaused(true);
+                    SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = true });
             }
         }
 

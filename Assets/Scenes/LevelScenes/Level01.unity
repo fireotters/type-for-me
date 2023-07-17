@@ -155,7 +155,6 @@ MonoBehaviour:
   chosenCharacter: {fileID: 1943774734}
   chosenKeyboard: {fileID: 2070471865}
   chosenTypingBox: {fileID: 303277120}
-  tutorialUi: {fileID: 304587934}
   willTutorialShow: 1
 --- !u!4 &242328838
 Transform:

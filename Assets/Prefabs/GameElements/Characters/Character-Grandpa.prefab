@@ -410,6 +410,14 @@ PrefabInstance:
       propertyPath: _fingertip
       value: 
       objectReference: {fileID: 8490191157381756712}
+    - target: {fileID: 1832345484855745902, guid: 5c889ec69618b2d479f581752d58068c, type: 3}
+      propertyPath: armStopped
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832345484855745902, guid: 5c889ec69618b2d479f581752d58068c, type: 3}
+      propertyPath: iWantToStopArm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3012855432256473848, guid: 5c889ec69618b2d479f581752d58068c, type: 3}
       propertyPath: m_Name
       value: Arm-Cat
@@ -561,9 +569,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7363733674717643524}
     - target: {fileID: 7430580273423966011, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: armStopped
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430580273423966011, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
       propertyPath: _pokeOrigin
       value: 
       objectReference: {fileID: 2537236549482054867}
+    - target: {fileID: 7430580273423966011, guid: 8224cff812f73f747995a7a4b713eda6, type: 3}
+      propertyPath: iWantToStopArm
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -622,9 +638,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6792055635344305777}
     - target: {fileID: 5983789255376430242, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: armStopped
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983789255376430242, guid: eed1f683dec300143a849bc347cc593f, type: 3}
       propertyPath: _pokeOrigin
       value: 
       objectReference: {fileID: 2537236549482054867}
+    - target: {fileID: 5983789255376430242, guid: eed1f683dec300143a849bc347cc593f, type: 3}
+      propertyPath: iWantToStopArm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7181178794661393204, guid: eed1f683dec300143a849bc347cc593f, type: 3}
       propertyPath: m_Name
       value: Arm-Kid
