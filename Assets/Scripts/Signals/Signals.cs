@@ -15,7 +15,7 @@ namespace Signals
     }
 
     // --------------------------------------------------------------------------------------------------------------
-    // Game End Functions
+    // Game End/Pause Functions
     // --------------------------------------------------------------------------------------------------------------
     public enum GameEndCondition
     {
@@ -55,6 +55,16 @@ namespace Signals
     public struct SignalArmStopMovement
     {
         public bool iWantToStopArm;
+    }
+
+
+    // --------------------------------------------------------------------------------------------------------------
+    // Changed Setting Signals
+    // --------------------------------------------------------------------------------------------------------------
+
+    public struct SignalSettingsChange
+    {
+        // no payload. requests scripts to check PlayerPrefs themselves
     }
 }
 

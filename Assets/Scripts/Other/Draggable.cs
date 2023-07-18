@@ -123,6 +123,7 @@ namespace Other
         private void DisableDragEnd(SignalGameEnded signal)
         {
             _disableDragging = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void DisableDragPause(SignalGamePaused signal)

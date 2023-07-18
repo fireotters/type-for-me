@@ -21,6 +21,11 @@ namespace GameLogic.Keyboard
 
         [Header("Components")]
         public GameObject typingUi;
+        private readonly CompositeDisposable _disposables = new();
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Start & End
+        // --------------------------------------------------------------------------------------------------------------
 
         private void Start()
         {
@@ -29,6 +34,12 @@ namespace GameLogic.Keyboard
                 _textPreview.color = colorDarkPreview;
                 _textInput.color = colorDarkInput;
             }
+            SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
+            CheckFlipDisplay();
+        }
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -160,6 +171,23 @@ namespace GameLogic.Keyboard
                     break;
                 }
             }
+        }
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Misc
+        // --------------------------------------------------------------------------------------------------------------
+        private void CheckFlipDisplay()
+        {
+            var uiTra = typingUi.transform.position;
+            if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1 && uiTra.y < 0)
+                typingUi.transform.position = new Vector3(uiTra.x, -uiTra.y, uiTra.z);
+            else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0 && uiTra.y > 0)
+                typingUi.transform.position = new Vector3(uiTra.x, -uiTra.y, uiTra.z);
+        }
+
+        private void FlipDisplaySig(SignalSettingsChange context)
+        {
+            CheckFlipDisplay();
         }
     }
 }

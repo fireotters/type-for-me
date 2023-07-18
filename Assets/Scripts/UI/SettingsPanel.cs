@@ -1,5 +1,6 @@
 using System.Linq;
 using Saving;
+using Signals;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,6 +34,8 @@ namespace UI
 
         [Header("Game Panel controls")]
         [SerializeField] private GameObject _goBtnResetScores;
+        [SerializeField] private Toggle _btnFlipTypePrompt, _btnDummyFlipTypePrompt;
+        [SerializeField] private TextMeshProUGUI _txtFlipTypePrompt;
 
         private Audio.FMODMixer fmodMixer;
         
@@ -41,7 +44,10 @@ namespace UI
             FullScreenMode.FullScreenWindow,
             FullScreenMode.Windowed
         };
-        
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Start & OnEnable
+        // --------------------------------------------------------------------------------------------------------------
         private void Awake()
         {
             PopulateVideoDropdowns();
@@ -63,12 +69,19 @@ namespace UI
                 .IndexOf(Screen.fullScreenMode.ToString());
             resDrop.value = currentResIndex != -1 ? currentResIndex : 0;
             fsModesDrop.value = currentFsModeIndex != -1 ? currentFsModeIndex : 0;
-            
+
             // set current audio slider values
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music"));
             sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx"));
+
+            // game panel values
+            TypePromptFlip_FrontEnd();
         }
 
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Opening Panels
+        // --------------------------------------------------------------------------------------------------------------
         public void ToggleAudioPanel()
         {
             audioButton.interactable = false;
@@ -110,6 +123,10 @@ namespace UI
                 _goBtnResetScores.SetActive(false);
         }
 
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Video
+        // --------------------------------------------------------------------------------------------------------------
         private void PopulateVideoDropdowns()
         {
             // TODO should we iterate over all supported resolutions or should we define a specific list?
@@ -129,6 +146,23 @@ namespace UI
             fsModesDrop.AddOptions(fsmOptions);
         }
 
+        public void ApplyVideoSettings()
+        {
+#if UNITY_WEBGL
+            Screen.fullScreen = webFsToggle.isOn;
+#else
+            var desiredResolution = Screen.resolutions
+                .First(res => res.ToString().StartsWith(resDrop.captionText.text));
+            var desiredFsMode = FullScreenModes
+                .First(fsm => fsModesDrop.captionText.text == fsm.ToString());
+
+            Screen.SetResolution(desiredResolution.width, desiredResolution.height, desiredFsMode);
+#endif
+        }
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Audio
+        // --------------------------------------------------------------------------------------------------------------
         public void PassMusicVolChange(float dB)
         {
             fmodMixer.ChangeMusicVolume(dB);
@@ -139,19 +173,26 @@ namespace UI
             fmodMixer.ChangeSfxVolume(dB);
         }
         
-        public void ApplyVideoSettings()
+        // --------------------------------------------------------------------------------------------------------------
+        // Game
+        // --------------------------------------------------------------------------------------------------------------
+        private void TypePromptFlip_FrontEnd()
         {
-#if UNITY_WEBGL
-            Screen.fullScreen = webFsToggle.isOn;
-#else
-            var desiredResolution = Screen.resolutions
-                .First(res => res.ToString().StartsWith(resDrop.captionText.text));
-            var desiredFsMode = FullScreenModes
-                .First(fsm => fsModesDrop.captionText.text == fsm.ToString());
-            
-            Screen.SetResolution(desiredResolution.width, desiredResolution.height, desiredFsMode);
-#endif
+            _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 1);
+            _btnDummyFlipTypePrompt.isOn = !_btnFlipTypePrompt.isOn;
+            _txtFlipTypePrompt.text = _btnFlipTypePrompt.isOn ? "Type Prompt:\nTop of Screen" : "Type Prompt:\nBottom of Screen";
         }
+        
+        public void TypePromptFlip_Toggle()
+        {
+            if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
+                PlayerPrefs.SetInt("TypePrompt_IsTop", 0);
+            else
+                PlayerPrefs.SetInt("TypePrompt_IsTop", 1);
+            TypePromptFlip_FrontEnd();
+            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+        }
+        
         public void ResetHighscores()
         {
             HighScoreManagement.ResetLevelScores();

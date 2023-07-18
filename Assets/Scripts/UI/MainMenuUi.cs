@@ -43,9 +43,14 @@ namespace UI
             ConfigureVersionText();
             Input.multiTouchEnabled = false; // All scenes after this will obey the No Multitouch rule
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
+            if (!PlayerPrefs.HasKey("TypePrompt_IsTop"))
+            {
+                PlayerPrefs.SetInt("TypePrompt_IsTop", 1);
+            }
+
         }
 
-        #if UNITY_WEBGL
+#if UNITY_WEBGL
         // no usages detected because it'll be called from the web browser
         private void OnVisibilityChange(string visibilityState)
         {
@@ -63,8 +68,8 @@ namespace UI
                 Debug.LogError("Missing FMOD Mixer in Scene/Canvas!!");
             }
         }
-        #endif
-        
+#endif
+
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
             menuSong.Stop();
