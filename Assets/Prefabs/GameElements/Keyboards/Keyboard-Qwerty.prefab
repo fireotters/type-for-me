@@ -196,7 +196,7 @@ Transform:
   m_Children:
   - {fileID: 3237589564198993929}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4728921163057045395
 GameObject:
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57976811c4f1e41a255e88cb6b8b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 0.5
   _draggableType: 1
 --- !u!61 &7020672939627724898
 BoxCollider2D:

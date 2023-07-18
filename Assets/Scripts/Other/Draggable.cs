@@ -76,7 +76,7 @@ namespace Other
             if (_dragging)
             {
                 var mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
-                var mouseMovement = mouseSensitivity * Time.deltaTime * mouseDelta;
+                var mouseMovement = mouseSensitivity * mouseDelta;
                 var desiredPos = transform.position + mouseMovement;
                 transform.position = ValidPosition(desiredPos);
             }
