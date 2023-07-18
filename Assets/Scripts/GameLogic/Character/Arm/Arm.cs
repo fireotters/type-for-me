@@ -16,7 +16,7 @@ namespace GameLogic.Character.Arm
         [SerializeField] private bool armStopped = false;
 
         [Header("Components")]
-        [SerializeField] private PokeDot _pokedot; // Arm will follow wherever the PokeDot moves to
+        [SerializeField] public PokeDot pokedot; // Arm will follow wherever the PokeDot moves to
         [SerializeField] private Fingertip _fingertip; // Fingertip will check if it's touching the PokeDot, then press any Keys it finds
         private Vector3 _fingertipOffset;
 
@@ -49,8 +49,8 @@ namespace GameLogic.Character.Arm
                 RaiseLowerArm();
                 if (!armStopped)
                 {
-                    _fingertip.CheckIfPoking(_pokedot.Pos);
-                    _pokedot.Move(_armSpeed);
+                    _fingertip.CheckIfPoking(pokedot.Pos);
+                    pokedot.Move(_armSpeed);
                 }
             }
         }
@@ -69,11 +69,11 @@ namespace GameLogic.Character.Arm
                 return;
 
             // Move Arm (to where PokeDot is, and offset depending on where Fingertip is & how high the raiseHeight is)
-            float newX = _pokedot.Pos.x + _fingertipOffset.x;
-            float newY = _pokedot.Pos.y + _fingertipOffset.y + raiseHeight;
+            float newX = pokedot.Pos.x + _fingertipOffset.x;
+            float newY = pokedot.Pos.y + _fingertipOffset.y + raiseHeight;
             transform.position = new Vector2(newX, newY);
 
-            _pokedot.ChangeSize(raiseSin);
+            pokedot.ChangeSize(raiseSin);
         }
 
         private bool ArmShouldBeStopped(float raiseHeight)
@@ -115,15 +115,13 @@ namespace GameLogic.Character.Arm
         {
             _armSpeed = Random.Range(_rangeArmRaiseSpeed[0], _rangeArmRaiseSpeed[1]);
             _armHeightAfterPoke = Random.Range(_rangeArmRaiseHeight[0], _rangeArmRaiseHeight[1]);
-            _pokedot.SetDestination();
+            pokedot.SetDestination();
         }
 
-        public void FirstTimeSetProperties(float[] rangeArmRaiseSpeed, float[] rangeArmRaiseHeight, Vector2 limitPokeNW,
-            Vector2 limitPokeSE)
+        public void FirstTimeSetProperties(float[] rangeArmRaiseSpeed, float[] rangeArmRaiseHeight)
         {
             _rangeArmRaiseSpeed = rangeArmRaiseSpeed;
             _rangeArmRaiseHeight = rangeArmRaiseHeight;
-            _pokedot.InitLimits(limitPokeNW, limitPokeSE);
 
             SetNewPropertiesOnRaise();
         }

@@ -1,6 +1,7 @@
 using GameLogic.Keyboard;
 using Other;
 using Signals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -14,22 +15,28 @@ namespace GameLogic
         [SerializeField] private Character.Character chosenCharacter;
         [SerializeField] private GameObject chosenKeyboard;
         [SerializeField] private TypingBox chosenTypingBox;
+        [SerializeField] private Transform chosenBackground;
         private List<Animator> _animators = new();
         private bool _hudShouldBeVisible;
 
         [Header("Tutorial Options")]
-        private GameObject tutorialUi;
+        private GameObject _tutorialUi;
+        private GameObject _tutBtnTop, _tutBtnBot;
         [SerializeField] private bool willTutorialShow;
 
+        private readonly CompositeDisposable _disposables = new();
+
         // --------------------------------------------------------------------------------------------------------------
-        // Start
+        // Start & End
         // --------------------------------------------------------------------------------------------------------------
         private void Awake()
         {
             if (willTutorialShow)
             {
-                tutorialUi = GameObject.Find("/CanvasGameUi").transform.Find("TutorialArea").gameObject;
-                if (!tutorialUi)
+                _tutorialUi = GameObject.Find("/CanvasGameUi").transform.Find("TutorialArea").gameObject;
+                _tutBtnTop = _tutorialUi.transform.Find("btn-bg-top").gameObject;
+                _tutBtnBot = _tutorialUi.transform.Find("btn-bg-bottom").gameObject;
+                if (!_tutorialUi)
                     Debug.LogWarning("HUD.cs: Can't find 'CanvasGameUi/TutorialArea'. Tutorial won't be activated/deactivated by this script.");
             }
 
@@ -42,6 +49,14 @@ namespace GameLogic
             // Start the HUD as invisible
             _hudShouldBeVisible = false;
             SetHudVisbility();
+
+            // Move the background slightly down if the TypingBox is moved to top
+            SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
+            CheckFlipDisplay();
+        }
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
         }
 
 
@@ -82,13 +97,47 @@ namespace GameLogic
             chosenKeyboard.gameObject.SetActive(_hudShouldBeVisible);
             chosenTypingBox.typingUi.SetActive(_hudShouldBeVisible);
             if (willTutorialShow)
-                tutorialUi.SetActive(_hudShouldBeVisible);
+                _tutorialUi.SetActive(_hudShouldBeVisible);
         }
 
         private void DisableHudAnimators()
         {
             foreach (Animator anim in _animators)
                 anim.enabled = false;
+        }
+
+
+        // --------------------------------------------------------------------------------------------------------------
+        // Misc
+        // --------------------------------------------------------------------------------------------------------------
+        private void CheckFlipDisplay()
+        {
+            // When the TypingPrompt is at the top, shift Background down by 1.8f. And vice-versa.
+            var bgTra = chosenBackground.transform.position;
+            if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
+                chosenBackground.transform.position = new Vector3(bgTra.x, -1.8f, bgTra.z);
+            else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
+                chosenBackground.transform.position = new Vector3(bgTra.x, 0f, bgTra.z);
+
+            if (willTutorialShow)
+            {
+                // Flip tutorial button
+                if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
+                {
+                    _tutBtnTop.SetActive(true);
+                    _tutBtnBot.SetActive(false);
+                }
+                else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
+                {
+                    _tutBtnTop.SetActive(false);
+                    _tutBtnBot.SetActive(true);
+                }
+            }
+        }
+
+        private void FlipDisplaySig(SignalSettingsChange context)
+        {
+            CheckFlipDisplay();
         }
     }
 }

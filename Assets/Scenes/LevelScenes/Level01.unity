@@ -155,6 +155,7 @@ MonoBehaviour:
   chosenCharacter: {fileID: 1943774734}
   chosenKeyboard: {fileID: 2070471865}
   chosenTypingBox: {fileID: 303277120}
+  chosenBackground: {fileID: 543829105}
   willTutorialShow: 1
 --- !u!4 &242328838
 Transform:
@@ -416,6 +417,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+--- !u!4 &543829105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+  m_PrefabInstance: {fileID: 543829104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &578606221
 GameObject:
   m_ObjectHideFlags: 0
