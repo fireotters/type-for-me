@@ -139,10 +139,10 @@ TextureImporter:
       name: prompt
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1287
-        height: 139
+        x: 22
+        y: 22
+        width: 700
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,7 +165,7 @@ TextureImporter:
         width: 1287
         height: 586
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
