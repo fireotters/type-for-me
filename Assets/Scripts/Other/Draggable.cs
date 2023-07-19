@@ -18,7 +18,7 @@ namespace Other
 
         [Header("Bounds of where Draggable can be dragged")]
         [SerializeField] private DraggableType _draggableType;
-        private Vector2 _bounds, _boundsNumPad = new(8, 5), _boundsKeyboard = new(15, 7);
+        private Vector2 _bounds, _boundsNumPad = new(9, 7), _boundsKeyboard = new(15, 7);
         private bool justStartedDragging = false;
 
         public enum DraggableType { Numpad, Keyboard }

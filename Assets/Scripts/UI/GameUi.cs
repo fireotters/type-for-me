@@ -57,6 +57,7 @@ namespace UI
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(PauseGame).AddTo(_disposables);
 
+            CheckFlipDisplay();
             Invoke(nameof(ShowGameplayStartLevel), 4f);
         }
         private void OnDestroy()
@@ -95,6 +96,7 @@ namespace UI
             }
 
             _sound.musicStage.SetParameter("Win", 1);
+            CheckFlipDisplay();
             bgAnimator.SetBool("levelClose", true);
 
             string levelName = SceneManager.GetActiveScene().name;
@@ -130,12 +132,20 @@ namespace UI
         private void HideGameplayEndLevel()
         {
             _hud.HudLevelTransition(false);
+            CheckFlipDisplay();
             bgAnimator.SetBool("levelClose", true);
         }
         public void ShowGameWon()
         {
             Time.timeScale = 0;
             _dialogs.gameWon.SetActive(true);
+        }
+        private void CheckFlipDisplay()
+        {
+            if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
+                bgAnimator.SetBool("typingIsTop", true);
+            else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
+                bgAnimator.SetBool("typingIsTop", false);
         }
 
         // --------------------------------------------------------------------------------------------------------------
