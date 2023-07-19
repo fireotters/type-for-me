@@ -8,6 +8,7 @@ namespace Other
         private bool _dragging;
         private bool _disableDragging = false, _isInLevelTransition = false;
         private readonly CompositeDisposable _disposables = new();
+        private bool _onlyJustClicked = false;
 
         [Header("Mouse Users")]
         public float mouseSensitivity;
@@ -19,7 +20,6 @@ namespace Other
         [Header("Bounds of where Draggable can be dragged")]
         [SerializeField] private DraggableType _draggableType;
         private Vector2 _bounds, _boundsNumPad = new(9, 7), _boundsKeyboard = new(15, 7);
-        private bool justStartedDragging = false;
 
         public enum DraggableType { Numpad, Keyboard }
 
@@ -60,14 +60,15 @@ namespace Other
             else
                 HandleMovementMouse();
 
-            justStartedDragging = false;
+            _onlyJustClicked = false;
         }
 
         private void HandleMovementMouse()
         {
-            // If using mouse/trackpad, the cursor is locked in the center. You don't need to click the Draggable to unlock it.
+            // If using mouse/trackpad, the cursor is locked in the center while moving around. The click may not activate OnMouseDown, so check here too.
+            // If mouse is clicked or Esc is pressed, during dragging, then unlock the cursor. Ignore the frame where OnMouseDown is activated.
             bool draggingInterrupted = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape);
-            if (draggingInterrupted && _dragging && !justStartedDragging)
+            if (draggingInterrupted && _dragging && !_onlyJustClicked)
             {
                 _dragging = false;
                 Cursor.lockState = CursorLockMode.None;
@@ -108,12 +109,12 @@ namespace Other
                 // Set pointerOffset for touch users
                 _touchOffset = transform.position - _mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-                _dragging = !_dragging;
                 if (_dragging)
-                {
-                    justStartedDragging = true;
+                    Cursor.lockState = CursorLockMode.None;
+                else
                     Cursor.lockState = CursorLockMode.Locked;
-                }
+                _dragging = !_dragging;
+                _onlyJustClicked = true;
             }
         }
 

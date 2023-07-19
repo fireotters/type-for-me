@@ -1059,11 +1059,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
---- !u!1 &1748922646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3392347893048415457, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-  m_PrefabInstance: {fileID: 1748922645}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1783391624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1091,7 @@ MonoBehaviour:
   chosenCharacter: {fileID: 1171627459}
   chosenKeyboard: {fileID: 852203312}
   chosenTypingBox: {fileID: 1016523747}
-  tutorialUi: {fileID: 1748922646}
+  chosenBackground: {fileID: 1866583291}
   willTutorialShow: 0
 --- !u!4 &1783391626
 Transform:
@@ -1116,3 +1111,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1866583291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4823467267735030110, guid: 0ba50234e6380f546b6d9ac95bdc2408, type: 3}
+  m_PrefabInstance: {fileID: 478274515}
+  m_PrefabAsset: {fileID: 0}
