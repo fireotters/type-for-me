@@ -198,7 +198,7 @@ Transform:
   m_Children:
   - {fileID: 1838160879622100573}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8832202973859747300
 GameObject:
@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 198738197405785537}
   - component: {fileID: 6147954588063392612}
   - component: {fileID: 1061922702576730271}
+  - component: {fileID: 4929700379232990163}
   m_Layer: 7
   m_Name: KeyboardPlate
   m_TagString: Untagged
@@ -350,6 +351,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.85, y: 6.41}
   m_EdgeRadius: 0
+--- !u!95 &4929700379232990163
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8832202973859747300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38bd6089041445c45a708c39f2aed2c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2087419383018019943
 PrefabInstance:
   m_ObjectHideFlags: 0
