@@ -531,7 +531,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2726305605012562430, guid: 556da3dc427812541af920229f07302b, type: 3}
       propertyPath: m_Name
-      value: Keyboard-QwertySimplified
+      value: Keyboard-Qwerty
       objectReference: {fileID: 0}
     - target: {fileID: 3338743507600319960, guid: 556da3dc427812541af920229f07302b, type: 3}
       propertyPath: m_RootOrder
