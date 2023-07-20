@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key-1.50-Backspace
       objectReference: {fileID: 0}
+    - target: {fileID: 3721733512280138391, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f3e2ea5dfb142b949bb668b5f49fe3d8, type: 2}
     - target: {fileID: 6292027728050280126, guid: 495f6b60a155c8446931501a2eabe217, type: 3}
       propertyPath: m_RootOrder
       value: 0

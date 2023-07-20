@@ -14,8 +14,9 @@ namespace GameLogic.Keyboard
 
         [Header("Stats")]
         private int currentPhrase = 0;
-        private int numOfPresses = 0, numOfCorrectPresses = 0;
+        private int numOfPresses = 0, numOfCorrectPresses = 0, numOfIncorrectPresses = 0;
         private int highestCombo = 0, currentCombo = 0;
+        private bool _previousTypeWasMistake = false;
 
         [Header("Components")]
         private TypingBox _typingBox;
@@ -124,6 +125,7 @@ namespace GameLogic.Keyboard
         private void BackspaceAction(SignalKeyboardBackspacePress backspacePress)
         {
             Debug.Log("<KeyboardReader> Backspace pressed!");
+            _previousTypeWasMistake = false;
             ResetCombo();
             _typingBox.PerformBackspace();
         }
@@ -134,20 +136,31 @@ namespace GameLogic.Keyboard
             numOfPresses++;
             if (correct)
             {
+                _previousTypeWasMistake = false;
                 numOfCorrectPresses++;
+
                 currentCombo++;
                 if (currentCombo > highestCombo)
                     highestCombo = currentCombo;
             }
             else
             {
-                ResetCombo();
-                _typingBox.IncrementMistake();
-                if (Mathf.Abs(numOfPresses - numOfCorrectPresses) >= allowedMistakes)
+                // Only penalise the player for one mistake in a row. Increment the accuracy calculation, but don't count a 'mistake'.
+                if (!_previousTypeWasMistake)
                 {
-                    // you fucking suck
-                    SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
-                    SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
+                    _previousTypeWasMistake = true;
+                    SignalBus<SignalKeyboardMistakeMade>.Fire(new SignalKeyboardMistakeMade { });
+
+                    ResetCombo();
+                    _typingBox.IncrementMistake();
+
+                    numOfIncorrectPresses++;
+                    if (numOfIncorrectPresses >= allowedMistakes)
+                    {
+                        // you fucking suck
+                        SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
+                        SignalBus<SignalGameEnded>.Fire(new SignalGameEnded { result = GameEndCondition.Loss });
+                    }
                 }
             }
         }
@@ -157,6 +170,7 @@ namespace GameLogic.Keyboard
             if (currentCombo > highestCombo)
                 highestCombo = currentCombo;
             currentCombo = 0;
+
         }
     }
 }

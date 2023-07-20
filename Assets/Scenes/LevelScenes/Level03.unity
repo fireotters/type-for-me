@@ -818,7 +818,7 @@ MonoBehaviour:
   - yall suck omg
   - guys were gonna lose
   - this game sucks ass
-  allowedMistakes: 3
+  allowedMistakes: 5
 --- !u!4 &1646910916
 Transform:
   m_ObjectHideFlags: 0

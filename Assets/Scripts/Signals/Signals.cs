@@ -47,6 +47,10 @@ namespace Signals
     {
         // no payload
     }
+    public struct SignalKeyboardMistakeMade
+    {
+        // no payload
+    }
 
     // --------------------------------------------------------------------------------------------------------------
     // Character Signals

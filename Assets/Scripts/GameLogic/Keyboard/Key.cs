@@ -9,39 +9,52 @@ public class Key : MonoBehaviour
     [SerializeField] private string letter;
     [SerializeField] private TMP_Text keyLabel;
     [SerializeField] private SpecialKey specialKeyStatus;
+
     private SpriteRenderer _sprite;
     private Color _colorUnusable = new(0.7f, 0.7f, 0.7f, 1f);
     private StudioEventEmitter keySound;
-    private Animator anim;
+    private Animator _anim;
+    private readonly CompositeDisposable disposables = new();
 
     public enum SpecialKey
     {
         None, Unusable, Backspace, Pause
     }
 
+    // --------------------------------------------------------------------------------------------------------------
+    // Start & End
+    // --------------------------------------------------------------------------------------------------------------
     private void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();
         keySound = GetComponent<StudioEventEmitter>();
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
 
         if (specialKeyStatus == SpecialKey.Unusable)
         {
             keyLabel.text = "";
             _sprite.color = _colorUnusable;
         }
+        else if (specialKeyStatus == SpecialKey.Backspace)
+            SignalBus<SignalKeyboardMistakeMade>.Subscribe(StartPulsatingKey).AddTo(disposables);
         else if (specialKeyStatus == SpecialKey.None)
             keyLabel.text = letter.ToUpper();
     }
 
+    private void OnDestroy()
+    {
+        disposables.Dispose();
+    }
+
     private void DoKeyPress()
     {
-        anim.SetBool("Pressed", true);
+        _anim.SetBool("Pressed", true);
         keySound.Play();
         switch (specialKeyStatus)
         {
             case SpecialKey.Backspace:
                 Debug.Log("<Key> Pressed Backspace!");
+                _anim.SetBool("Pulsating", false);
                 SignalBus<SignalKeyboardBackspacePress>.Fire();
                 break;
             case SpecialKey.Pause:
@@ -63,7 +76,7 @@ public class Key : MonoBehaviour
     private IEnumerator DoKeyUp()
     {
         yield return new WaitForSeconds(1f);
-        anim.SetBool("Pressed", false);
+        _anim.SetBool("Pressed", false);
     }
 
     public void KeyPress()
@@ -80,8 +93,8 @@ public class Key : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    private void StartPulsatingKey(SignalKeyboardMistakeMade context)
     {
-        print("Whoopsie");
+        _anim.SetBool("Pulsating", true);
     }
 }
