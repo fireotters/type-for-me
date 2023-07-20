@@ -20,7 +20,7 @@ namespace GameLogic.Character
         [Header("Use the PokeRangeNW/SE gameobjects to restrict the maximum range of the PokeDot")]
         [SerializeField] private Transform _limitPokeRangeNW;
         [SerializeField] private Transform _limitPokeRangeSE;
-        private Vector3 _modifierForTypingPromptTop = new (0, -1.8f, 0);
+        private Vector3 _modifierForTypingPromptTop = new (0, -0.9f, 0);
         private Vector2 _coordPdNW_top, _coordPdSE_top, _coordPdNW_bot, _coordPdSE_bot; // Save coords to memory
 
         private readonly CompositeDisposable _disposables = new();

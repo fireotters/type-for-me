@@ -40,17 +40,13 @@ namespace GameLogic
                     Debug.LogWarning("HUD.cs: Can't find 'CanvasGameUi/TutorialArea'. Tutorial won't be activated/deactivated by this script.");
             }
 
-            // Find the level transition animators of the HUD
-            //_animators.Append(chosenCharacter.GetComponent<Animator>());
-            _animators.Add(chosenKeyboard.GetComponentInChildren<Animator>());
-            //_animators.Append(chosenTypingBox.GetComponent<Animator>());
-            //_animators.Append(tutorialUi.GetComponent<Animator>());
-
             // Start the HUD as invisible
             _hudShouldBeVisible = false;
             SetHudVisbility();
 
-            // Move the background slightly down if the TypingBox is moved to top
+            // Alter level transition animations, depending if TypingBox is on top/bottom of the HUD
+            _animators.Add(chosenKeyboard.GetComponentInChildren<Animator>());
+            _animators.Add(chosenTypingBox.typingUi.GetComponent<Animator>());
             SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
             CheckFlipDisplay();
         }
