@@ -40,6 +40,22 @@ PrefabInstance:
       propertyPath: _pokeOrigin
       value: 
       objectReference: {fileID: 535247855466553329}
+    - target: {fileID: 6894618244650227371, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894618244650227371, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125582629642937956, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125582629642937956, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -89,7 +105,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1683741184312682853, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+    - {fileID: 2813212603032527050, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}

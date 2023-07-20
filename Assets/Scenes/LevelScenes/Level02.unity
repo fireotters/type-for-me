@@ -206,11 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2421787f1afc76e46b4f57613d7d6694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &182432668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3392347893048415457, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-  m_PrefabInstance: {fileID: 1748922645}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199154595
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +238,7 @@ MonoBehaviour:
   chosenCharacter: {fileID: 1622958238}
   chosenKeyboard: {fileID: 1485320673}
   chosenTypingBox: {fileID: 155301597}
-  tutorialUi: {fileID: 182432668}
+  chosenBackground: {fileID: 510725554}
   willTutorialShow: 0
 --- !u!4 &199154597
 Transform:
@@ -513,6 +508,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+--- !u!4 &510725554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4033182660669585672, guid: 8c5aa0d2ae6c5df4e9d76deb5d2cb539, type: 3}
+  m_PrefabInstance: {fileID: 510725553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &578606221
 GameObject:
   m_ObjectHideFlags: 0

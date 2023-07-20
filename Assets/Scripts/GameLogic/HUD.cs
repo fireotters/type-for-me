@@ -70,6 +70,7 @@ namespace GameLogic
                 foreach (Animator anim in _animators)
                 {
                     anim.enabled = true;
+                    anim.SetBool("typingIsTop", PlayerPrefs.GetInt("TypePrompt_IsTop") == 1);
                     anim.Play("SlideIn");
                 }
                 Invoke(nameof(DisableHudAnimators), 1f);
@@ -80,6 +81,7 @@ namespace GameLogic
                 foreach (Animator anim in _animators)
                 {
                     anim.enabled = true;
+                    anim.SetBool("typingIsTop", PlayerPrefs.GetInt("TypePrompt_IsTop") == 1);
                     anim.Play("SlideOut");
                 }
                 Invoke(nameof(DisableHudAnimators), 1f);

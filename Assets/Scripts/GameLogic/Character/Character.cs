@@ -20,18 +20,18 @@ namespace GameLogic.Character
         [Header("Use the PokeRangeNW/SE gameobjects to restrict the maximum range of the PokeDot")]
         [SerializeField] private Transform _limitPokeRangeNW;
         [SerializeField] private Transform _limitPokeRangeSE;
-        private Vector3 _modifierForTypingPromptTop = new (0, -0.9f, 0);
-        private Vector2 _coordPdNW_top, _coordPdSE_top, _coordPdNW_bot, _coordPdSE_bot; // Save coords to memory
+        private Vector3 _typingBoxModifierVerB = new (0, 1.8f, 0);
+        private Vector2 _coordVerA_NW, _coordVerA_SE, _coordVerB_NW, _coordVerB_SE; // Save coords to memory
 
         private readonly CompositeDisposable _disposables = new();
 
         private void Start()
         {
             SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
-            _coordPdNW_bot = _limitPokeRangeNW.position;
-            _coordPdSE_bot = _limitPokeRangeSE.position;
-            _coordPdNW_top = _limitPokeRangeNW.position + _modifierForTypingPromptTop;
-            _coordPdSE_top = _limitPokeRangeSE.position + _modifierForTypingPromptTop;
+            _coordVerA_NW = _limitPokeRangeNW.position;
+            _coordVerA_SE = _limitPokeRangeSE.position;
+            _coordVerB_NW = _limitPokeRangeNW.position + _typingBoxModifierVerB;
+            _coordVerB_SE = _limitPokeRangeSE.position + _typingBoxModifierVerB;
             CheckFlipDisplay();
 
             float[] rangeArmRaiseSpeed = { _minArmRaiseSpeed, _maxArmRaiseSpeed };
@@ -44,11 +44,9 @@ namespace GameLogic.Character
         {
             // When the TypingPrompt is at the top, shift the PokeDot limits down by 1.8f. And vice-versa.
             if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
-                _arm.pokedot.InitLimits(_coordPdNW_top, _coordPdSE_top);
+                _arm.pokedot.InitLimits(_coordVerA_NW, _coordVerA_SE);
             else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
-                _arm.pokedot.InitLimits(_coordPdNW_bot, _coordPdSE_bot);
-            else
-                Debug.LogError("Character.CheckFlipDisplay() invalid PlayerPrefs state");
+                _arm.pokedot.InitLimits(_coordVerB_NW, _coordVerB_SE);
         }
 
         private void FlipDisplaySig(SignalSettingsChange context)

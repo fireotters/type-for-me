@@ -336,7 +336,7 @@ MonoBehaviour:
   chosenCharacter: {fileID: 1671124914}
   chosenKeyboard: {fileID: 802317958}
   chosenTypingBox: {fileID: 1403341413}
-  tutorialUi: {fileID: 1134369849}
+  chosenBackground: {fileID: 2144958823}
   willTutorialShow: 0
 --- !u!4 &396471899
 Transform:
@@ -751,11 +751,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3338743507600319960, guid: 556da3dc427812541af920229f07302b, type: 3}
   m_PrefabInstance: {fileID: 802317957}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1134369849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3392347893048415457, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
-  m_PrefabInstance: {fileID: 1748922645}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1403341411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1154,5 +1149,10 @@ MonoBehaviour:
 --- !u!95 &2144958822 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5107707731149709285, guid: 3dd040f105dbe1548b8892953124d980, type: 3}
+  m_PrefabInstance: {fileID: 164600214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2144958823 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 702708835552103034, guid: 3dd040f105dbe1548b8892953124d980, type: 3}
   m_PrefabInstance: {fileID: 164600214}
   m_PrefabAsset: {fileID: 0}
