@@ -27,11 +27,14 @@ namespace GameLogic.Keyboard
 
             CurrentStatus = status;
 
-            if (CurrentStatus == TrackerStatus.Passed)
-                spriteRenderer.color = Color.green;
-
-            if (CurrentStatus == TrackerStatus.Mistake)
-                spriteRenderer.color = Color.red;
+            spriteRenderer.color = CurrentStatus switch
+            {
+                TrackerStatus.Passed => Color.green,
+                TrackerStatus.Mistake => Color.red,
+                TrackerStatus.Inactive => Color.gray,
+                TrackerStatus.Active => Color.gray,
+                _ => spriteRenderer.color
+            };
         }
     }
 
