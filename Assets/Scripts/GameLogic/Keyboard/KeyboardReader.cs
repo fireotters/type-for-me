@@ -84,7 +84,8 @@ namespace GameLogic.Keyboard
             }
             else
             {
-                Debug.Log("Part of Level Complete");
+                Debug.Log("Level Checkpoint reached");
+                SignalBus<SignalWeGotAtLeastOneWordCorrect>.Fire(new SignalWeGotAtLeastOneWordCorrect { }); // Tell GameUi to un-hide 'Retry from Checkpoint' button
 
                 // Stop Arm
                 SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = true });
@@ -175,8 +176,15 @@ namespace GameLogic.Keyboard
 
         private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)
         {
+            // Reset mistake counter, not checkpoint counter
+            _previousTypeWasMistake = false;
             numOfIncorrectPresses = 0;
             _typingBox.IncrementMistake(resetFromCheckpoint: true);
+
+            // Reset typing box and restart hand movement
+            var currentWord = phrases[currentPhrase];
+            _typingBox.ChangeWord(currentWord);
+            SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = false });
         }
     }
 }

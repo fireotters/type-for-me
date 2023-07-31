@@ -36,7 +36,10 @@ public class Key : MonoBehaviour
             _sprite.color = _colorUnusable;
         }
         else if (specialKeyStatus == SpecialKey.Backspace)
+        {
             SignalBus<SignalKeyboardMistakeMade>.Subscribe(StartPulsatingKey).AddTo(disposables);
+            SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(StopPulsatingKey).AddTo(disposables);
+        }
         else if (specialKeyStatus == SpecialKey.None)
             keyLabel.text = letter.ToUpper();
     }
@@ -96,5 +99,9 @@ public class Key : MonoBehaviour
     private void StartPulsatingKey(SignalKeyboardMistakeMade context)
     {
         _anim.SetBool("Pulsating", true);
+    }
+    private void StopPulsatingKey(SignalGameRetryFromCheckpoint context)
+    {
+        _anim.SetBool("Pulsating", false);
     }
 }

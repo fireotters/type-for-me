@@ -46,6 +46,7 @@ namespace UI
 
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(PauseGame).AddTo(_disposables);
+            SignalBus<SignalWeGotAtLeastOneWordCorrect>.Subscribe(_dialogs.UnhideRetryBtn).AddTo(_disposables);
 
             CheckFlipDisplay();
             Invoke(nameof(ShowGameplayStartLevel), 4f);
@@ -218,6 +219,7 @@ namespace UI
         public GameObject gameLost, gameWon;
         public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
         public TextMeshProUGUI txtCharLostPatience;
+        public GameObject btnsOnWord1, btnsPastWord1;
 
         public void SetupVictoryDialog(
             int combo, int bestCombo, bool wasThisNewHighCombo, bool wasComboPerfect,
@@ -262,6 +264,11 @@ namespace UI
         public void SetupLossDialog(string character)
         {
             txtCharLostPatience.text = character.ToUpper();
+        }
+        public void UnhideRetryBtn (SignalWeGotAtLeastOneWordCorrect s)
+        {
+            btnsOnWord1.SetActive(false);
+            btnsPastWord1.SetActive(true);
         }
     }
     [Serializable]
