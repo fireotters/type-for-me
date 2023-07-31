@@ -34,6 +34,7 @@ namespace GameLogic.Keyboard
 
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
+            SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(disposables);
             phraseFinishedSound = GetComponent<StudioEventEmitter>();
 
             if (phrases.Length == 0)
@@ -170,7 +171,12 @@ namespace GameLogic.Keyboard
             if (currentCombo > highestCombo)
                 highestCombo = currentCombo;
             currentCombo = 0;
+        }
 
+        private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)
+        {
+            numOfIncorrectPresses = 0;
+            _typingBox.IncrementMistake(resetFromCheckpoint: true);
         }
     }
 }

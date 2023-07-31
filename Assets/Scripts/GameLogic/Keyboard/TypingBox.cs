@@ -155,7 +155,7 @@ namespace GameLogic.Keyboard
             }
         }
 
-        public void IncrementMistake()
+        public void IncrementMistake(bool resetFromCheckpoint = false)
         {
             var mistakeTrackers = _trackerMistakes.GetComponentsInChildren<PhaseTracker>();
 
@@ -163,12 +163,19 @@ namespace GameLogic.Keyboard
             for (var i = mistakeTrackers.Length - 1; i >= 0; i--)
             {
                 var currentTracker = mistakeTrackers[i];
-                if (currentTracker.CurrentStatus.Equals(TrackerStatus.Mistake))
-                    continue;
-                if (currentTracker.CurrentStatus.Equals(TrackerStatus.Inactive))
+                if (!resetFromCheckpoint)
                 {
-                    currentTracker.ChangeStatus(TrackerStatus.Mistake);
-                    break;
+                    if (currentTracker.CurrentStatus.Equals(TrackerStatus.Mistake))
+                        continue;
+                    if (currentTracker.CurrentStatus.Equals(TrackerStatus.Inactive))
+                    {
+                        currentTracker.ChangeStatus(TrackerStatus.Mistake);
+                        break;
+                    }
+                }
+                else
+                {
+                    currentTracker.ChangeStatus(TrackerStatus.Inactive);
                 }
             }
         }

@@ -180,11 +180,17 @@ namespace UI
             _sound.fmodMixer.KillEverySound();
             SceneManager.LoadScene(nextSceneToLoad);
         }
-        public void ResetCurrentLevel()
+        public void ResetLevelFromStart()
         {
             Time.timeScale = 1;
             _sound.fmodMixer.KillEverySound();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        public void ResetLevelFromCheckpoint()
+        {
+            Time.timeScale = 1;
+            _dialogs.gameLost.SetActive(false);
+            SignalBus<SignalGameRetryFromCheckpoint>.Fire(new SignalGameRetryFromCheckpoint { });
         }
         public void ExitGameFromPause()
         {

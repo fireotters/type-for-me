@@ -32,6 +32,7 @@ namespace Other
 
             SignalBus<SignalGameEnded>.Subscribe(DisableDragEnd).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(DisableDragPause).AddTo(_disposables);
+            SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(_disposables);
 
             if (_draggableType == DraggableType.Numpad)
                 _bounds = _boundsNumPad;
@@ -125,6 +126,10 @@ namespace Other
         {
             _disableDragging = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+        private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)
+        {
+            _disableDragging = false;
         }
 
         private void DisableDragPause(SignalGamePaused signal)

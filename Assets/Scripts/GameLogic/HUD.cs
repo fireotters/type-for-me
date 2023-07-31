@@ -48,6 +48,7 @@ namespace GameLogic
             _animators.Add(chosenKeyboard.GetComponentInChildren<Animator>());
             _animators.Add(chosenTypingBox.typingUi.GetComponent<Animator>());
             SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
+            SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(_disposables);
             CheckFlipDisplay();
         }
         private void OnDestroy()
@@ -102,6 +103,15 @@ namespace GameLogic
         {
             foreach (Animator anim in _animators)
                 anim.enabled = false;
+        }
+
+        private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)
+        {
+            Animator anim = chosenKeyboard.GetComponentInChildren<Animator>();
+            anim.enabled = true;
+            anim.SetBool("typingIsTop", PlayerPrefs.GetInt("TypePrompt_IsTop") == 1);
+            anim.Play("SlideIn");
+            Invoke(nameof(DisableHudAnimators), 1f);
         }
 
 
