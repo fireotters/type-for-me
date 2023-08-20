@@ -36,6 +36,7 @@ namespace UI
         [SerializeField] private GameObject _goBtnResetScores;
         [SerializeField] private Toggle _btnFlipTypePrompt, _btnDummyFlipTypePrompt;
         [SerializeField] private TextMeshProUGUI _txtFlipTypePrompt;
+        [SerializeField] private Toggle _btnMacCompat;
 
         private Audio.FMODMixer fmodMixer;
         
@@ -76,6 +77,7 @@ namespace UI
 
             // game panel values
             TypePromptFlip_FrontEnd();
+            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Mac_Compat") == 1);
         }
 
 
@@ -197,6 +199,15 @@ namespace UI
         {
             HighScoreManagement.ResetLevelScores();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        public void MacCompat_Toggle()
+        {
+            if (PlayerPrefs.GetInt("Mac_Compat") == 1)
+                PlayerPrefs.SetInt("Mac_Compat", 0);
+            else
+                PlayerPrefs.SetInt("Mac_Compat", 1);
+            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Mac_Compat") == 1);
+            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
         }
     }
 }

@@ -1,4 +1,5 @@
 using Signals;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Other
@@ -16,6 +17,7 @@ namespace Other
         [Header("Touch Users")]
         private Vector3 _touchOffset;
         private Camera _mainCamera;
+        public bool isMacCompatOn;
 
         [Header("Bounds of where Draggable can be dragged")]
         [SerializeField] private DraggableType _draggableType;
@@ -33,15 +35,23 @@ namespace Other
             SignalBus<SignalGameEnded>.Subscribe(DisableDragEnd).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(DisableDragPause).AddTo(_disposables);
             SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(_disposables);
+            SignalBus<SignalSettingsChange>.Subscribe(DetectMacCompat).AddTo(_disposables);
 
             if (_draggableType == DraggableType.Numpad)
                 _bounds = _boundsNumPad;
             else if (_draggableType == DraggableType.Keyboard)
                 _bounds = _boundsKeyboard;
+
+            isMacCompatOn = PlayerPrefs.GetInt("Mac_Compat") == 1;
         }
         private void OnDestroy()
         {
             _disposables.Dispose();
+        }
+
+        private void DetectMacCompat(SignalSettingsChange signal)
+        {
+            isMacCompatOn = PlayerPrefs.GetInt("Mac_Compat") == 1;
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -56,7 +66,7 @@ namespace Other
                 return;
             }
 
-            if (Input.touchCount > 0)
+            if (isMacCompatOn || Input.touchCount > 0)
                 HandleMovementTouch();
             else
                 HandleMovementMouse();
@@ -89,11 +99,22 @@ namespace Other
             // Ensure the cursor is never locked
             Cursor.lockState = CursorLockMode.None;
 
-            // Touchscreen has just been let go of
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            // Touchscreen has just been let go of, or Mac Compatibility is on and the mouse button is just let go
+            if (isMacCompatOn)
             {
-                _dragging = false;
-                return;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _dragging = false;
+                    return;
+                }
+            }
+            else
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    _dragging = false;
+                    return;
+                }
             }
 
             if (_dragging)

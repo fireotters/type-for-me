@@ -14,10 +14,11 @@ namespace GameLogic.Keyboard
         [SerializeField] private bool darkModeText;
         private Color colorDarkPreview = new (1, 1, 1, 0.2f), colorDarkInput = new (1, 1, 1, 1);
 
-        [Header("Progress Trackers")]
+        [Header("Progress/Combo Trackers")]
         [SerializeField] private GameObject _trackerProgress;
         [SerializeField] private GameObject _trackerMistakes;
         [SerializeField] private GameObject _wordTrackerPrefab;
+        [SerializeField] private TMP_Text _textCombo;
 
         [Header("Components")]
         public GameObject typingUi;
@@ -101,7 +102,7 @@ namespace GameLogic.Keyboard
 
 
         // --------------------------------------------------------------------------------------------------------------
-        // Progress/Mistake Trackers
+        // Progress/Mistake/Combo Trackers
         // --------------------------------------------------------------------------------------------------------------
         public void InitTrackerProgress(int numOfPhrases)
         {
@@ -178,6 +179,11 @@ namespace GameLogic.Keyboard
                     currentTracker.ChangeStatus(TrackerStatus.Inactive);
                 }
             }
+        }
+
+        public void SetCombo(int currentCombo)
+        {
+            _textCombo.text = currentCombo.ToString();
         }
 
         // --------------------------------------------------------------------------------------------------------------

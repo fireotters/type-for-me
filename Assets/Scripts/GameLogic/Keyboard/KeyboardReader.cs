@@ -144,6 +144,7 @@ namespace GameLogic.Keyboard
                 currentCombo++;
                 if (currentCombo > highestCombo)
                     highestCombo = currentCombo;
+                _typingBox.SetCombo(currentCombo);
             }
             else
             {
@@ -172,6 +173,7 @@ namespace GameLogic.Keyboard
             if (currentCombo > highestCombo)
                 highestCombo = currentCombo;
             currentCombo = 0;
+            _typingBox.SetCombo(currentCombo);
         }
 
         private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)

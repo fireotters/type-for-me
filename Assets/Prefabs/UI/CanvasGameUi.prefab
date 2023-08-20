@@ -1615,7 +1615,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2139523812368929777}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3596,7 +3596,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5270346226414307156}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -5827,7 +5827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -34.829}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 220.6685, y: 52.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5915849031670913261
@@ -6001,8 +6001,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.62666667}
   m_AnchorMax: {x: 1, y: 0.62666667}
-  m_AnchoredPosition: {x: 0.000030517578, y: 66.00003}
-  m_SizeDelta: {x: -270, y: 39.1525}
+  m_AnchoredPosition: {x: -2.4999847, y: 66.00003}
+  m_SizeDelta: {x: -275.00003, y: 39.1525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9120145509104259087
 CanvasRenderer:
@@ -6032,7 +6032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Best Combo:'
+  m_text: 'Highest Combo:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
   m_sharedMaterial: {fileID: -4750692565339166616, guid: 32072ab89dd440c4c8b914a7a88928c4, type: 2}
@@ -6274,7 +6274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 13, y: 8.534882}
-  m_SizeDelta: {x: 380, y: 300}
+  m_SizeDelta: {x: 380, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1969387363430503509
 CanvasRenderer:
@@ -6536,7 +6536,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 492003895042786120}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -7289,8 +7289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23.069006}
-  m_SizeDelta: {x: 351.8506, y: 224.32}
+  m_AnchoredPosition: {x: 0, y: -32}
+  m_SizeDelta: {x: 351.8506, y: 251.9281}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7497839322880070399
 CanvasRenderer:
@@ -7333,11 +7333,16 @@ MonoBehaviour:
     ---
     CONTROLS ---
 
-    Mouse/Trackpad: Click once to grab or drop the keyboard. Move
-    cursor to drag the keyboard.
-
-
     Touchscreen: Tap & drag the keyboard.
+
+
+    Mouse/Trackpad:
+    Click once to grab or drop the keyboard. Move cursor to drag the keyboard.
+
+    (If
+    using ''Mac Compatibility Mode'', click and hold to move the keyboard)
+
+
 
 '
   m_isRightToLeft: 0
