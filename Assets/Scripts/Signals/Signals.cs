@@ -33,6 +33,7 @@ namespace Signals
     public struct SignalGamePaused
     {
         public bool paused;
+        public bool tutorialPause;
     }
 
     public struct SignalGameRetryFromCheckpoint

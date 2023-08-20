@@ -153,6 +153,8 @@ namespace UI
 
         private void PauseGame(SignalGamePaused context)
         {
+            if (context.tutorialPause)
+                return; // Don't bring up Pause dialog if the tutorial is what paused the game
             if (context.paused)
                 GameIsPaused(true);
             else
@@ -168,6 +170,7 @@ namespace UI
         public void TutorialPause(bool intent)
         {
             Time.timeScale = intent ? 0 : 1;
+            SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = intent, tutorialPause = true });
         }
 
         public void ToggleOptionsPanel()
