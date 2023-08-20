@@ -34,11 +34,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _maxArmRaiseHeight
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: _minArmRaiseHeight
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6894618244650227371, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_LocalPosition.x

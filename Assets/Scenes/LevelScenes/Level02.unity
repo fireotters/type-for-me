@@ -189,6 +189,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5794450091763075749, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1019072524273991436, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2946764921865893320, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 73e95be57ad228241ad10a0aaa34ff43, type: 3}
 --- !u!4 &155301596 stripped
 Transform:
@@ -844,6 +850,14 @@ PrefabInstance:
     - target: {fileID: 1271836983812499868, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_Name
       value: Character-Grandpa
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _maxArmRaiseSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338186169438254228, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
+      propertyPath: _minArmRaiseSpeed
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8181717895817453683, guid: 9ee5fe7bea844a3449ffd2751353e533, type: 3}
       propertyPath: m_RootOrder
