@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 4204420841714686399}
   - component: {fileID: 1008575404180749767}
   m_Layer: 0
-  m_Name: TextCombo (1)
+  m_Name: TODOreminder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294901998
-  m_fontColor: {r: 0.934319, g: 0, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

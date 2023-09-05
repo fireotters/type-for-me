@@ -9,8 +9,12 @@ namespace Saving
     {
         public static void ResetLevelScores()
         {
+            // Highscore version tracking - also change on MainMenuUi script
+            // No version = v1.0
+            // 1 = v1.1 (more levels added)
+            PlayerPrefs.SetInt("HighScoreVersion", 1);
+
             PlayerPrefs.SetString("LevelScores", "{}");
-            PlayerPrefs.SetInt("tutorialUpTo", 0);
             PlayerPrefs.Save();
         }
 

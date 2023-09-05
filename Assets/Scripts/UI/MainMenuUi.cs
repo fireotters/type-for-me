@@ -1,4 +1,5 @@
 using FMODUnity;
+using Saving;
 using Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,13 @@ namespace UI
             if (!PlayerPrefs.HasKey("TypePrompt_IsTop"))
             {
                 PlayerPrefs.SetInt("TypePrompt_IsTop", 1);
+            }
+            if (PlayerPrefs.GetInt("HighScoreVersion") != 1)
+            {
+                HighScoreManagement.ResetLevelScores();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                menuSong.AllowFadeout = false;
+                menuSong.Stop();
             }
 
         }
