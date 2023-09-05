@@ -1,5 +1,4 @@
 using Signals;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Other
@@ -42,7 +41,7 @@ namespace Other
             else if (_draggableType == DraggableType.Keyboard)
                 _bounds = _boundsKeyboard;
 
-            isMacCompatOn = PlayerPrefs.GetInt("Mac_Compat") == 1;
+            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1;
         }
         private void OnDestroy()
         {
@@ -51,7 +50,7 @@ namespace Other
 
         private void DetectMacCompat(SignalSettingsChange signal)
         {
-            isMacCompatOn = PlayerPrefs.GetInt("Mac_Compat") == 1;
+            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1;
         }
 
         // --------------------------------------------------------------------------------------------------------------

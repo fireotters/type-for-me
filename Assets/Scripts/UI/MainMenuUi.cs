@@ -2,6 +2,7 @@ using FMODUnity;
 using Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 
 namespace UI
 {
@@ -12,7 +13,10 @@ namespace UI
         [SerializeField] private GameObject desktopButtons;
         [SerializeField] private GameObject webButtons;
         [SerializeField] private StudioEventEmitter menuSong;
-        
+
+        [DllImport("__Internal")]
+        private static extern void GetBrowserSpec();
+
         private readonly CompositeDisposable _disposables = new();
 
         private void Start()
@@ -21,6 +25,7 @@ namespace UI
             #if UNITY_WEBGL
                 desktopButtons.SetActive(false);
                 webButtons.SetActive(true);
+                GetBrowserSpec();
             #else
                 desktopButtons.SetActive(true);
                 webButtons.SetActive(false);
@@ -39,7 +44,20 @@ namespace UI
             }
 
         }
-        
+
+#if UNITY_WEBGL
+        public void DetectBrowser(string browserName)
+        {
+            Debug.Log($"[SettingsPanel] Current browser {browserName}");
+
+            if (browserName == "Safari")
+            {
+                Debug.Log("[SettingsPanel] Automatically enable 'mac compatibility mode'");
+                PlayerPrefs.SetInt("Mac_Compat", 1);
+            }
+        }
+#endif
+
         public void StartGame(SignalUiMainMenuStartGame signal)
         {
             menuSong.Stop();

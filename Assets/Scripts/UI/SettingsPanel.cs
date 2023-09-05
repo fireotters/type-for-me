@@ -54,6 +54,17 @@ namespace UI
             PopulateVideoDropdowns();
             webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
             fmodMixer = FindObjectOfType<Canvas>().GetComponent<Audio.FMODMixer>();
+            if (PlayerPrefs.GetInt("Mac_Compat") == 1)
+            {
+                if (PlayerPrefs.GetInt("Toggle_Control") == 0)
+                {
+                    PlayerPrefs.SetInt("Toggle_Control", 1);
+                    _btnMacCompat.SetIsOnWithoutNotify(true);
+                    SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+                }
+                    
+                _btnMacCompat.interactable = false;
+            }
         }
 
         private void OnEnable()
@@ -77,7 +88,7 @@ namespace UI
 
             // game panel values
             TypePromptFlip_FrontEnd();
-            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Mac_Compat") == 1);
+            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
         }
 
 
@@ -200,13 +211,14 @@ namespace UI
             HighScoreManagement.ResetLevelScores();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        public void MacCompat_Toggle()
+
+        public void ControlMode_Toggle()
         {
-            if (PlayerPrefs.GetInt("Mac_Compat") == 1)
-                PlayerPrefs.SetInt("Mac_Compat", 0);
+            if (PlayerPrefs.GetInt("Toggle_Control") == 1)
+                PlayerPrefs.SetInt("Toggle_Control", 0);
             else
-                PlayerPrefs.SetInt("Mac_Compat", 1);
-            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Mac_Compat") == 1);
+                PlayerPrefs.SetInt("Toggle_Control", 1);
+            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
         }
     }
