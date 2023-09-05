@@ -64,7 +64,8 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Escape) &&
                 !_dialogs.gameLost.activeInHierarchy &&
                 !_dialogs.gameWon.activeInHierarchy &&
-                !_dialogs.options.activeInHierarchy)
+                !_dialogs.options.activeInHierarchy &&
+                !_dialogs.tutorial.activeInHierarchy)
             {
                 if (Time.timeScale == 0)
                     SignalBus<SignalGamePaused>.Fire(new SignalGamePaused { paused = false });
@@ -218,7 +219,7 @@ namespace UI
     public class GameUiDialogs
     {
         // Support for victory screen, high scores
-        public GameObject paused, options;
+        public GameObject paused, options, tutorial;
         public GameObject gameLost, gameWon;
         public TextMeshProUGUI txtComboCurrent, txtComboBest, txtAccuracyCurrent, txtAccuracyBest;
         public TextMeshProUGUI txtCharLostPatience;

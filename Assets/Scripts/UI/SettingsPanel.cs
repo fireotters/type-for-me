@@ -54,7 +54,7 @@ namespace UI
             PopulateVideoDropdowns();
             webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
             fmodMixer = FindObjectOfType<Canvas>().GetComponent<Audio.FMODMixer>();
-            if (PlayerPrefs.GetInt("Mac_Compat") == 1)
+            if (PlayerPrefs.GetInt("Toggle_Control") == 1)
             {
                 if (PlayerPrefs.GetInt("Toggle_Control") == 0)
                 {
@@ -209,6 +209,7 @@ namespace UI
         public void ResetHighscores()
         {
             HighScoreManagement.ResetLevelScores();
+            fmodMixer.KillEverySound();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

@@ -61,7 +61,7 @@ namespace UI
             if (browserName == "Safari")
             {
                 Debug.Log("[SettingsPanel] Automatically enable 'mac compatibility mode'");
-                PlayerPrefs.SetInt("Mac_Compat", 1);
+                PlayerPrefs.SetInt("Toggle_Control", 1);
             }
         }
 #endif
