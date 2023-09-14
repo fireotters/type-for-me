@@ -26,13 +26,12 @@ namespace UI
             #if UNITY_WEBGL
                 desktopButtons.SetActive(false);
                 webButtons.SetActive(true);
-                GetBrowserSpec();
+                if (Debug.isDebugBuild == false)
+                    GetBrowserSpec();
             #else
                 desktopButtons.SetActive(true);
                 webButtons.SetActive(false);
             #endif
-            //if (Debug.isDebugBuild)
-            //    CheckForIncorrectlySetupComponents();
 
 
             // Main Menu start tasks

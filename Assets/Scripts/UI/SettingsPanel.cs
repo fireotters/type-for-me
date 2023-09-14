@@ -34,8 +34,7 @@ namespace UI
 
         [Header("Game Panel controls")]
         [SerializeField] private GameObject _goBtnResetScores;
-        [SerializeField] private Toggle _btnFlipTypePrompt, _btnDummyFlipTypePrompt;
-        [SerializeField] private TextMeshProUGUI _txtFlipTypePrompt;
+        [SerializeField] private Toggle _btnFlipTypePrompt;
         [SerializeField] private Toggle _btnMacCompat;
 
         private Audio.FMODMixer fmodMixer;
@@ -87,7 +86,7 @@ namespace UI
             sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx"));
 
             // game panel values
-            TypePromptFlip_FrontEnd();
+            _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
             _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
         }
 
@@ -189,20 +188,12 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         // Game
         // --------------------------------------------------------------------------------------------------------------
-        private void TypePromptFlip_FrontEnd()
-        {
-            _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 1);
-            _btnDummyFlipTypePrompt.isOn = !_btnFlipTypePrompt.isOn;
-            _txtFlipTypePrompt.text = _btnFlipTypePrompt.isOn ? "Type Prompt:\nTop of Screen" : "Type Prompt:\nBottom of Screen";
-        }
-        
         public void TypePromptFlip_Toggle()
         {
             if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
                 PlayerPrefs.SetInt("TypePrompt_IsTop", 0);
             else
                 PlayerPrefs.SetInt("TypePrompt_IsTop", 1);
-            TypePromptFlip_FrontEnd();
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
         }
         
