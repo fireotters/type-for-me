@@ -1,4 +1,3 @@
-using GameLogic.Character.Arm;
 using Signals;
 using UnityEngine;
 
@@ -52,6 +51,11 @@ namespace GameLogic.Character
         private void FlipDisplaySig(SignalSettingsChange context)
         {
             CheckFlipDisplay();
+        }
+
+        public void LevelTransitionEnd_TellArmToRaiseAway()
+        {
+            _arm.LevelTransitionEnd_RaiseAway();
         }
 }
 }

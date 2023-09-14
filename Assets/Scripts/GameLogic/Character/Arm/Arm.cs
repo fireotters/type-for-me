@@ -10,6 +10,10 @@ namespace GameLogic.Character.Arm
         private float[] _rangeArmRaiseHeight = { 0f, 0f }; // Arm: How high to raise before coming back down?
         private float _armSpeed, _armHeightAfterPoke;
 
+        [Header("Level End Properties")]
+        private bool _isLevelEnding = false;
+        private Vector3 _sendArmOffscreenCoord;
+
         [Header("Stopping Movement")]
         // At the apex of a Raise, 'iWantToStopArm' is checked. When unchecked, it'll wait until the next apex of the raise to resume again.
         [SerializeField] private bool iWantToStopArm = false;
@@ -44,14 +48,17 @@ namespace GameLogic.Character.Arm
         // --------------------------------------------------------------------------------------------------------------
         private void Update()
         {
-            //if (!_armCurrentlyMovingOffscreen)
+            RaiseLowerArm();
+            if (!armStopped)
             {
-                RaiseLowerArm();
-                if (!armStopped)
-                {
-                    _fingertip.CheckIfPoking(pokedot.Pos);
-                    pokedot.Move(_armSpeed);
-                }
+                _fingertip.CheckIfPoking(pokedot.Pos);
+                pokedot.Move(_armSpeed);
+            }
+            else if (_isLevelEnding)
+            {
+                var step = _armSpeed * 1.5f * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, _sendArmOffscreenCoord, step);
+                pokedot.ChangeSize(4); // Make pokedot disappear
             }
         }
 
@@ -124,6 +131,11 @@ namespace GameLogic.Character.Arm
             _rangeArmRaiseHeight = rangeArmRaiseHeight;
 
             SetNewPropertiesOnRaise();
+        }
+        public void LevelTransitionEnd_RaiseAway()
+        {
+            _isLevelEnding = true;
+            _sendArmOffscreenCoord = new Vector2(transform.position.x, 10000);
         }
     }
 }

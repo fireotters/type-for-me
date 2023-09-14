@@ -104,6 +104,7 @@ namespace UI
                 accuracy, highscoreAccuracy, wasThisNewAccuracy, wasAccuracyPerfect,
                 isBrandNewScore);
 
+            _hud.TellArmToRaiseQuickly();
             Invoke(nameof(HideGameplayEndLevel), 1f);
             Invoke(nameof(ShowGameWon), 3f);
         }

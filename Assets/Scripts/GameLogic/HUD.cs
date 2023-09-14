@@ -105,6 +105,11 @@ namespace GameLogic
                 anim.enabled = false;
         }
 
+        public void TellArmToRaiseQuickly()
+        {
+            chosenCharacter.LevelTransitionEnd_TellArmToRaiseAway();
+        }
+
         private void RetryLevelFromCheckpoint(SignalGameRetryFromCheckpoint s)
         {
             Animator anim = chosenKeyboard.GetComponentInChildren<Animator>();
