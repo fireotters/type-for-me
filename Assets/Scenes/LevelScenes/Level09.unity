@@ -791,9 +791,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6686096510066726386, guid: 2275d3fb7150b284a9ea9ae87e9cdeb0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8793475374082318134, guid: 2275d3fb7150b284a9ea9ae87e9cdeb0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2275d3fb7150b284a9ea9ae87e9cdeb0, type: 3}
 --- !u!4 &1403341412 stripped
 Transform:
@@ -1050,7 +1047,7 @@ PrefabInstance:
       objectReference: {fileID: 2144958822}
     - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: nextSceneToLoad
-      value: MainMenu
+      value: ThanksMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8655110583702367959, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: currentCharacter
