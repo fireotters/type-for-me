@@ -244,9 +244,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3366717074309619278, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 610661395899634826, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 90d2ac86db370e749b0c21011f36f5ab, type: 3}
 --- !u!114 &303277120 stripped
 MonoBehaviour:
@@ -937,7 +934,7 @@ MonoBehaviour:
       Data4: -468555821
     Path: event:/2D/Level Tutorial - Voice
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0

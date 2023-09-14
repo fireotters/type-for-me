@@ -198,13 +198,13 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1434458937
-      Data2: 1076267593
-      Data3: 2010273717
-      Data4: -468555821
-    Path: event:/2D/Level Tutorial - Voice
+      Data1: 1729728654
+      Data2: 1171080208
+      Data3: 51886730
+      Data4: 1031616549
+    Path: event:/2D/Level Cat - Voice
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -793,9 +793,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 7938476251897572757, guid: ef3d3ac20b0e9584da841bc005008edc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5254108732063311697, guid: ef3d3ac20b0e9584da841bc005008edc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ef3d3ac20b0e9584da841bc005008edc, type: 3}

@@ -624,9 +624,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8612409223703575467, guid: ea58fc660b106b641984dde3eb3e6602, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5855830241522872687, guid: ea58fc660b106b641984dde3eb3e6602, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ea58fc660b106b641984dde3eb3e6602, type: 3}
 --- !u!4 &1016523746 stripped
 Transform:
@@ -760,13 +757,13 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1434458937
-      Data2: 1076267593
-      Data3: 2010273717
-      Data4: -468555821
-    Path: event:/2D/Level Tutorial - Voice
+      Data1: 171477192
+      Data2: 1225527603
+      Data3: -1124274533
+      Data4: 1283287298
+    Path: event:/2D/Level Gamer - Voice
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
