@@ -36,6 +36,7 @@ namespace UI
         [SerializeField] private GameObject _goBtnResetScores;
         [SerializeField] private Toggle _btnFlipTypePrompt;
         [SerializeField] private Toggle _btnMacCompat;
+        [SerializeField] private TMP_Text _safariText;
 
         private Audio.FMODMixer fmodMixer;
         
@@ -45,6 +46,8 @@ namespace UI
             FullScreenMode.Windowed
         };
 
+        private readonly CompositeDisposable _compositeDisposable = new();
+
         // --------------------------------------------------------------------------------------------------------------
         // Start & OnEnable
         // --------------------------------------------------------------------------------------------------------------
@@ -53,16 +56,11 @@ namespace UI
             PopulateVideoDropdowns();
             webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
             fmodMixer = FindObjectOfType<Canvas>().GetComponent<Audio.FMODMixer>();
-            if (PlayerPrefs.GetInt("Toggle_Control") == 1)
+            SignalBus<SignalSafariDisableControl>.Subscribe(DisableControlMode_Toggle).AddTo(_compositeDisposable);
+            
+            if (PlayerPrefs.GetInt("Detected_Safari") == 1)
             {
-                if (PlayerPrefs.GetInt("Toggle_Control") == 0)
-                {
-                    PlayerPrefs.SetInt("Toggle_Control", 1);
-                    _btnMacCompat.SetIsOnWithoutNotify(true);
-                    SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
-                }
-                    
-                _btnMacCompat.interactable = false;
+                DisableControlMode_Toggle(new SignalSafariDisableControl { });
             }
         }
 
@@ -90,7 +88,10 @@ namespace UI
             _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
         }
 
-
+        private void OnDestroy()
+        {
+            _compositeDisposable.Dispose();
+        }
         // --------------------------------------------------------------------------------------------------------------
         // Opening Panels
         // --------------------------------------------------------------------------------------------------------------
@@ -212,6 +213,12 @@ namespace UI
                 PlayerPrefs.SetInt("Toggle_Control", 1);
             _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+        }
+
+        private void DisableControlMode_Toggle(SignalSafariDisableControl signal)
+        {
+            _btnMacCompat.gameObject.SetActive(false);
+            _safariText.gameObject.SetActive(true);
         }
     }
 }

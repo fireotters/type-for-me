@@ -81,5 +81,10 @@ namespace Signals
     {
         // no payload. requests scripts to check PlayerPrefs themselves
     }
+
+    public struct SignalSafariDisableControl
+    {
+        // no payload. changes PlayerPrefs on receive.
+    }
 }
 

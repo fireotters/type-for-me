@@ -41,7 +41,7 @@ namespace Other
             else if (_draggableType == DraggableType.Keyboard)
                 _bounds = _boundsKeyboard;
 
-            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1;
+            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
         }
         private void OnDestroy()
         {
@@ -50,7 +50,7 @@ namespace Other
 
         private void DetectMacCompat(SignalSettingsChange signal)
         {
-            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1;
+            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
         }
 
         // --------------------------------------------------------------------------------------------------------------

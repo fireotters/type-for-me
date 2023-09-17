@@ -26,7 +26,7 @@ namespace UI
             #if UNITY_WEBGL
                 desktopButtons.SetActive(false);
                 webButtons.SetActive(true);
-                if (Debug.isDebugBuild == false)
+                if (!Application.isEditor)
                     GetBrowserSpec();
             #else
                 desktopButtons.SetActive(true);
@@ -55,12 +55,11 @@ namespace UI
 #if UNITY_WEBGL
         public void DetectBrowser(string browserName)
         {
-            Debug.Log($"[SettingsPanel] Current browser {browserName}");
-
             if (browserName == "Safari")
             {
-                Debug.Log("[SettingsPanel] Automatically enable 'mac compatibility mode'");
-                PlayerPrefs.SetInt("Toggle_Control", 1);
+                Debug.Log("Safari detected, permaenabling hold to drag");
+                SignalBus<SignalSafariDisableControl>.Fire(new SignalSafariDisableControl { });
+                PlayerPrefs.SetInt("Detected_Safari", 1);
             }
         }
 #endif
