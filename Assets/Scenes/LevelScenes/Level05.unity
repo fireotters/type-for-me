@@ -838,6 +838,8 @@ MonoBehaviour:
   - mods plz ban this guy
   - free game coins click here
   allowedMistakes: 5
+  phraseFinishedSound: {fileID: 1646910914}
+  voiceBarks: {fileID: 1646910913}
 --- !u!4 &1646910916
 Transform:
   m_ObjectHideFlags: 0

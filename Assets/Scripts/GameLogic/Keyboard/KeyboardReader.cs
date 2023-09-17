@@ -20,7 +20,8 @@ namespace GameLogic.Keyboard
 
         [Header("Components")]
         private TypingBox _typingBox;
-        private StudioEventEmitter phraseFinishedSound;
+        [SerializeField] private StudioEventEmitter phraseFinishedSound;
+        [SerializeField] private StudioEventEmitter voiceBarks;
         private readonly CompositeDisposable disposables = new();
 
 
@@ -35,7 +36,7 @@ namespace GameLogic.Keyboard
             SignalBus<SignalKeyboardKeyPress>.Subscribe(ReadFromKeyboard).AddTo(disposables);
             SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackspaceAction).AddTo(disposables);
             SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(disposables);
-            phraseFinishedSound = GetComponent<StudioEventEmitter>();
+            SignalBus<SignalVoiceFrequencyChange>.Subscribe(UpdateVoiceFrequency).AddTo(disposables);
 
             if (phrases.Length == 0)
             {
@@ -49,6 +50,8 @@ namespace GameLogic.Keyboard
                 string firstWord = phrases[0];
                 _typingBox.ChangeWord(firstWord);
             }
+
+            voiceBarks.EventInstance.setParameterByName("voiceFrequency", (float)PlayerPrefs.GetInt("Voice_Frequency"));
         }
 
         private void OnDestroy()
@@ -187,6 +190,11 @@ namespace GameLogic.Keyboard
             var currentWord = phrases[currentPhrase];
             _typingBox.ChangeWord(currentWord);
             SignalBus<SignalArmStopMovement>.Fire(new SignalArmStopMovement { iWantToStopArm = false });
+        }
+
+        private void UpdateVoiceFrequency(SignalVoiceFrequencyChange signal)
+        {
+            voiceBarks.EventInstance.setParameterByName("voiceFrequency", (float)signal.newValue);
         }
     }
 }

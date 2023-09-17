@@ -268,6 +268,8 @@ MonoBehaviour:
   - we must purr for humans
   - final report v3 final 2.doc
   allowedMistakes: 7
+  phraseFinishedSound: {fileID: 225609651}
+  voiceBarks: {fileID: 225609650}
 --- !u!4 &225609653
 Transform:
   m_ObjectHideFlags: 0

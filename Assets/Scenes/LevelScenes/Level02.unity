@@ -308,7 +308,7 @@ MonoBehaviour:
   Preload: 0
   Params:
   - Name: voiceFrequency
-    Value: 3
+    Value: 2
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
@@ -359,6 +359,8 @@ MonoBehaviour:
   - cheap pills
   - why is oven beeping
   allowedMistakes: 3
+  phraseFinishedSound: {fileID: 381524726}
+  voiceBarks: {fileID: 381524725}
 --- !u!4 &381524728
 Transform:
   m_ObjectHideFlags: 0

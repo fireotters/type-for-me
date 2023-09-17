@@ -941,7 +941,7 @@ MonoBehaviour:
   Preload: 0
   Params:
   - Name: voiceFrequency
-    Value: 3
+    Value: 2
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
@@ -979,6 +979,8 @@ MonoBehaviour:
   phrases:
   - 19650523
   allowedMistakes: 3
+  phraseFinishedSound: {fileID: 7966145778314933029}
+  voiceBarks: {fileID: 3636557668197629718}
 --- !u!114 &7966145778314933029
 MonoBehaviour:
   m_ObjectHideFlags: 0

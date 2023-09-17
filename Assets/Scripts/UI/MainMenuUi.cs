@@ -49,7 +49,6 @@ namespace UI
                 menuSong.AllowFadeout = false;
                 menuSong.Stop();
             }
-
         }
 
 #if UNITY_WEBGL

@@ -264,6 +264,8 @@ MonoBehaviour:
   - gyufdhrtniyl
   - bite computer cables
   allowedMistakes: 7
+  phraseFinishedSound: {fileID: 225609651}
+  voiceBarks: {fileID: 225609650}
 --- !u!4 &225609653
 Transform:
   m_ObjectHideFlags: 0

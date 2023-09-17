@@ -273,6 +273,8 @@ MonoBehaviour:
   - old sofa for sale
   - hate you barbara
   allowedMistakes: 3
+  phraseFinishedSound: {fileID: 381524726}
+  voiceBarks: {fileID: 381524725}
 --- !u!4 &381524728
 Transform:
   m_ObjectHideFlags: 0

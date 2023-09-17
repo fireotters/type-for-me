@@ -86,5 +86,10 @@ namespace Signals
     {
         // no payload. changes PlayerPrefs on receive.
     }
+
+    public struct SignalVoiceFrequencyChange
+    {
+        public int newValue;
+    }
 }
 

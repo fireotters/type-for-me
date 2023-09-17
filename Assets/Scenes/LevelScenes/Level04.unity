@@ -822,6 +822,8 @@ MonoBehaviour:
   - guys were gonna lose
   - this game sucks ass
   allowedMistakes: 5
+  phraseFinishedSound: {fileID: 1646910914}
+  voiceBarks: {fileID: 1646910913}
 --- !u!4 &1646910916
 Transform:
   m_ObjectHideFlags: 0

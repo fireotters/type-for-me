@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Saving;
 using Signals;
@@ -26,6 +27,7 @@ namespace UI
         [Header("Audio Panel controls")] 
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
+        [SerializeField] private TMP_Dropdown voiceFrequency;
         
         [Header("Video Panel controls")]
         [SerializeField] private TMP_Dropdown resDrop;
@@ -82,6 +84,7 @@ namespace UI
             // set current audio slider values
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music"));
             sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx"));
+            voiceFrequency.SetValueWithoutNotify(PlayerPrefs.GetInt("Voice_Frequency"));
 
             // game panel values
             _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
@@ -213,6 +216,13 @@ namespace UI
                 PlayerPrefs.SetInt("Toggle_Control", 1);
             _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+        }
+
+        public void AudioFrequency_Change(Int32 value)
+        {
+            Debug.Log($"Setting value to {value}");
+            PlayerPrefs.SetInt("Voice_Frequency", value);
+            SignalBus<SignalVoiceFrequencyChange>.Fire(new SignalVoiceFrequencyChange { newValue = value });
         }
 
         private void DisableControlMode_Toggle(SignalSafariDisableControl signal)
