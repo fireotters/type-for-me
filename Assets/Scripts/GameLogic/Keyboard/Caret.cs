@@ -1,3 +1,4 @@
+using Signals;
 using System;
 using System.Linq;
 using TMPro;
@@ -6,14 +7,20 @@ using UnityEngine;
 
 namespace GameLogic.Keyboard
 {
-    // TODO: keep working on thise when you really wanna get angry
     public class Caret : MonoBehaviour
     {
-        [SerializeField] TextMeshPro _inputTextTmp;
-        private Renderer _rend;
-        private bool state, isLastCharacterASpace;
+        [Header("Caret Appearance")]
+        private SpriteRenderer _rend;
+        private Color _colorRed = new(1, 0, 0, 0.8f), _colorGrey = new(.5f, .5f, .5f, 0.8f);
+
+        [Header("Caret Blinking")]
+        private bool state;
         private float _nextBlink;
         private readonly float _onDuration = .8f, _offDuration = .6f;
+
+        [Header("Caret Position")]
+        [SerializeField] TextMeshPro _inputTextTmp;
+        private Vector3 _basePos = new(-0.34f, 0f, 0f);
 
         private readonly CompositeDisposable _disposables = new();
 
@@ -23,9 +30,10 @@ namespace GameLogic.Keyboard
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
-            _rend = GetComponent<Renderer>();
-            //SignalBus<SignalKeyboardKeyPress>.Subscribe(Press).AddTo(_disposables);
-            //SignalBus<SignalKeyboardBackspacePress>.Subscribe(BackPress).AddTo(_disposables);
+            _rend = GetComponent<SpriteRenderer>();
+            SignalBus<SignalKeyboardKeyPress>.Subscribe(MoveCaretSig1).AddTo(_disposables);
+            SignalBus<SignalKeyboardBackspacePress>.Subscribe(MoveCaretSig2).AddTo(_disposables);
+            SignalBus<SignalKeyboardMistakeMade>.Subscribe(ChangeColourMistake).AddTo(_disposables);
         }
 
         private void OnDestroy()
@@ -45,67 +53,37 @@ namespace GameLogic.Keyboard
                 _nextBlink += (state ? _onDuration : _offDuration);
                 _rend.enabled = state;
             }
+        }
 
-            MoveCaret();
+        private void MoveCaretSig1 (SignalKeyboardKeyPress context)
+        {
+            Invoke(nameof(MoveCaret), 0.05f);
+        }
+        private void MoveCaretSig2(SignalKeyboardBackspacePress context)
+        {
+            _rend.color = _colorGrey;
+            Invoke(nameof(MoveCaret), 0.05f);
         }
 
         private void MoveCaret()
         {
-            var currentCharacterInfo = _inputTextTmp.textInfo.characterInfo;
-            var currentCaretPos = transform.position;
+            //TODO figure out how to move the caret correctly when a space (' ') is input
 
-            if (string.IsNullOrEmpty(_inputTextTmp.text))
-                return;
-
-            print($"<Caret> current text: {_inputTextTmp.text}");
-            print($"<Caret> current buffer: {new string(currentCharacterInfo.Select(charInfo => charInfo.character).ToArray())}");
-
-            if (!IsBufferEmpty(currentCharacterInfo))
+            try //TODO consider changing to a length check - it didn't work when I tried earlier
             {
-                if (!DoesBufferContentsMatchCurrentText(currentCharacterInfo)) // dirty ass buffer fucking tmp garbage
-                {
-                    try
-                    {
-                        print("<Caret> buffer and current text dont match");
-                        // its likely someone used backspace now
-                        var lastCharacter = _inputTextTmp.text[^1];
-                        var lastMatchingCharacterInfo =
-                            currentCharacterInfo.Last(characterInfo => characterInfo.character.Equals(lastCharacter));
-                        var lastCharCoords = lastMatchingCharacterInfo.bottomRight;
-                        transform.position = new Vector3(lastCharCoords.x, currentCaretPos.y);
-                        return;
-                    }
-                    catch (InvalidOperationException) { Debug.LogWarning("TextMeshPro sucks big dick"); }
-                }
-
-                var lastCharacterInfo = currentCharacterInfo.Last(characterInfo => characterInfo.character != '\0');
-                if (char.IsWhiteSpace(lastCharacterInfo.character) && !isLastCharacterASpace)
-                {
-                    // its a space, there's no sprite data to base our moving calculation from
-                    transform.position = new Vector3(currentCaretPos.x + 0.4f, currentCaretPos.y);
-                    isLastCharacterASpace = true;
-                }
-
-                if (char.IsWhiteSpace(lastCharacterInfo.character)) return;
-
-                var localCoord = lastCharacterInfo.bottomRight;
-                transform.position = new Vector3(localCoord.x, currentCaretPos.y);
-                isLastCharacterASpace = false;
+                Vector3 bottomright = _inputTextTmp.textInfo.characterInfo[_inputTextTmp.textInfo.characterCount - 1].bottomRight;
+                Vector3 caretPos = new(bottomright.x + 0.03f, 0f, bottomright.z);
+                transform.localPosition = caretPos;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                transform.localPosition = _basePos;
             }
         }
 
-        private bool IsBufferEmpty(TMP_CharacterInfo[] currentCharacterInfo)
+        private void ChangeColourMistake(SignalKeyboardMistakeMade context)
         {
-            return currentCharacterInfo.All(charInfo => charInfo.character == '\0');
-        }
-
-        private bool DoesBufferContentsMatchCurrentText(TMP_CharacterInfo[] currentCharacterInfo)
-        {
-            var bufferContent = new string(currentCharacterInfo
-                .Select(charInfo => charInfo.character)
-                .Where(character => !character.Equals('\0'))
-                .ToArray());
-            return _inputTextTmp.text.Equals(bufferContent);
+            _rend.color = _colorRed;
         }
     }
 }
