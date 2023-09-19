@@ -708,6 +708,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4949301845316417000, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
+      propertyPath: Params.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8194033565617372043, guid: 4b8985e808da6904a9b560bd39a1f645, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -43

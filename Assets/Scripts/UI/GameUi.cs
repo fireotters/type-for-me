@@ -47,6 +47,9 @@ namespace UI
             SignalBus<SignalGameEnded>.Subscribe(HandleEndGame).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(PauseGame).AddTo(_disposables);
             SignalBus<SignalWeGotAtLeastOneWordCorrect>.Subscribe(_dialogs.UnhideRetryBtn).AddTo(_disposables);
+            SignalBus<SignalSettingsChange>.Subscribe(UpdateMusicSettings).AddTo(_disposables);
+
+            UpdateMusicSettings(new SignalSettingsChange { });
 
             CheckFlipDisplay();
             Invoke(nameof(ShowGameplayStartLevel), 4f);
@@ -209,6 +212,11 @@ namespace UI
         public bool IsPauseInterruptingPanelOpen()
         {
             return _dialogs.gameLost.activeInHierarchy || _dialogs.gameWon.activeInHierarchy;
+        }
+
+        private void UpdateMusicSettings(SignalSettingsChange signal)
+        {
+            _sound.musicStage.SetParameter("2Dsound", PlayerPrefs.GetInt("Spatial_Audio"));
         }
     }
 

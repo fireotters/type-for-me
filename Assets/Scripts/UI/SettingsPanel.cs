@@ -28,6 +28,8 @@ namespace UI
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
         [SerializeField] private TMP_Dropdown voiceFrequency;
+        [SerializeField] private TMP_Text voiceFrequencyLabel;
+        [SerializeField] private Toggle spatialAudioToggle;
         
         [Header("Video Panel controls")]
         [SerializeField] private TMP_Dropdown resDrop;
@@ -56,13 +58,19 @@ namespace UI
         private void Awake()
         {
             PopulateVideoDropdowns();
-            webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
             fmodMixer = FindObjectOfType<Canvas>().GetComponent<Audio.FMODMixer>();
             SignalBus<SignalSafariDisableControl>.Subscribe(DisableControlMode_Toggle).AddTo(_compositeDisposable);
             
             if (PlayerPrefs.GetInt("Detected_Safari") == 1)
             {
                 DisableControlMode_Toggle(new SignalSafariDisableControl { });
+            }
+
+            if (SceneManager.GetActiveScene().name.StartsWith("Level"))
+            {
+                // don't allow to change voice frequency during gameplay - for some reason updating the parameters wont work during it
+                voiceFrequency.gameObject.SetActive(false);
+                voiceFrequencyLabel.gameObject.SetActive(false);
             }
         }
 
@@ -80,11 +88,13 @@ namespace UI
                 .IndexOf(Screen.fullScreenMode.ToString());
             resDrop.value = currentResIndex != -1 ? currentResIndex : 0;
             fsModesDrop.value = currentFsModeIndex != -1 ? currentFsModeIndex : 0;
+            webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
 
-            // set current audio slider values
+            // set current audio panel values
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music"));
             sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx"));
             voiceFrequency.SetValueWithoutNotify(PlayerPrefs.GetInt("Voice_Frequency"));
+            spatialAudioToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Spatial_Audio") == 0);
 
             // game panel values
             _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
@@ -215,6 +225,13 @@ namespace UI
             else
                 PlayerPrefs.SetInt("Toggle_Control", 1);
             _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
+            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+        }
+
+        public void SpatialAudioToggle_Change(bool value)
+        {
+            var newValue = value ? 0 : 1;
+            PlayerPrefs.SetInt("Spatial_Audio", newValue);
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
         }
 

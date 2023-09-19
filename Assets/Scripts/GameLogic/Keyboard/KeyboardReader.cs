@@ -51,7 +51,8 @@ namespace GameLogic.Keyboard
                 _typingBox.ChangeWord(firstWord);
             }
 
-            voiceBarks.EventInstance.setParameterByName("voiceFrequency", (float)PlayerPrefs.GetInt("Voice_Frequency"));
+            Debug.Log($"[KeyboardReader] frequency from settings set to {PlayerPrefs.GetInt("Voice_Frequency")}");
+            voiceBarks.SetParameter("voiceFrequency", PlayerPrefs.GetInt("Voice_Frequency"));
         }
 
         private void OnDestroy()
@@ -194,7 +195,8 @@ namespace GameLogic.Keyboard
 
         private void UpdateVoiceFrequency(SignalVoiceFrequencyChange signal)
         {
-            voiceBarks.EventInstance.setParameterByName("voiceFrequency", (float)signal.newValue);
+            Debug.Log($"[KeyboardReader] Updating frequency value to {signal.newValue}");
+            voiceBarks.SetParameter("voiceFrequency", signal.newValue);
         }
     }
 }
