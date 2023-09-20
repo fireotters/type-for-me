@@ -22,6 +22,7 @@ namespace UI
         [SerializeField] private GameUiDialogs _dialogs;
         [SerializeField] private GameUiPlayerUi _playerUi;
         [SerializeField] private GameUiSound _sound;
+        [SerializeField] private Animator _animatorTutorialBtn;
         private HUD _hud;
         
         private readonly CompositeDisposable _disposables = new();
@@ -115,6 +116,8 @@ namespace UI
         private void ShowGameplayStartLevel()
         {
             _hud.HudLevelTransition(true);
+            if (_animatorTutorialBtn.gameObject.activeInHierarchy)
+                _animatorTutorialBtn.Play("SlideIn");
             Invoke(nameof(TellArmStart), 0.3f);
         }
 
@@ -128,6 +131,8 @@ namespace UI
         private void HideGameplayEndLevel()
         {
             _hud.HudLevelTransition(false);
+            if (_animatorTutorialBtn.gameObject.activeInHierarchy)
+                _animatorTutorialBtn.Play("SlideOut");
             CheckFlipDisplay();
             bgAnimator.SetBool("levelClose", true);
         }
@@ -139,9 +144,15 @@ namespace UI
         private void CheckFlipDisplay()
         {
             if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 1)
+            {
                 bgAnimator.SetBool("typingIsTop", true);
+                _animatorTutorialBtn.SetBool("typingIsTop", true);
+            }
             else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
+            {
                 bgAnimator.SetBool("typingIsTop", false);
+                _animatorTutorialBtn.SetBool("typingIsTop", false);
+            }
         }
 
         // --------------------------------------------------------------------------------------------------------------

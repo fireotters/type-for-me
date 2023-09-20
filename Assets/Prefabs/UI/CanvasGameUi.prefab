@@ -556,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 101, y: 2}
+  m_AnchoredPosition: {x: 101, y: -186.59315}
   m_SizeDelta: {x: 73, y: 73}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3157318704580272662
@@ -2172,13 +2172,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2707939669263018288}
+  - component: {fileID: 4958040090606816877}
   m_Layer: 5
   m_Name: TutorialArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2707939669263018288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2197,11 +2198,32 @@ RectTransform:
   m_Father: {fileID: 4341101249688090784}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 73, y: 73}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!95 &4958040090606816877
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392347893048415457}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0cf5567c9f26da54bb74fed030912d36, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3755439329246163161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 101, y: 375.7}
+  m_AnchoredPosition: {x: 101, y: 187.10687}
   m_SizeDelta: {x: 73, y: 73}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &317569062691079191
@@ -2911,6 +2933,7 @@ MonoBehaviour:
   _sound:
     musicStage: {fileID: 4949301845316417000}
     fmodMixer: {fileID: 282186198177518754}
+  _animatorTutorialBtn: {fileID: 4958040090606816877}
 --- !u!223 &4341101249688090785
 Canvas:
   m_ObjectHideFlags: 0
@@ -5682,7 +5705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -10, y: -10}
+  m_AnchoredPosition: {x: -10, y: -198.59317}
   m_SizeDelta: {x: 820, y: 470}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &8454736046457223965
