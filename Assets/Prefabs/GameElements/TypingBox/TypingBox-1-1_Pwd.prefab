@@ -532,8 +532,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3618302413243471429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.30315596, y: -0.019132642, z: 1.7130691}
-  m_LocalScale: {x: 0.04, y: 0.39999998, z: 0.7100592}
+  m_LocalPosition: {x: 0, y: -0.02, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.5, z: 0.7100592}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5255667964574755266}
@@ -581,7 +581,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.7176471}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -603,7 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb23f3cfd763074a86e505678f22c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputTextTmp: {fileID: 910515046718994146}
+  _tmpInput: {fileID: 910515046718994146}
+  _tmpPreview: {fileID: 4476143077484334866}
 --- !u!1 &4531822720382212101
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +742,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 2
+  m_characterSpacing: 3
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1114,7 +1115,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 2
+  m_characterSpacing: 3
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

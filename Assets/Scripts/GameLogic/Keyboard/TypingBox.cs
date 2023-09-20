@@ -22,6 +22,7 @@ namespace GameLogic.Keyboard
 
         [Header("Components")]
         public GameObject typingUi;
+        private Caret _caret;
         private readonly CompositeDisposable _disposables = new();
 
         // --------------------------------------------------------------------------------------------------------------
@@ -30,10 +31,12 @@ namespace GameLogic.Keyboard
 
         private void Start()
         {
+            _caret = _textInput.GetComponentInChildren<Caret>();
             if (darkModeText)
             {
                 _textPreview.color = colorDarkPreview;
                 _textInput.color = colorDarkInput;
+                _caret.ChangeColourForDarkMode();
             }
             SignalBus<SignalSettingsChange>.Subscribe(FlipDisplaySig).AddTo(_disposables);
             CheckFlipDisplay();
@@ -50,6 +53,8 @@ namespace GameLogic.Keyboard
         {
             _textPreview.text = t;
             _textInput.text = "";
+            if (_caret != null)
+                _caret.ResetCaret();
         }
 
         public bool InputIsValid(string input)
