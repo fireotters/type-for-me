@@ -116,8 +116,6 @@ namespace UI
         private void ShowGameplayStartLevel()
         {
             _hud.HudLevelTransition(true);
-            if (_animatorTutorialBtn.gameObject.activeInHierarchy)
-                _animatorTutorialBtn.Play("SlideIn");
             Invoke(nameof(TellArmStart), 0.3f);
         }
 
@@ -131,11 +129,10 @@ namespace UI
         private void HideGameplayEndLevel()
         {
             _hud.HudLevelTransition(false);
-            if (_animatorTutorialBtn.gameObject.activeInHierarchy)
-                _animatorTutorialBtn.Play("SlideOut");
             CheckFlipDisplay();
             bgAnimator.SetBool("levelClose", true);
         }
+
         public void ShowGameWon()
         {
             Time.timeScale = 0;

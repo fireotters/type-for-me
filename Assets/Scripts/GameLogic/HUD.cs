@@ -38,6 +38,7 @@ namespace GameLogic
                 _tutBtnBot = _tutorialUi.transform.Find("btn-bg-bottom").gameObject;
                 if (!_tutorialUi)
                     Debug.LogWarning("HUD.cs: Can't find 'CanvasGameUi/TutorialArea'. Tutorial won't be activated/deactivated by this script.");
+                _animators.Add(_tutorialUi.GetComponent<Animator>());
             }
 
             // Start the HUD as invisible
@@ -123,7 +124,7 @@ namespace GameLogic
         // --------------------------------------------------------------------------------------------------------------
         // Misc
         // --------------------------------------------------------------------------------------------------------------
-        private void CheckFlipDisplay()
+        private void CheckFlipDisplay(bool forceMoveTuteBtns = false)
         {
             // When the TypingPrompt is at the top, shift Background down by 1.8f. And vice-versa.
             var bgTra = chosenBackground.transform.position;
@@ -142,15 +143,23 @@ namespace GameLogic
                 }
                 else if (PlayerPrefs.GetInt("TypePrompt_IsTop") == 0)
                 {
-                    _tutBtnTop.SetActive(false);
                     _tutBtnBot.SetActive(true);
+                    _tutBtnTop.SetActive(false);
                 }
+
+                // Hardcoded this because frick I'm annoyed
+                if (forceMoveTuteBtns)
+                {
+                    _tutBtnTop.GetComponent<RectTransform>().anchoredPosition = new Vector2(101, 187.11f);
+                    _tutBtnBot.GetComponent<RectTransform>().anchoredPosition = new Vector2(101, -187.11f);
+                }
+
             }
         }
 
         private void FlipDisplaySig(SignalSettingsChange context)
         {
-            CheckFlipDisplay();
+            CheckFlipDisplay(forceMoveTuteBtns:true);
         }
     }
 }

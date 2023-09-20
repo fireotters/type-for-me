@@ -80,7 +80,7 @@ namespace GameLogic.Keyboard
         {
             if (_textPreview.text.Equals(_textInput.text))
             {
-                _textInput.text = $"<color=#4EFF00>{_textInput.text}</color>";
+                _textInput.text = $"<color=#1aea10>{_textInput.text}</color>";
                 return true;
             }
             return false;
