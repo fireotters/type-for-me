@@ -78,9 +78,7 @@ namespace GameLogic.Keyboard
 
         private void MoveCaret()
         {
-            //TODO figure out how to move the caret correctly when a space (' ') is input
-
-            try //TODO consider changing to a length check - it didn't work when I tried earlier
+            try
             {
                 Vector3 bottomright = _tmpInput.textInfo.characterInfo[_tmpInput.textInfo.characterCount - 1].bottomRight;
                 Vector3 caretPos = new(bottomright.x + _lilOffset, -_lilOffset, bottomright.z);

@@ -35,6 +35,7 @@ namespace UI
         [SerializeField] private TMP_Dropdown resDrop;
         [SerializeField] private TMP_Dropdown fsModesDrop;
         [SerializeField] private Toggle webFsToggle;
+        [SerializeField] private GameObject _goWebGlClickAgainReminder;
 
         [Header("Game Panel controls")]
         [SerializeField] private Slider _sliderMouseSens;
@@ -178,6 +179,8 @@ namespace UI
         {
 #if UNITY_WEBGL
             Screen.fullScreen = webFsToggle.isOn;
+            if (webFsToggle.isOn)
+                _goWebGlClickAgainReminder.SetActive(true);
 #else
             var desiredResolution = Screen.resolutions
                 .First(res => res.ToString().StartsWith(resDrop.captionText.text));
