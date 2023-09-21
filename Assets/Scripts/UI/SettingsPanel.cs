@@ -37,8 +37,8 @@ namespace UI
         [SerializeField] private Toggle webFsToggle;
 
         [Header("Game Panel controls")]
-        [SerializeField] private GameObject _goBtnResetScores;
-        [SerializeField] private GameObject _goSliderMouseSens, _goTxtSafariWarn;
+        [SerializeField] private Slider _sliderMouseSens;
+        [SerializeField] private GameObject _goSliderMouseSens, _goBtnResetScores, _goTxtSafariWarn;
         [SerializeField] private Toggle _toggleFlipTypePrompt, _toggleHoldToDrag;
 
         private Audio.FMODMixer fmodMixer;
@@ -100,7 +100,7 @@ namespace UI
             _toggleFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
             _toggleHoldToDrag.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
             _goSliderMouseSens.SetActive(PlayerPrefs.GetInt("Toggle_Control") == 0);
-            sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("MouseSensitivity"));
+            _sliderMouseSens.SetValueWithoutNotify(PlayerPrefs.GetFloat("MouseSensitivity"));
         }
 
         private void OnDestroy()

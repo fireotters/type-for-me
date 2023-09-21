@@ -8059,8 +8059,9 @@ MonoBehaviour:
   resDrop: {fileID: 5617720515951989520}
   fsModesDrop: {fileID: 6271947510275803347}
   webFsToggle: {fileID: 2300072828025436063}
-  _goBtnResetScores: {fileID: 7512362375014184368}
+  _sliderMouseSens: {fileID: 8355464931628613714}
   _goSliderMouseSens: {fileID: 7875148335893853808}
+  _goBtnResetScores: {fileID: 7512362375014184368}
   _goTxtSafariWarn: {fileID: 8095747770840849705}
   _toggleFlipTypePrompt: {fileID: 7678291992960356384}
   _toggleHoldToDrag: {fileID: 755453889695998438}
