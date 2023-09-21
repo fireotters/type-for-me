@@ -38,10 +38,16 @@ namespace UI
             ConfigureVersionText();
             Input.multiTouchEnabled = false; // All scenes after this will obey the No Multitouch rule
             SignalBus<SignalUiMainMenuStartGame>.Subscribe(StartGame).AddTo(_disposables);
+
+            // Default PlayerPrefs
             if (!PlayerPrefs.HasKey("TypePrompt_IsTop"))
-            {
                 PlayerPrefs.SetInt("TypePrompt_IsTop", 1);
-            }
+            if (!PlayerPrefs.HasKey("Voice_Frequency"))
+                PlayerPrefs.SetInt("Voice_Frequency", 2);
+            if (!PlayerPrefs.HasKey("MouseSensitivity"))
+                PlayerPrefs.SetFloat("MouseSensitivity", 0.5f);
+
+            // If player has Highscores from a previous version, force the game to reset scores
             if (PlayerPrefs.GetInt("HighScoreVersion") != 1)
             {
                 HighScoreManagement.ResetLevelScores();

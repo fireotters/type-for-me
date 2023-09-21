@@ -38,9 +38,8 @@ namespace UI
 
         [Header("Game Panel controls")]
         [SerializeField] private GameObject _goBtnResetScores;
-        [SerializeField] private Toggle _btnFlipTypePrompt;
-        [SerializeField] private Toggle _btnMacCompat;
-        [SerializeField] private TMP_Text _safariText;
+        [SerializeField] private GameObject _goSliderMouseSens, _goTxtSafariWarn;
+        [SerializeField] private Toggle _toggleFlipTypePrompt, _toggleHoldToDrag;
 
         private Audio.FMODMixer fmodMixer;
         
@@ -68,7 +67,8 @@ namespace UI
 
             if (SceneManager.GetActiveScene().name.StartsWith("Level"))
             {
-                // don't allow to change voice frequency during gameplay - for some reason updating the parameters wont work during it
+                // don't allow to change voice frequency during gameplay (updating the parameters won't work during play), nor allow resetting scores
+                _goBtnResetScores.SetActive(false);
                 voiceFrequency.gameObject.SetActive(false);
                 voiceFrequencyLabel.gameObject.SetActive(false);
             }
@@ -76,8 +76,8 @@ namespace UI
 
         private void OnEnable()
         {
+            // video panel init values, and populate the resolution dropdown
             var currentRes = Screen.width + " x " + Screen.height;
-            // set current video dropdown values
             var currentResIndex = resDrop.options
                 .Select(optionData => optionData.text)
                 .ToList()
@@ -90,15 +90,17 @@ namespace UI
             fsModesDrop.value = currentFsModeIndex != -1 ? currentFsModeIndex : 0;
             webFsToggle.SetIsOnWithoutNotify(Screen.fullScreen);
 
-            // set current audio panel values
+            // audio panel init values
             musicSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("music"));
             sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfx"));
             voiceFrequency.SetValueWithoutNotify(PlayerPrefs.GetInt("Voice_Frequency"));
             spatialAudioToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Spatial_Audio") == 0);
 
-            // game panel values
-            _btnFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
-            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
+            // game panel init values
+            _toggleFlipTypePrompt.SetIsOnWithoutNotify(PlayerPrefs.GetInt("TypePrompt_IsTop") == 0);
+            _toggleHoldToDrag.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
+            _goSliderMouseSens.SetActive(PlayerPrefs.GetInt("Toggle_Control") == 0);
+            sfxSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("MouseSensitivity"));
         }
 
         private void OnDestroy()
@@ -198,7 +200,21 @@ namespace UI
         {
             fmodMixer.ChangeSfxVolume(dB);
         }
-        
+
+        public void SpatialAudioToggle_Change(bool value)
+        {
+            var newValue = value ? 0 : 1;
+            PlayerPrefs.SetInt("Spatial_Audio", newValue);
+            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
+        }
+
+        public void AudioFrequency_Change(Int32 value)
+        {
+            Debug.Log($"Setting value to {value}");
+            PlayerPrefs.SetInt("Voice_Frequency", value);
+            SignalBus<SignalVoiceFrequencyChange>.Fire(new SignalVoiceFrequencyChange { newValue = value });
+        }
+
         // --------------------------------------------------------------------------------------------------------------
         // Game
         // --------------------------------------------------------------------------------------------------------------
@@ -224,28 +240,21 @@ namespace UI
                 PlayerPrefs.SetInt("Toggle_Control", 0);
             else
                 PlayerPrefs.SetInt("Toggle_Control", 1);
-            _btnMacCompat.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
+            _toggleHoldToDrag.SetIsOnWithoutNotify(PlayerPrefs.GetInt("Toggle_Control") == 1);
+            _goSliderMouseSens.SetActive(PlayerPrefs.GetInt("Toggle_Control") == 0);
             SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
-        }
-
-        public void SpatialAudioToggle_Change(bool value)
-        {
-            var newValue = value ? 0 : 1;
-            PlayerPrefs.SetInt("Spatial_Audio", newValue);
-            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
-        }
-
-        public void AudioFrequency_Change(Int32 value)
-        {
-            Debug.Log($"Setting value to {value}");
-            PlayerPrefs.SetInt("Voice_Frequency", value);
-            SignalBus<SignalVoiceFrequencyChange>.Fire(new SignalVoiceFrequencyChange { newValue = value });
         }
 
         private void DisableControlMode_Toggle(SignalSafariDisableControl signal)
         {
-            _btnMacCompat.gameObject.SetActive(false);
-            _safariText.gameObject.SetActive(true);
+            _toggleHoldToDrag.gameObject.SetActive(false);
+            _goTxtSafariWarn.SetActive(true);
+        }
+
+        public void PassMouseSensChange(float value)
+        {
+            PlayerPrefs.SetFloat("MouseSensitivity", value);
+            SignalBus<SignalSettingsChange>.Fire(new SignalSettingsChange { });
         }
     }
 }

@@ -29216,10 +29216,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.6666667
       objectReference: {fileID: 0}
-    - target: {fileID: 5099418976496058076, guid: d647554f2391d974caa7fa76711daf28, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6497120459581694157, guid: d647554f2391d974caa7fa76711daf28, type: 3}
       propertyPath: m_Name
       value: SettingsPanel

@@ -11,12 +11,12 @@ namespace Other
         private bool _onlyJustClicked = false;
 
         [Header("Mouse Users")]
-        public float mouseSensitivity;
+        private float mouseSensitivity;
+        private bool isHoldToDragOn;
 
         [Header("Touch Users")]
         private Vector3 _touchOffset;
         private Camera _mainCamera;
-        public bool isMacCompatOn;
 
         [Header("Bounds of where Draggable can be dragged")]
         [SerializeField] private DraggableType _draggableType;
@@ -34,23 +34,25 @@ namespace Other
             SignalBus<SignalGameEnded>.Subscribe(DisableDragEnd).AddTo(_disposables);
             SignalBus<SignalGamePaused>.Subscribe(DisableDragPause).AddTo(_disposables);
             SignalBus<SignalGameRetryFromCheckpoint>.Subscribe(RetryLevelFromCheckpoint).AddTo(_disposables);
-            SignalBus<SignalSettingsChange>.Subscribe(DetectMacCompat).AddTo(_disposables);
+            SignalBus<SignalSettingsChange>.Subscribe(DetectSettingsChanges).AddTo(_disposables);
 
             if (_draggableType == DraggableType.Numpad)
                 _bounds = _boundsNumPad;
             else if (_draggableType == DraggableType.Keyboard)
                 _bounds = _boundsKeyboard;
 
-            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
+            mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
+            isHoldToDragOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
         }
         private void OnDestroy()
         {
             _disposables.Dispose();
         }
 
-        private void DetectMacCompat(SignalSettingsChange signal)
+        private void DetectSettingsChanges(SignalSettingsChange signal)
         {
-            isMacCompatOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
+            isHoldToDragOn = PlayerPrefs.GetInt("Toggle_Control") == 1 || PlayerPrefs.GetInt("Detected_Safari") == 1;
+            mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
         }
 
         // --------------------------------------------------------------------------------------------------------------
@@ -65,7 +67,7 @@ namespace Other
                 return;
             }
 
-            if (isMacCompatOn || Input.touchCount > 0)
+            if (isHoldToDragOn || Input.touchCount > 0)
                 HandleMovementTouch();
             else
                 HandleMovementMouse();
@@ -99,7 +101,7 @@ namespace Other
             Cursor.lockState = CursorLockMode.None;
 
             // Touchscreen has just been let go of, or Mac Compatibility is on and the mouse button is just let go
-            if (isMacCompatOn)
+            if (isHoldToDragOn)
             {
                 if (Input.GetMouseButtonUp(0))
                 {
