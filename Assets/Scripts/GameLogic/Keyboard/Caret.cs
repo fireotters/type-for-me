@@ -31,6 +31,7 @@ namespace GameLogic.Keyboard
         // --------------------------------------------------------------------------------------------------------------
         private void Start()
         {
+            _nextBlink = Time.time;
             _rend = GetComponent<SpriteRenderer>();
             _rend.color = _colorNormal;
             SignalBus<SignalKeyboardKeyPress>.Subscribe(MoveCaretSig1).AddTo(_disposables);
