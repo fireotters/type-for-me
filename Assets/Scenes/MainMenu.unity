@@ -7579,7 +7579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   versionText: {fileID: 768360735}
-  showVersionText: 0
+  showVersionText: 1
   desktopButtons: {fileID: 995839752}
   webButtons: {fileID: 408290599}
   menuSong: {fileID: 31429396}
