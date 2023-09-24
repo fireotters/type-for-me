@@ -90,7 +90,7 @@ namespace GameLogic.Character.Arm
                 return true;
 
             // If we want to stop arm, but it isn't yet... Continue to process movements, and wait til the hand is raised to above .99f
-            if (iWantToStopArm && raiseHeight > 0.999f)
+            if (iWantToStopArm && raiseHeight > 0.99f)
             {
                 armStopped = true;
                 return true;

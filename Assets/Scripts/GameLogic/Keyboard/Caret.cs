@@ -93,6 +93,8 @@ namespace GameLogic.Keyboard
         public void ResetCaret()
         {
             transform.localPosition = _basePos;
+            if (_rend)
+                _rend.color = _colorNormal;
         }
 
         private void ChangeColourMistake(SignalKeyboardMistakeMade context)
