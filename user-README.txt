@@ -24,21 +24,21 @@ Linux - The game may not run as an executable.
 Changelog
 ------------------
 v1.1 - Post-Jam Update (24 September 2023)
-• 5 levels added, for a total of 9 levels
+• 5 levels added, for a total of 9 levels. Each character has 3 levels, and each character's final level sports a slight speed boost
 • Failure is more forgiving:
-	• After a wrong keypress, further mistakes won't penalise the player until Backspace is pressed
+	• After a wrong key-press, further mistakes won't penalise the player until Backspace is pressed
 	• When a word is completed the player may restart from that point if they fail the level
-• Presentation is improved, including changes like:
+• Controlling the game is easier:
+	• By default, players only need to click on the keyboard one time to commence dragging the object around
+	• The character's hand will stop poking for a moment when a word is completed
+• Presentation is improved:
 	• A 'caret' to show where the next letter will be typed
 	• The Backspace key pulsates when a mistake has been made
 	• 'Typing Box' is now on top of the screen by default
 	• Better level transitions, and consistent 'Typing Box' designs (now includes a current combo counter)
-• Controlling the game is easier:
-	• By default, players only need to click on the keyboard one time to commence dragging the object around
-	• The character will stop poking for a moment when a word is completed
 • More settings added:
 	• Audio: Spatial music can be toggled. Frequency of character voice lines can be changed
-	• Game: 'Typing Box' UI can be flipped. 'Hold To Drag' reverts the game to v1.0's control scheme. 'Mouse Senstivity' helps players to adjust the new control scheme
+	• Game: 'Typing Box' UI can be flipped. 'Hold To Drag' reverts the game to v1.0's control scheme. 'Mouse Sensitivity' helps players to adjust the new control scheme
 • Bug fixes from v1.0:
 	• Keyboard can no longer slide entirely off-screen
 	• Audio now plays on iOS devices & Safari
@@ -48,6 +48,12 @@ v1.1 - Post-Jam Update (24 September 2023)
 
 v1.0 - GMTK Game Jam Submission (9 July 2023)
 • Game released!
+
+------------------
+Troubleshooting
+------------------
+• If the game doesn't allow you to drag the keyboard around, enable 'Hold to Drag' in the settings to try v1.0's old control scheme
+	<!> Note for Linux: The 'Hold To Drag' control setting may not work correctly in Windowed mode, the cursor stops working when it exits the game window
 
 ------------------
 Attributions
