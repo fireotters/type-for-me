@@ -159,18 +159,12 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void PopulateVideoDropdowns()
         {
-            // List all fullscreen-supported resolutions at 16x9 or wider. Wider resolutions will pillarbox with black lines either side.
-            // The game isn't designed to go lower; letterboxing doesn't work and makes the game unplayable
-            // (attempts to scale the gameobjects didn't work; to fix it would require a code rewrite for Arm.cs, etc)
             var resolutionOptions = Screen.resolutions
+                .Where(res => res.width / (float)res.height > 1.77f) // filter out non 16:9 resolutions
                 .Select(res =>
                 {
-                    if (res.width / (float)res.height > 1.77f)
-                    {
-                        var text = res.ToString()[..(res.ToString().IndexOf('@') - 1)];
-                        return new OptionData { text = text };
-                    }
-                    return new OptionData { }; // Don't render
+                    var text = res.ToString()[..(res.ToString().IndexOf('@') - 1)];
+                    return new OptionData { text = text };        
                 })
                 .DistinctBy(optionData => optionData.text)
                 .ToList();
