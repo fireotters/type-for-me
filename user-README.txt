@@ -19,6 +19,7 @@ Windows - Smartscreen may block the game from opening. Click 'More info' and 'Ru
 Linux - The game may not run as an executable.
 • For Ubuntu, go to the executable's 'Properties, Permissions' and check the box for 'Allow executing file as program'.
 • For other distros, you could run "chmod +x" on the executable to mark it as an executable.
+• If the game crashes immediately, check "~/.config/unity3d/FireOtters/Type For Me!" for an error log
 
 ------------------
 Changelog

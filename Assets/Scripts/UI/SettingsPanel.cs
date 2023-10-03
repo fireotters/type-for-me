@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 using static TMPro.TMP_Dropdown;
 
 namespace UI
@@ -158,12 +159,18 @@ namespace UI
         // --------------------------------------------------------------------------------------------------------------
         private void PopulateVideoDropdowns()
         {
-            // TODO should we iterate over all supported resolutions or should we define a specific list?
+            // List all fullscreen-supported resolutions at 16x9 or wider. Wider resolutions will pillarbox with black lines either side.
+            // The game isn't designed to go lower; letterboxing doesn't work and makes the game unplayable
+            // (attempts to scale the gameobjects didn't work; to fix it would require a code rewrite for Arm.cs, etc)
             var resolutionOptions = Screen.resolutions
                 .Select(res =>
                 {
-                    var text = res.ToString()[..(res.ToString().IndexOf('@') - 1)];
-                    return new OptionData { text = text };
+                    if (res.width / (float)res.height > 1.77f)
+                    {
+                        var text = res.ToString()[..(res.ToString().IndexOf('@') - 1)];
+                        return new OptionData { text = text };
+                    }
+                    return new OptionData { }; // Don't render
                 })
                 .DistinctBy(optionData => optionData.text)
                 .ToList();
