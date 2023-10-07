@@ -1,4 +1,4 @@
-Type for Me! v1.1
+Type for Me! v1.1.1
 
 Developed by: benchi99, CrossfireCam, Darelt, Danirbu, TeslaSP2
 Full credits and itch.io links are in the game's Help menu
@@ -24,6 +24,10 @@ Linux - The game may not run as an executable.
 ------------------
 Changelog
 ------------------
+v.1.1.1 - Minor Update (07 October 2023)
+• Allow only 16:9 resolutions on desktop builds
+• For mobile users on web, the "WebGL builds are not supported" banner is now hidden
+
 v1.1 - Post-Jam Update (24 September 2023)
 • 5 levels added, for a total of 9 levels. Each character has 3 levels, and each character's final level sports a slight speed boost
 • Failure is more forgiving:
