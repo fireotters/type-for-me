@@ -1,4 +1,4 @@
-Type for Me! v1.1.1
+lnerType for Me! v1.1.2
 
 Developed by: benchi99, CrossfireCam, Darelt, Danirbu, TeslaSP2
 Full credits and itch.io links are in the game's Help menu
@@ -24,6 +24,9 @@ Linux - The game may not run as an executable.
 ------------------
 Changelog
 ------------------
+v1.0.2 - Patch for CVE-2025-59489 (4 October 2025)
+• Patched a Unity vulnerability (https://unity.com/security/sept-2025-01)
+
 v.1.1.1 - Minor Update (07 October 2023)
 • Allow only 16:9 resolutions on desktop builds
 • For mobile users on web, the "WebGL builds are not supported" banner is now hidden
