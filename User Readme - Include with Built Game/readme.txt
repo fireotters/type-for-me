@@ -1,4 +1,4 @@
-lnerType for Me! v1.1.2
+Type for Me! v1.1.2
 
 Developed by: benchi99, CrossfireCam, Darelt, Danirbu, TeslaSP2
 Full credits and itch.io links are in the game's Help menu
